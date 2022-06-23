@@ -1,1 +1,1 @@
-runpixierun
+runpixierun-lite
