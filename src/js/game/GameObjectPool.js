@@ -1,18 +1,12 @@
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-GAME.GameObjectPool = function(classType) {
+const GameObjectPool = function(classType) {
     this.classType = classType;
     this.pool = [];
 }
 
 // constructor
-GAME.GameObjectPool.constructor = GAME.GameObjectPool;
+GameObjectPool.constructor = GameObjectPool;
 
-GAME.GameObjectPool.prototype.getObject = function() {
+GameObjectPool.prototype.getObject = function() {
     var object = this.pool.pop();
     if (!object) {
         object = new this.classType();
@@ -21,6 +15,10 @@ GAME.GameObjectPool.prototype.getObject = function() {
     return object;
 }
 
-GAME.GameObjectPool.prototype.returnObject = function(object) {
+GameObjectPool.prototype.returnObject = function(object) {
     //this.pool.push(object);
+}
+
+export {
+    GameObjectPool
 }

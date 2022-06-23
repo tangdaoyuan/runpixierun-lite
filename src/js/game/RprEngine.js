@@ -1,26 +1,25 @@
-/**
- * @author Mat Groves
- */
+import GAME from './Game'
+import { Steve } from './Steve'
+import { RprView }  from './view/RprView'
+import { SegmentManager } from './SegmentManager'
+import { EnemyManager }  from './EnemyManager'
+import { PickupManager } from './PickupManager'
+import { FloorManager } from './FloorManager'
+import { CollisionManager } from './CollisionManager'
+import LocalStorage from '../fido/LocalStorage'
+import FidoAudio from '../fido/FidoAudio'
 
-var GAME = GAME || {};
-
-GAME.HIGH_MODE = true;
-GAME.camera = new PIXI.Point();
-GAME.height;
-GAME.bundleId = "com.goodboy.runpixierun";
-GAME.newHighScore = false;
-
-GAME.RprEngine = function() {
+const RprEngine = function() {
     this.onGameover;
 
-    this.steve = new GAME.Steve();
-    this.view = new GAME.RprView(this);
-    this.segmentManager = new GAME.SegmentManager(this);
-    this.enemyManager = new GAME.EnemyManager(this);
-    this.pickupManager = new GAME.PickupManager(this);
-    this.floorManager = new GAME.FloorManager(this);
-    this.collisionManager = new GAME.CollisionManager(this);
-    this.LocalStorage = new Fido.LocalStorage(GAME.bundleId);
+    this.steve = new Steve();
+    this.view = new RprView(this);
+    this.segmentManager = new SegmentManager(this);
+    this.enemyManager = new EnemyManager(this);
+    this.pickupManager = new PickupManager(this);
+    this.floorManager = new FloorManager(this);
+    this.collisionManager = new CollisionManager(this);
+    this.LocalStorage = new LocalStorage(GAME.bundleId);
 
     this.steve.view.visible = false;
 
@@ -37,7 +36,7 @@ GAME.RprEngine = function() {
     this.view.game.addChild(this.steve.view);
 }
 
-GAME.RprEngine.prototype.start = function() {
+RprEngine.prototype.start = function() {
     this.segmentManager.reset();
     this.enemyManager.destroyAll();
     this.pickupManager.destroyAll();
@@ -58,7 +57,7 @@ GAME.RprEngine.prototype.start = function() {
 
 }
 
-GAME.RprEngine.prototype.update = function() {
+RprEngine.prototype.update = function() {
     GAME.time.update();
 
     var targetCamY = 0;
@@ -99,7 +98,7 @@ GAME.RprEngine.prototype.update = function() {
     this.view.update();
 }
 
-GAME.RprEngine.prototype.reset = function() {
+RprEngine.prototype.reset = function() {
     this.enemyManager.destroyAll();
     this.floorManager.destroyAll();
 
@@ -112,7 +111,7 @@ GAME.RprEngine.prototype.reset = function() {
     this.view.game.addChild(this.steve.view);
 }
 
-GAME.RprEngine.prototype.joyrideComplete = function() {
+RprEngine.prototype.joyrideComplete = function() {
     this.joyrideMode = false;
     this.pickupCount = 0;
     this.bulletMult += 0.3;
@@ -121,7 +120,7 @@ GAME.RprEngine.prototype.joyrideComplete = function() {
     this.enemyManager.destroyAll();
 }
 
-GAME.RprEngine.prototype.gameover = function() {
+RprEngine.prototype.gameover = function() {
     this.isPlaying = false;
     this.isDying = true;
     this.segmentManager.chillMode = true;
@@ -142,13 +141,13 @@ GAME.RprEngine.prototype.gameover = function() {
     });
 }
 
-GAME.RprEngine.prototype.gameoverReal = function() {
+RprEngine.prototype.gameoverReal = function() {
     this.gameReallyOver = true;
     this.isDying = false;
     this.onGameoverReal();
 }
 
-GAME.RprEngine.prototype.pickup = function() {
+RprEngine.prototype.pickup = function() {
     if (this.steve.isDead) return;
 
     this.score += 10;
@@ -180,7 +179,7 @@ GAME.RprEngine.prototype.pickup = function() {
     }
 }
 
-Time = function() {
+const Time = function() {
     this.DELTA_TIME = 1;
     this.lastTime = Date.now();
     this.speed = 1;

@@ -1,4 +1,4 @@
-data = [
+export const data = [
     // {
     //     length: 3405.1,
     //     floor: [0, 1135, 2270],

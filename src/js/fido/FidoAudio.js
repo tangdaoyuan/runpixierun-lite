@@ -1,11 +1,14 @@
-var FidoAudio = (function() {
+import _Device from './Device'
+import _LocalStorage from  './LocalStorage'
+
+const FidoAudio = (function() {
     var cSoundPool = {};
     var DEFAULT_FADE_OUT_TIME = 1;
     var DEFAULT_FADE_IN_TIME = 1;
     var MUTE_ALL = false;
 
-    var Device = new Fido.Device();
-    var LocalStorage = new Fido.LocalStorage();
+    const Device = new _Device();
+    var LocalStorage = new _LocalStorage();
 
     var aSounds = [{
             src: 'audio/mainLoop',
@@ -251,3 +254,5 @@ var FidoAudio = (function() {
     }
 
 })();
+
+export default FidoAudio

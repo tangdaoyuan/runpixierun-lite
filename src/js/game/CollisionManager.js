@@ -1,30 +1,22 @@
-/**
- * @author Mat Groves
- */
-
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
+import FidoAudio from '../fido/FidoAudio'
 
 var laserCount = 0;
 
-GAME.CollisionManager = function(engine) {
+const CollisionManager = function(engine) {
     this.engine = engine;
 }
 
 // constructor
-GAME.CollisionManager.constructor = GAME.CollisionManager;
+CollisionManager.constructor = CollisionManager;
 
-GAME.CollisionManager.prototype.update = function() {
+CollisionManager.prototype.update = function() {
     //if(this.engine.isPlaying) 
     this.playerVsBlock();
     this.playerVsPickup();
     this.playerVsFloor();
 }
 
-GAME.CollisionManager.prototype.playerVsBlock = function() {
+CollisionManager.prototype.playerVsBlock = function() {
     var enemies = this.engine.enemyManager.enemies;
     var steve = this.engine.steve;
 
@@ -46,7 +38,7 @@ GAME.CollisionManager.prototype.playerVsBlock = function() {
     }
 }
 
-GAME.CollisionManager.prototype.playerVsPickup = function() {
+CollisionManager.prototype.playerVsPickup = function() {
 
     var pickups = this.engine.pickupManager.pickups;
     var steve = this.engine.steve;
@@ -69,7 +61,7 @@ GAME.CollisionManager.prototype.playerVsPickup = function() {
     }
 }
 
-GAME.CollisionManager.prototype.playerVsFloor = function() {
+CollisionManager.prototype.playerVsFloor = function() {
     var floors = this.engine.floorManager.floors;
     var steve = this.engine.steve;
 
@@ -141,4 +133,8 @@ GAME.CollisionManager.prototype.playerVsFloor = function() {
         steve.position.y = 0;
         steve.speed.y *= 0;
     }
+}
+
+export {
+    CollisionManager
 }

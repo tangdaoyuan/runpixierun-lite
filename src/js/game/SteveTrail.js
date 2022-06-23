@@ -1,19 +1,18 @@
 import * as PIXI from '../pixi'
+import { GameObjectPool } from '../game/GameObjectPool'
 
-const GAME  = {}
-
-GAME.SteveTrail = function(stage) {
+const SteveTrail = function(stage) {
     this.stage = stage;
     this.target = new PIXI.Point();
     this.particals = [];
-    this.particalPool = new GAME.GameObjectPool(Partical);
+    this.particalPool = new GameObjectPool(Partical);
     this.max = 100
     this.count = 0;
 }
 
-GAME.SteveTrail.constructor = GAME.SteveTrail;
+SteveTrail.constructor = SteveTrail;
 
-GAME.SteveTrail.prototype.update = function() {
+SteveTrail.prototype.update = function() {
     if (this.target.isFlying && !this.target.isDead) {
         this.count++;
 
@@ -65,8 +64,8 @@ GAME.SteveTrail.prototype.update = function() {
     }
 }
 
-Partical = function() {
-    PIXI.Sprite.call(this, PIXI.Texture.fromFrameId("starPops0004.png"));
+const Partical = function() {
+    PIXI.Sprite.call(this, PIXI.Texture.from("starPops0004.png"));
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
     this.speed = new PIXI.Point();
@@ -76,6 +75,6 @@ Partical.constructor = Partical;
 Partical.prototype = Object.create(PIXI.Sprite.prototype);
 
 export {
-  GAME,
+  SteveTrail,
   Partical
 }

@@ -1,27 +1,18 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-
-GAME.Splash = function(owner) {
-    this.textures = [PIXI.Texture.fromFrameId("lavaFrame_01.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_02.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_03.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_04.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_05.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_06.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_07.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_08.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_09.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_10.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_11.png"),
-        PIXI.Texture.fromFrameId("lavaFrame_12.png")
+const Splash = function(owner) {
+    this.textures = [PIXI.Texture.from("lavaFrame_01.png"),
+        PIXI.Texture.from("lavaFrame_02.png"),
+        PIXI.Texture.from("lavaFrame_03.png"),
+        PIXI.Texture.from("lavaFrame_04.png"),
+        PIXI.Texture.from("lavaFrame_05.png"),
+        PIXI.Texture.from("lavaFrame_06.png"),
+        PIXI.Texture.from("lavaFrame_07.png"),
+        PIXI.Texture.from("lavaFrame_08.png"),
+        PIXI.Texture.from("lavaFrame_09.png"),
+        PIXI.Texture.from("lavaFrame_10.png"),
+        PIXI.Texture.from("lavaFrame_11.png"),
+        PIXI.Texture.from("lavaFrame_12.png")
     ];
 
     PIXI.MovieClip.call(this, this.textures);
@@ -36,10 +27,10 @@ GAME.Splash = function(owner) {
 
 
 
-GAME.Splash.constructor = GAME.Splash;
-GAME.Splash.prototype = Object.create(PIXI.MovieClip.prototype);
+Splash.constructor = Splash;
+Splash.prototype = Object.create(PIXI.MovieClip.prototype);
 
-GAME.Splash.prototype.splash = function(position) {
+Splash.prototype.splash = function(position) {
     this.realPosition = position.x;
 
     this.position.y = 620; //this.engine.steve.view.position.y;
@@ -48,7 +39,7 @@ GAME.Splash.prototype.splash = function(position) {
     this.visible = true;
 }
 
-GAME.Splash.prototype.updateTransform = function() {
+Splash.prototype.updateTransform = function() {
     if (!this.visible) return;
 
     PIXI.MovieClip.prototype.updateTransform.call(this);
@@ -59,4 +50,7 @@ GAME.Splash.prototype.updateTransform = function() {
         this.stop();
         this.visible = false;
     }
+}
+export {
+    Splash
 }

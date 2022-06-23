@@ -1,18 +1,14 @@
-/**
- * @author Mat Groves
- * v2 by Tom Slezakowski
- */
-
-var GAME = GAME || {};
+import * as PIXI from '../../pixi'
+import { gsap } from 'gsap'
 
 var enemyFrames;
 var m_cCountdown = false;
 
-GAME.Countdown = function() {
+const Countdown = function() {
     PIXI.DisplayObjectContainer.call(this);
-    this.three = PIXI.Sprite.fromFrame("3Get.png");
-    this.two = PIXI.Sprite.fromFrame("2tricksy.png");
-    this.one = PIXI.Sprite.fromFrame("1pixie.png");
+    this.three = PIXI.Sprite.from("3Get.png");
+    this.two = PIXI.Sprite.from("2tricksy.png");
+    this.one = PIXI.Sprite.from("1pixie.png");
 
     this.three.anchor.x = this.three.anchor.y = 0.5;
     this.two.anchor.x = this.two.anchor.y = 0.5;
@@ -33,10 +29,10 @@ GAME.Countdown = function() {
     m_cCountdown = this;
 }
 
-GAME.Countdown.constructor = GAME.Countdown;
-GAME.Countdown.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Countdown.constructor = Countdown;
+Countdown.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.Countdown.prototype.startCountDown = function(onComplete) {
+Countdown.prototype.startCountDown = function(onComplete) {
     this.visible = true;
     this.onComplete = onComplete;
 
@@ -50,14 +46,14 @@ GAME.Countdown.prototype.startCountDown = function(onComplete) {
 
     var that = this;
 
-    TweenLite.to(this.three, 1 * time2, {
+    gsap.to(this.three, 1 * time2, {
         alpha: 1,
         onComplete: function() {
             m_cCountdown.onThreeShown();
         }
     });
 
-    TweenLite.to(this.three.scale, 1 * time2, {
+    gsap.to(this.three.scale, 1 * time2, {
         x: 1,
         y: 1,
         ease: Elastic.easeOut
@@ -68,48 +64,48 @@ var time = 0.1;
 var time2 = 0.5;
 var delay = 0;
 
-GAME.Countdown.prototype.onThreeShown = function() {
+Countdown.prototype.onThreeShown = function() {
     var that = this;
 
-    TweenLite.to(that.three, 1 * time, {
+    gsap.to(that.three, 1 * time, {
         alpha: 0,
         ease: Sine.easeOut,
         delay: delay
     });
 
-    TweenLite.to(that.three.scale, 1 * time, {
+    gsap.to(that.three.scale, 1 * time, {
         x: 0.5,
         y: 0.5,
         ease: Cubic.easeOut,
         delay: delay
     });
 
-    TweenLite.to(that.two, 1 * time2, {
+    gsap.to(that.two, 1 * time2, {
         alpha: 1,
         onComplete: function() {
-            TweenLite.to(that.two, 1 * time, {
+            gsap.to(that.two, 1 * time, {
                 alpha: 0,
                 delay: delay
             });
 
-            TweenLite.to(that.two.scale, 1 * time, {
+            gsap.to(that.two.scale, 1 * time, {
                 x: 0.5,
                 y: 0.5,
                 ease: Cubic.easeOut,
                 delay: delay
             });
 
-            TweenLite.to(that.one, 1 * time2, {
+            gsap.to(that.one, 1 * time2, {
                 alpha: 1,
                 onComplete: function() {
-                    TweenLite.to(that.one.scale, 1 * time, {
+                    gsap.to(that.one.scale, 1 * time, {
                         x: 0.5,
                         y: 0.5,
                         ease: Cubic.easeOut,
                         delay: delay
                     });
 
-                    TweenLite.to(that.one, 1 * time, {
+                    gsap.to(that.one, 1 * time, {
                         alpha: 0,
                         onComplete: function() {
                             that.visible = false;
@@ -121,7 +117,7 @@ GAME.Countdown.prototype.onThreeShown = function() {
                 delay: delay
             });
 
-            TweenLite.to(that.one.scale, 1 * time2, {
+            gsap.to(that.one.scale, 1 * time2, {
                 x: 1,
                 y: 1,
                 ease: Elastic.easeOut,
@@ -131,10 +127,15 @@ GAME.Countdown.prototype.onThreeShown = function() {
         delay: delay
     });
 
-    TweenLite.to(this.two.scale, 1 * time2, {
+    gsap.to(this.two.scale, 1 * time2, {
         x: 1,
         y: 1,
         ease: Elastic.easeOut,
         delay: delay
     });
+}
+
+
+export {
+    Countdown
 }

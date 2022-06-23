@@ -1,11 +1,12 @@
 // update
 import * as PIXI from '../pixi'
+import _Device from '../fido/Device'
 
 
 export const Stress = {};
 
 Stress.StressTest = function(callback) {
-    this.Device = new Fido.Device();
+    this.Device = new _Device();
 
     this.width = window.innerWidth || document.body.clientWidth;
     this.height = window.innerHeight || document.body.clientHeight;

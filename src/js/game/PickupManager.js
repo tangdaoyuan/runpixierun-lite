@@ -1,21 +1,13 @@
-/**
- * @author Mat Groves
- */
+import GAME from './Game'
+import { GameObjectPool } from './GameObjectPool'
+import { Pickup } from './Pickup'
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-var laserCount = 0;
-
-GAME.PickupManager = function(engine) {
+const PickupManager = function(engine) {
     this.engine = engine;
 
     this.pickups = [];
 
-    this.pickupPool = new GAME.GameObjectPool(GAME.Pickup);
+    this.pickupPool = new GameObjectPool(Pickup);
 
     this.spawnCount = 0;
 
@@ -23,9 +15,9 @@ GAME.PickupManager = function(engine) {
 }
 
 // constructor
-GAME.PickupManager.constructor = GAME.PickupManager;
+PickupManager.constructor = PickupManager;
 
-GAME.PickupManager.prototype.update = function() {
+PickupManager.prototype.update = function() {
     if (this.engine.joyrideMode) {
         this.spawnCount += GAME.time.DELTA_TIME;
 
@@ -73,7 +65,7 @@ GAME.PickupManager.prototype.update = function() {
     }
 }
 
-GAME.PickupManager.prototype.addPickup = function(x, y) {
+PickupManager.prototype.addPickup = function(x, y) {
     var pickup = this.pickupPool.getObject();
     pickup.position.x = x
     pickup.position.y = y
@@ -82,7 +74,7 @@ GAME.PickupManager.prototype.addPickup = function(x, y) {
     this.engine.view.game.addChild(pickup.view);
 }
 
-GAME.PickupManager.prototype.removePickup = function(index) {
+PickupManager.prototype.removePickup = function(index) {
     var pickup = this.pickups[index];
     pickup.isPickedUp = true;
     pickup.steve = this.engine.steve;
@@ -94,7 +86,7 @@ GAME.PickupManager.prototype.removePickup = function(index) {
 }
 
 
-GAME.PickupManager.prototype.destroyAll = function() {
+PickupManager.prototype.destroyAll = function() {
     for (var i = 0; i < this.pickups.length; i++) {
         var pickup = this.pickups[i]
         // remove!
@@ -105,7 +97,7 @@ GAME.PickupManager.prototype.destroyAll = function() {
     this.pickups = [];
 }
 
-GAME.PickupManager.prototype.destroyAllOffScreen = function() {
+PickupManager.prototype.destroyAllOffScreen = function() {
     for (var i = 0; i < this.pickups.length; i++) {
         var pickup = this.pickups[i];
 
@@ -119,4 +111,9 @@ GAME.PickupManager.prototype.destroyAllOffScreen = function() {
 
     }
 
+}
+
+
+export {
+    PickupManager
 }

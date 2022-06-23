@@ -1,13 +1,11 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
+import GAME from '../game'
+import _LocalStorage from '../../fido/LocalStorage'
 
-var GAME = GAME || {};
-
-GAME.BestScore = function() {
+const BestScore = function() {
     PIXI.DisplayObjectContainer.call(this);
 
-    this.LocalStorage = new Fido.LocalStorage(GAME.bundleId);
+    this.LocalStorage = new _LocalStorage(GAME.bundleId);
     this.ratio = 0;
 
     this.glyphs = {
@@ -24,7 +22,7 @@ GAME.BestScore = function() {
         ",": "number_comma.png"
     };
 
-    for (var i in this.glyphs) this.glyphs[i] = PIXI.Texture.fromFrameId(this.glyphs[i]);
+    for (var i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
 
     this.digits = [];
 
@@ -34,7 +32,7 @@ GAME.BestScore = function() {
         this.addChild(this.digits[i]);
     }
 
-    this.title = PIXI.Sprite.fromFrame("assets/hud/PersonalBest.png");
+    this.title = PIXI.Sprite.from("assets/hud/PersonalBest.png");
     this.title.anchor.x = 0;
     this.title.anchor.y = 0;
     this.title.position.y = 1;
@@ -42,10 +40,10 @@ GAME.BestScore = function() {
 }
 
 
-GAME.BestScore.constructor = PIXI.Score;
-GAME.BestScore.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+BestScore.constructor = Score;
+BestScore.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.BestScore.prototype.setScore = function(score) {
+BestScore.prototype.setScore = function(score) {
     var split = formatScore(score).split("");
     var position = 0;
     var gap = 3;
@@ -75,11 +73,15 @@ GAME.BestScore.prototype.setScore = function(score) {
     }
 }
 
-GAME.BestScore.prototype.jump = function() {
+BestScore.prototype.jump = function() {
     this.ratio = 2.2;
 }
 
-GAME.BestScore.prototype.update = function() {
+BestScore.prototype.update = function() {
 
     this.setScore(Math.round(parseInt(this.LocalStorage.get('highscore'))) || 0);
+}
+
+export {
+    BestScore
 }

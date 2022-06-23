@@ -1,14 +1,7 @@
-/**
- * @author Mat Groves
- */
+import { data } from '../SegmentData'
+import GAME from './Game'
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-GAME.SegmentManager = function(engine) {
+const SegmentManager = function(engine) {
     this.engine = engine;
 
     this.sections = data //[section1, section2];
@@ -20,16 +13,16 @@ GAME.SegmentManager = function(engine) {
             floor: [0, 1135],
             blocks: [],
             coins: []
-        },
-        this.chillMode = true;
+    }
+    this.chillMode = true;
     this.last = 0;
     this.position = 0;
 }
 
 // constructor
-GAME.SegmentManager.constructor = GAME.SegmentManager;
+SegmentManager.constructor = SegmentManager;
 
-GAME.SegmentManager.prototype.reset = function(dontReset) {
+SegmentManager.prototype.reset = function(dontReset) {
     //	this.currentSegment.start;// = GAME.camera.x;
     if (dontReset) this.count = 0;
     this.currentSegment = this.startSegment;
@@ -40,7 +33,7 @@ GAME.SegmentManager.prototype.reset = function(dontReset) {
     }
 }
 
-GAME.SegmentManager.prototype.update = function() {
+SegmentManager.prototype.update = function() {
     this.position = GAME.camera.x + width * 2;
     // look at where we are..
     var relativePosition = this.position - this.currentSegment.start;
@@ -93,4 +86,8 @@ GAME.SegmentManager.prototype.update = function() {
 
     }
 
+}
+
+export {
+    SegmentManager
 }

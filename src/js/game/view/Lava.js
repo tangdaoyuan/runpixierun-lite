@@ -1,26 +1,21 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
 
-var GAME = GAME || {};
-
-
-GAME.Lava = function(owner) {
-    this.textures = [PIXI.Texture.fromFrameId("lava_slosh_01.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_02.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_03.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_04.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_05.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_06.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_07.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_08.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_07.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_06.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_05.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_04.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_03.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_02.png"),
-        PIXI.Texture.fromFrameId("lava_slosh_01.png")
+const Lava = function(owner) {
+    this.textures = [PIXI.Texture.from("lava_slosh_01.png"),
+        PIXI.Texture.from("lava_slosh_02.png"),
+        PIXI.Texture.from("lava_slosh_03.png"),
+        PIXI.Texture.from("lava_slosh_04.png"),
+        PIXI.Texture.from("lava_slosh_05.png"),
+        PIXI.Texture.from("lava_slosh_06.png"),
+        PIXI.Texture.from("lava_slosh_07.png"),
+        PIXI.Texture.from("lava_slosh_08.png"),
+        PIXI.Texture.from("lava_slosh_07.png"),
+        PIXI.Texture.from("lava_slosh_06.png"),
+        PIXI.Texture.from("lava_slosh_05.png"),
+        PIXI.Texture.from("lava_slosh_04.png"),
+        PIXI.Texture.from("lava_slosh_03.png"),
+        PIXI.Texture.from("lava_slosh_02.png"),
+        PIXI.Texture.from("lava_slosh_01.png")
     ];
 
     var texture = this.textures[0];
@@ -43,7 +38,7 @@ GAME.Lava = function(owner) {
     this.count = 0;
 }
 
-GAME.Lava.prototype.setPosition = function(position) {
+Lava.prototype.setPosition = function(position) {
     var h = this.spriteWidth;
     var frame = (this.count) % this.textures.length;
     frame = Math.floor(frame);
@@ -62,4 +57,8 @@ GAME.Lava.prototype.setPosition = function(position) {
         this.sprites[i].setTexture(this.textures[frame])
         this.sprites[i].position.x = Math.floor(pos) + 800 - GAME.xOffset;
     };
+}
+
+export {
+    Lava
 }

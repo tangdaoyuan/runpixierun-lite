@@ -1,14 +1,6 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-GAME.Background = function(frontView) {
+const Background = function(frontView) {
     PIXI.DisplayObjectContainer.call(this);
     this.width = 1000;
     this.scrollPosition = 1500;
@@ -16,9 +8,9 @@ GAME.Background = function(frontView) {
     //{"x":1206,"y":2,"w":600,"h":799},
     //{"x":604,"y":2,"w":600,"h":799},
 
-    this.foggyTrees = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("05_far_BG.jpg"), 40, this);
-    this.rearSilhouette = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("03_rear_silhouette.png"), 358, this);
-    this.rearCanopy = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("03_rear_canopy.png"), 0, this);
+    this.foggyTrees = new BackgroundElement(PIXI.Texture.from("05_far_BG.jpg"), 40, this);
+    this.rearSilhouette = new BackgroundElement(PIXI.Texture.from("03_rear_silhouette.png"), 358, this);
+    this.rearCanopy = new BackgroundElement(PIXI.Texture.from("03_rear_canopy.png"), 0, this);
 
 
 
@@ -31,13 +23,12 @@ GAME.Background = function(frontView) {
     this.tree2.position.y = 50;
     this.addChild(this.tree2);
 
-    this.farCanopy = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("02_front_canopy.png"), 0, this);
-    this.vines = new GAME.Vines(this);
-    this.roofLeaves = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("00_roof_leaves.png"), 0, this);
+    this.farCanopy = new BackgroundElement(PIXI.Texture.from("02_front_canopy.png"), 0, this);
+    this.vines = new Vines(this);
+    this.roofLeaves = new BackgroundElement(PIXI.Texture.from("00_roof_leaves.png"), 0, this);
 
-    this.frontSilhouette = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("01_front_silhouette.png"), 424, this);
+    this.frontSilhouette = new BackgroundElement(PIXI.Texture.from("01_front_silhouette.png"), 424, this);
 
-    //this.ground = new GAME.BackgroundElement(PIXI.Texture.fromFrameId("00_forest_floor.png"), (640 - 158)* SCALE, this);
     this.foggyTrees.speed = 1 / 2;
     this.rearSilhouette.speed = 1.2 / 2;
 
@@ -51,11 +42,11 @@ GAME.Background = function(frontView) {
 }
 
 // constructor
-GAME.Background.constructor = GAME.Background;
+Background.constructor = Background;
 
-GAME.Background.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Background.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.Background.prototype.updateTransform = function() {
+Background.prototype.updateTransform = function() {
     this.scrollPosition = GAME.camera.x + 4000 // * GAME.time.DELTA_TIME;
 
     var treePos = -this.scrollPosition * 1.5 / 2;
@@ -86,7 +77,7 @@ GAME.Background.prototype.updateTransform = function() {
     PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
 }
 
-GAME.Vines = function(owner) {
+const Vines = function(owner) {
     this.vines = [];
     this.owner = owner
 
@@ -103,7 +94,7 @@ GAME.Vines = function(owner) {
     this.speed = 1;
 }
 
-GAME.Vines.prototype.setPosition = function(position) {
+Vines.prototype.setPosition = function(position) {
     for (var i = 0; i < this.vines.length; i++) {
         var vine = this.vines[i];
 
@@ -116,16 +107,16 @@ GAME.Vines.prototype.setPosition = function(position) {
     };
 }
 
-GAME.Background.prototype.joyRideMode = function() {
+Background.prototype.joyRideMode = function() {
     // change background!
 
 }
 
-GAME.Background.prototype.normalMode = function() {
+Background.prototype.normalMode = function() {
 
 }
 
-GAME.BackgroundElement = function(texture, y, owner) {
+const BackgroundElement = function(texture, y, owner) {
     this.sprites = [];
     this.spriteWidth = texture.width - 1;
     var amount = Math.ceil(940 / this.spriteWidth);
@@ -141,7 +132,7 @@ GAME.BackgroundElement = function(texture, y, owner) {
     this.speed = 1;
 }
 
-GAME.BackgroundElement.prototype.setPosition = function(position) {
+BackgroundElement.prototype.setPosition = function(position) {
     var h = this.spriteWidth;
 
     for (var i = 0; i < this.sprites.length; i++) {
@@ -154,33 +145,10 @@ GAME.BackgroundElement.prototype.setPosition = function(position) {
         //this.sky[i].position.y = Math.round(this.sky[i].position.y);
     };
 }
-/*
-var GAME = GAME || {};
 
-GAME.Background = function()
-{
-	PIXI.DisplayObjectContainer.call( this );
-	/*
-	this.texture = new PIXI.Texture("img/floor.png");
-	//this.
-	
-	this.sprites = [new PIXI.Sprite(this.texture, {x:1206,y:2,width:600,height:799}),
-					new PIXI.Sprite(this.texture, {x:604,y:2,width:600,height:799}),
-					new PIXI.Sprite(this.texture, {x:2,y:2,width:600,height:799}) ];
-	
-	for (var i=0; i < this.sprites.length; i++) 
-	{
-	//	this.addChild(this.sprites[i]);
-	};				
-	*/
-//}
 
-// constructor
-//GAME.Background.constructor = GAME.Background;
-//GAME.Background.protoype = Object.create( PIXI.DisplayObjectContainer.prototype );
-
-/*
-GAME.Background.prototype.updateTransform = function()
-{
-	
-}*/
+export {
+    Background,
+    BackgroundElement,
+    Vines
+}

@@ -1,32 +1,32 @@
 import * as PIXI from '../pixi'
+import { GameObjectPool } from '../game/GameObjectPool'
 
-const GAME  = {}
 
-GAME.SteveTrailFire = function(stage) {
+const SteveTrailFire = function(stage) {
     this.stage = stage;
     this.target = new PIXI.Point();
 
     this.particals = [];
-    this.particalPool = new GAME.GameObjectPool(ParticalFire);
+    this.particalPool = new GameObjectPool(ParticalFire);
     this.max = 100
     this.count = 0;
 
-    this.mOffset = PIXI.mat3.create() //PIXI.mat3.identity(PIXI.mat3.create());
+    PIXI.Matrix
+    this.mOffset = PIXI.Matrix.IDENTITY() //PIXI.mat3.identity(PIXI.mat3.create());
     this.mOffset[2] = -30 //this.position.x;
     this.mOffset[5] = 30 //this.position.y;
-    this.spare = PIXI.mat3.create() //PIXI.mat3.identity();
+    this.spare = PIXI.Matrix.IDENTITY() //PIXI.mat3.identity();
 }
 
 // constructor
-GAME.SteveTrailFire.constructor = GAME.SteveTrailFire;
+SteveTrailFire.constructor = SteveTrailFire;
 
-GAME.SteveTrailFire.prototype.update = function() {
+SteveTrailFire.prototype.update = function() {
     //PIXI.Rope.prototype.updateTransform.call(this);
 
     if (this.target.isDead) {
-        this.mOffset
 
-        PIXI.mat3.multiply(this.mOffset, this.target.view.localTransform, this.spare);
+        // PIXI.Matrix.multiply(this.mOffset, this.target.view.localTransform, this.spare);
 
         this.count++;
 
@@ -79,7 +79,7 @@ GAME.SteveTrailFire.prototype.update = function() {
     };
 }
 
-ParticalFire = function() {
+const ParticalFire = function() {
     PIXI.Sprite.call(this, PIXI.Texture.from("fireCloud.png"));
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
@@ -92,6 +92,6 @@ ParticalFire.prototype = Object.create(PIXI.Sprite.prototype);
 
 
 export {
-  Game,
+  SteveTrailFire,
   ParticalFire,
 }

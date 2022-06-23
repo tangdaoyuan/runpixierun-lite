@@ -1,13 +1,8 @@
 import * as PIXI from '../pixi'
 import { gsap } from "gsap"
+import FidoAudio from '../fido/FidoAudio'
 
-const GAME = {};
-
-export {
-  GAME
-}
-
-GAME.Steve = function() {
+const Steve = function() {
     this.position = new PIXI.Point();
 
     this.runningFrames = [
@@ -63,9 +58,9 @@ GAME.Steve = function() {
     this.volume = 0.3;
 }
 
-GAME.Steve.constructor = GAME.Steve;
+Steve.constructor = Steve;
 
-GAME.Steve.prototype.update = function() {
+Steve.prototype.update = function() {
     if (this.isDead) {
         this.updateDieing();
     } else {
@@ -73,7 +68,7 @@ GAME.Steve.prototype.update = function() {
     }
 }
 
-GAME.Steve.prototype.joyrideMode = function() {
+Steve.prototype.joyrideMode = function() {
     this.joyRiding = true;
     FidoAudio.setVolume('runRegular', 0);
     FidoAudio.play('hyperMode');
@@ -84,7 +79,7 @@ GAME.Steve.prototype.joyrideMode = function() {
     this.realAnimationSpeed = 0.23 * 4
 }
 
-GAME.Steve.prototype.normalMode = function() {
+Steve.prototype.normalMode = function() {
     this.joyRiding = false;
     FidoAudio.setVolume('runFast', 0);
     if (this.onGround === true) FidoAudio.setVolume('runRegular', this.volume);
@@ -95,7 +90,7 @@ GAME.Steve.prototype.normalMode = function() {
     this.realAnimationSpeed = 0.23;
 }
 
-GAME.Steve.prototype.updateRunning = function() {
+Steve.prototype.updateRunning = function() {
     this.view.animationSpeed = this.realAnimationSpeed * GAME.time.DELTA_TIME * this.level;
 
     if (this.isActive) {
@@ -148,7 +143,7 @@ GAME.Steve.prototype.updateRunning = function() {
     this.view.rotation += (this.speed.y * 0.05 - this.view.rotation) * 0.1;
 }
 
-GAME.Steve.prototype.updateDieing = function() {
+Steve.prototype.updateDieing = function() {
     this.speed.x *= 0.999;
 
     if (this.onGround) this.speed.y *= 0.99;
@@ -173,7 +168,7 @@ GAME.Steve.prototype.updateDieing = function() {
     }
 }
 
-GAME.Steve.prototype.jump = function() {
+Steve.prototype.jump = function() {
     if (this.isDead) {
         if (this.speed.x < 5) {
             this.isDead = false
@@ -189,7 +184,7 @@ GAME.Steve.prototype.jump = function() {
     }
 }
 
-GAME.Steve.prototype.die = function() {
+Steve.prototype.die = function() {
     if (this.isDead) return;
 
     FidoAudio.setVolume('runFast', 0);
@@ -217,7 +212,7 @@ GAME.Steve.prototype.die = function() {
 }
 
 
-GAME.Steve.prototype.boil = function() {
+Steve.prototype.boil = function() {
     if (this.isDead) return;
 
     FidoAudio.setVolume('runFast', 0);
@@ -229,19 +224,23 @@ GAME.Steve.prototype.boil = function() {
     this.isDead = true;
 }
 
-GAME.Steve.prototype.fall = function() {
+Steve.prototype.fall = function() {
     this.isActive = false;
     this.isFlying = false;
 }
 
-GAME.Steve.prototype.isAirbourne = function() {}
+Steve.prototype.isAirbourne = function() {}
 
-GAME.Steve.prototype.stop = function() {
+Steve.prototype.stop = function() {
     this.view.stop();
     FidoAudio.setVolume('runRegular', 0);
 }
 
-GAME.Steve.prototype.resume = function() {
+Steve.prototype.resume = function() {
     this.view.play();
     if (this.onGround) FidoAudio.setVolume('runRegular', this.volume);
+}
+
+export {
+    Steve
 }

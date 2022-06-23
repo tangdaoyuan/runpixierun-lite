@@ -1,6 +1,4 @@
-var Fido = Fido || {};
-
-Fido.Device = function() {
+const Device = function() {
     this.arora = false;
     this.chrome = false;
     this.epiphany = false;
@@ -49,7 +47,7 @@ Fido.Device = function() {
     this._checkFeatures();
 };
 
-Fido.Device.prototype._checkBrowser = function(ua) {
+Device.prototype._checkBrowser = function(ua) {
     if (/Arora/.test(ua)) {
         this.arora = true;
     } else if (/Chrome/.test(ua)) {
@@ -77,7 +75,7 @@ Fido.Device.prototype._checkBrowser = function(ua) {
     }
 }
 
-Fido.Device.prototype._checkOS = function(ua) {
+Device.prototype._checkOS = function(ua) {
     if (/Android/.test(ua)) {
         this.android = true;
     } else if (/CrOS/.test(ua)) {
@@ -97,14 +95,14 @@ Fido.Device.prototype._checkOS = function(ua) {
     }
 }
 
-Fido.Device.prototype._checkDevice = function() {
+Device.prototype._checkDevice = function() {
     this.pixelRatio = window['devicePixelRatio'] || 1;
     this.iPhone = navigator.userAgent.toLowerCase().indexOf('iphone') !== -1;
     this.iPhone4 = (this.pixelRatio === 2 && this.iPhone);
     this.iPad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
 }
 
-Fido.Device.prototype._checkFeatures = function() {
+Device.prototype._checkFeatures = function() {
     if (typeof window['Blob'] !== 'undefined') this.blob = true;
 
     this.canvas = !!window['CanvasRenderingContext2D'];
@@ -125,7 +123,7 @@ Fido.Device.prototype._checkFeatures = function() {
     }
 }
 
-Fido.Device.prototype._checkAudio = function() {
+Device.prototype._checkAudio = function() {
     this.audioData = !!(window['Audio']);
     this.webaudio = !!(window['webkitAudioContext'] || window['AudioContext']);
 
@@ -155,7 +153,7 @@ Fido.Device.prototype._checkAudio = function() {
     } catch (e) {}
 }
 
-Fido.Device.prototype.getInfo = function() {
+Device.prototype.getInfo = function() {
     var output = "DEVICE OUTPUT\n\n";
 
     output += "---\n";
@@ -215,3 +213,5 @@ Fido.Device.prototype.getInfo = function() {
 
     return output;
 }
+
+export default Device;

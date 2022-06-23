@@ -1,14 +1,6 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-GAME.Score = function() {
+const Score = function() {
     PIXI.DisplayObjectContainer.call(this);
     this.ratio = 0;
 
@@ -26,7 +18,7 @@ GAME.Score = function() {
         ",": "number_comma.png"
     }
 
-    for (i in this.glyphs) this.glyphs[i] = PIXI.Texture.fromFrameId(this.glyphs[i]);
+    for (i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
 
     this.digits = [];
 
@@ -39,10 +31,10 @@ GAME.Score = function() {
 }
 
 
-GAME.Score.constructor = PIXI.Score;
-GAME.Score.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Score.constructor = PIXI.Score;
+Score.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.Score.prototype.setScore = function(score) {
+Score.prototype.setScore = function(score) {
     var split = formatScore(score).split("");
     var position = 0;
     var gap = -10;
@@ -63,7 +55,7 @@ GAME.Score.prototype.setScore = function(score) {
     }
 }
 
-GAME.Score.prototype.jump = function() {
+Score.prototype.jump = function() {
     this.ratio = 2.2;
 }
 
@@ -80,4 +72,8 @@ function formatScore(n) {
     }
 
     return text;
+}
+
+export {
+    Score
 }

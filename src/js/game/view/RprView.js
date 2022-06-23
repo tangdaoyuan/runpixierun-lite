@@ -1,14 +1,9 @@
-/**
- * @author Mat Groves
- */
+import * as PIXI from '../../pixi'
+import { gsap } from "gsap"
+import { SteveTrailFire } from "../SteveTrailFire";
+import { SteveTrail } from "../SteveTrail";
 
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
-
-GAME.RprView = function(engine) {
+const RprView = function(engine) {
     this.engine = engine;
 
     this.renderer = PIXI.autoDetectRenderer(600, 800);
@@ -58,8 +53,8 @@ GAME.RprView = function(engine) {
     this.hud.addChild(this.score);
     this.hud.addChild(this.bestScore);
 
-    this.trail = new GAME.SteveTrail(this.game);
-    this.trail2 = new GAME.SteveTrailFire(this.game);
+    this.trail = new SteveTrail(this.game);
+    this.trail2 = new SteveTrailFire(this.game);
 
     this.powerBar.alpha = 0;
     this.score.alpha = 0;
@@ -82,9 +77,9 @@ GAME.RprView = function(engine) {
 }
 
 // constructor
-GAME.RprView.constructor = GAME.RprView;
+RprView.constructor = RprView;
 
-GAME.RprView.prototype.showHud = function() {
+RprView.prototype.showHud = function() {
     var start = {
         x: GAME.width + 300,
         y: 0
@@ -92,7 +87,7 @@ GAME.RprView.prototype.showHud = function() {
 
     this.score.alpha = 1;
     this.score.position.x = start.x;
-    TweenLite.to(this.score.position, 1, {
+    gsap.to(this.score.position, 1, {
         x: GAME.width - 295 - 20,
         ease: Elastic.easeOut
     });
@@ -100,25 +95,25 @@ GAME.RprView.prototype.showHud = function() {
     this.bestScore.alpha = 1;
     this.bestScore.position.x = start.x;
     this.bestScore.position.y -= 14;
-    TweenLite.to(this.bestScore.position, 1, {
+    gsap.to(this.bestScore.position, 1, {
         x: GAME.width - 20,
         ease: Elastic.easeOut
     });
 
     this.powerBar.alpha = 1;
     this.powerBar.position.x = GAME.width;
-    TweenLite.to(this.powerBar.position, 1, {
+    gsap.to(this.powerBar.position, 1, {
         x: GAME.width - 295,
         ease: Elastic.easeOut,
         delay: 0.3
     });
 }
 
-GAME.RprView.prototype.hideHud = function() {
+RprView.prototype.hideHud = function() {
 
 }
 
-GAME.RprView.prototype.update = function() {
+RprView.prototype.update = function() {
     this.count += 0.01;
 
     if (!GAME.lowMode) {
@@ -159,37 +154,37 @@ GAME.RprView.prototype.update = function() {
     this.renderer.render(this.stage);
 }
 
-GAME.RprView.prototype.joyrideMode = function() {
+RprView.prototype.joyrideMode = function() {
     this.game.removeChild(this.background);
     this.background = this.joyBackground;
     this.game.addChildAt(this.background, 0);
     this.stage.addChild(this.white);
     this.white.alpha = 1;
 
-    TweenLite.to(this.white, 0.7, {
+    gsap.to(this.white, 0.7, {
         alpha: 0,
         ease: Sine.easeOut
     });
 }
 
-GAME.RprView.prototype.doSplash = function() {
+RprView.prototype.doSplash = function() {
     this.splash.splash(this.engine.steve.position);
 }
 
-GAME.RprView.prototype.normalMode = function() {
+RprView.prototype.normalMode = function() {
     this.game.removeChild(this.background);
     this.background = this.normalBackground;
     this.game.addChildAt(this.background, 0);
     this.stage.addChild(this.white)
     this.white.alpha = 1;
 
-    TweenLite.to(this.white, 0.5, {
+    gsap.to(this.white, 0.5, {
         alpha: 0,
         ease: Sine.easeOut
     });
 }
 
-GAME.RprView.prototype.resize = function(w, h) {
+RprView.prototype.resize = function(w, h) {
     //    console.log("Width ->" + w);
     //    console.log("Height -> " + h);
 
@@ -210,4 +205,8 @@ GAME.RprView.prototype.resize = function(w, h) {
 
     this.powerBar.position.x = w - 295;
     this.powerBar.position.y = 12;
+}
+
+export {
+    RprView
 }

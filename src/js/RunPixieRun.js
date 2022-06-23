@@ -1,6 +1,7 @@
 // update
 import * as PIXI from './pixi'
 import { gsap, Elastic } from "gsap"
+import FidoAudio from './fido/FidoAudio'
 import { Stress } from './game/StressTest'
 
 

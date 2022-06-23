@@ -1,21 +1,18 @@
-/**
- * @author Mat Groves
- */
-
-var GAME = GAME || {};
+import { GameObjectPool } from './GameObjectPool'
+import { Enemy } from './Enemy'
 
 var laserCount = 0;
 
-GAME.EnemyManager = function(engine) {
+const EnemyManager = function(engine) {
     this.engine = engine;
     this.enemies = [];
-    this.enemyPool = new GAME.GameObjectPool(GAME.Enemy);
+    this.enemyPool = new GameObjectPool(Enemy);
     this.spawnCount = 0;
 }
 
-GAME.EnemyManager.constructor = GAME.EnemyManager;
+EnemyManager.constructor = EnemyManager;
 
-GAME.EnemyManager.prototype.update = function() {
+EnemyManager.prototype.update = function() {
     for (var i = 0; i < this.enemies.length; i++) {
         var enemy = this.enemies[i]
         enemy.update();
@@ -30,7 +27,7 @@ GAME.EnemyManager.prototype.update = function() {
     }
 }
 
-GAME.EnemyManager.prototype.addEnemy = function(x, y) {
+EnemyManager.prototype.addEnemy = function(x, y) {
     var enemy = this.enemyPool.getObject();
     enemy.position.x = x
     enemy.position.y = y
@@ -38,7 +35,7 @@ GAME.EnemyManager.prototype.addEnemy = function(x, y) {
     this.engine.view.gameFront.addChild(enemy.view);
 }
 
-GAME.EnemyManager.prototype.destroyAll = function() {
+EnemyManager.prototype.destroyAll = function() {
     for (var i = 0; i < this.enemies.length; i++) {
         var enemy = this.enemies[i];
         enemy.reset();
@@ -49,7 +46,7 @@ GAME.EnemyManager.prototype.destroyAll = function() {
     this.enemies = [];
 }
 
-GAME.EnemyManager.prototype.destroyAllOffScreen = function() {
+EnemyManager.prototype.destroyAllOffScreen = function() {
     for (var i = 0; i < this.enemies.length; i++) {
         var enemy = this.enemies[i];
 
@@ -60,4 +57,8 @@ GAME.EnemyManager.prototype.destroyAllOffScreen = function() {
             i--;
         }
     }
+}
+
+export {
+    EnemyManager
 }

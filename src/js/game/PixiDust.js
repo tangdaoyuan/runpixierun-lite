@@ -1,8 +1,12 @@
-GAME.PixiDust = function() {
+import * as PIXI from '../pixi'
+import GAME from './Game'
+import { GameObjectPool } from './GameObjectPool'
+
+const PixiDust = function() {
     PIXI.DisplayObjectContainer.call(this);
 
     this.particals = [];
-    this.particalPool = new GAME.GameObjectPool(ParticalDust);
+    this.particalPool = new GameObjectPool(ParticalDust);
     this.max = GAME.HIGH_MODE ? 100 : 10;
     this.count = 0;
 
@@ -22,10 +26,10 @@ GAME.PixiDust = function() {
 }
 
 // constructor
-GAME.PixiDust.constructor = GAME.PixiDust;
-GAME.PixiDust.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+PixiDust.constructor = PixiDust;
+PixiDust.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.PixiDust.prototype.update = function() {
+PixiDust.prototype.update = function() {
     //PIXI.Rope.prototype.updateTransform.call(this);
 
     for (var i = 0; i < this.particals.length; i++) {
@@ -51,10 +55,10 @@ GAME.PixiDust.prototype.update = function() {
 }
 
 
-ParticalDust = function() {
+const ParticalDust = function() {
     ParticalDust.globalCount++;
 
-    PIXI.Sprite.call(this, PIXI.Texture.fromFrameId(ParticalDust.frames[ParticalDust.globalCount % 3]));
+    PIXI.Sprite.call(this, PIXI.Texture.from(ParticalDust.frames[ParticalDust.globalCount % 3]));
 
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
@@ -72,3 +76,8 @@ ParticalDust.frames = ["mote01.png", "mote02.png", "mote03.png"];
 
 ParticalDust.constructor = Partical;
 ParticalDust.prototype = Object.create(PIXI.Sprite.prototype);
+
+export  {
+    PixiDust,
+    ParticalDust
+}

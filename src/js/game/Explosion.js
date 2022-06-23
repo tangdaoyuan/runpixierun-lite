@@ -1,4 +1,6 @@
-GAME.Explosion = function() {
+import * as PIXI from '../pixi'
+
+const Explosion = function() {
     PIXI.DisplayObjectContainer.call(this);
 
     this.particals = [];
@@ -34,15 +36,15 @@ GAME.Explosion = function() {
     this.reset();
 }
 
-GAME.Explosion.constructor = GAME.Explosion;
+Explosion.constructor = Explosion;
 
-GAME.Explosion.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Explosion.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
 
-GAME.Explosion.prototype.explode = function() {
+Explosion.prototype.explode = function() {
     this.exploding = true;
 }
 
-GAME.Explosion.prototype.reset = function() {
+Explosion.prototype.reset = function() {
     for (var i = 0; i < 5; i++) {
         var cloud = this.clouds[i];
         cloud.anchor.x = 0.5;
@@ -69,7 +71,7 @@ GAME.Explosion.prototype.reset = function() {
     }
 }
 
-GAME.Explosion.prototype.updateTransform = function() {
+Explosion.prototype.updateTransform = function() {
     if (this.exploding) {
         for (var i = 0; i < this.clouds.length; i++) {
             var cloud = this.clouds[i];
@@ -99,7 +101,7 @@ GAME.Explosion.prototype.updateTransform = function() {
     PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
 }
 
-ExplosionPartical = function(id) {
+const ExplosionPartical = function(id) {
     PIXI.Sprite.call(this, PIXI.Texture.fromFrame(id));
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
@@ -109,3 +111,9 @@ ExplosionPartical = function(id) {
 
 ExplosionPartical.constructor = ExplosionPartical;
 ExplosionPartical.prototype = Object.create(PIXI.Sprite.prototype);
+
+
+export {
+    Explosion,
+    ExplosionPartical
+}
