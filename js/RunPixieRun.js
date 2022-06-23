@@ -1,6 +1,6 @@
-domready(function() {
-    onReady();
-});
+window.addEventListener('DOMContentLoaded', () => {
+  onReady();
+})
 
 window.addEventListener('resize', function() {
     resize();
