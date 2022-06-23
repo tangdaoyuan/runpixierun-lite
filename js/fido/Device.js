@@ -75,11 +75,6 @@ Fido.Device.prototype._checkBrowser = function(ua) {
     if (navigator['standalone']) {
         this.webApp = true;
     }
-
-    // CocoonJS Application
-    if (navigator['isCocoonJS']) {
-        this.cocoonJS = true;
-    }
 }
 
 Fido.Device.prototype._checkOS = function(ua) {

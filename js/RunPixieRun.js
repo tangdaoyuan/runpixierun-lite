@@ -102,11 +102,9 @@ function onTap(event) {
         if (!interactive) return;
 
         if (gameMode === GAME_MODE.INTRO) {
-            if (!Device.cocoonJS) {
-                FidoAudio.play('gameMusic');
-                FidoAudio.play('runRegular');
-                FidoAudio.play('runFast');
-            }
+            FidoAudio.play('gameMusic');
+            FidoAudio.play('runRegular');
+            FidoAudio.play('runFast');
 
             interactive = false;
             gameMode = GAME_MODE.TITLE;
@@ -582,8 +580,7 @@ function onTouchEnd(event) {
 
 function getRatio(type, w, h) {
 
-    var width = Device.cocoonJS ? window.innerWidth : w,
-        height = Device.cocoonJS ? window.innerHeight : h;
+    var width = w, height = h;
 
     var dips = Device.pixelRatio;
     width = width * dips;
@@ -722,17 +719,6 @@ PIXI.InteractionManager.prototype.onTouchStart = function(event) {
         this.touchs[touchEvent.identifier] = touchData;
         touchData.global.x = (touchEvent.clientX - rect.left) * (this.target.width / rect.width);
         touchData.global.y = (touchEvent.clientY - rect.top) * (this.target.height / rect.height);
-
-        if (navigator.isCocoonJS) {
-            var h = this.interactionDOMElement.style.height;
-            var w = this.interactionDOMElement.style.width;
-
-            var heightRatio = parseInt(h.replace('px', '')) / GAME.height;
-            var widthRatio = parseInt(w.replace('px', '')) / GAME.width;
-
-            touchData.global.x = touchEvent.clientX / widthRatio;
-            touchData.global.y = touchEvent.clientY / heightRatio;
-        }
 
         var length = this.interactiveItems.length;
 

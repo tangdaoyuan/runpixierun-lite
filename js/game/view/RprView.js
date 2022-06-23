@@ -11,12 +11,7 @@ var GAME = GAME || {};
 GAME.RprView = function(engine) {
     this.engine = engine;
 
-    if (Device.cocoonJS) {
-        this.renderer = new PIXI.CanvasRenderer(600, 800);
-    } else {
-        this.renderer = PIXI.autoDetectRenderer(600, 800);
-    }
-
+    this.renderer = PIXI.autoDetectRenderer(600, 800);
     GAME.HIGH_MODE = (this.renderer instanceof PIXI.WebGLRenderer);
 
     this.stage = new PIXI.Stage();

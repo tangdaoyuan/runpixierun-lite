@@ -77,12 +77,9 @@ PIXI.StressTest.prototype.begin = function() {
     logo.position.x = this.width * 0.5;
     logo.position.y = this.height * 0.48;
 
-    if (this.Device.cocoonJS) {
-        logo.scale.set(1);
-        logo.position.y = this.height * 0.47;
-    } else {
-        logo.scale.set(1);
-    }
+
+    logo.scale.set(1);
+
     this.stage.addChild(logo);
 
     this.renderer.render(this.stage);
@@ -114,10 +111,6 @@ PIXI.StressTest.prototype.update = function() {
         sprite.anchor.y = 0.5;
         sprite.position.x = this.width * 0.5;
         sprite.position.y = this.height * 0.5 + 40;
-
-        if (this.Device.cocoonJS) {
-            sprite.position.y = this.height * 0.5 + 40;
-        }
 
         this.stage.addChild(sprite);
         if (this.currentLoadSprite !== false) this.stage.removeChild(this.currentLoadSprite);

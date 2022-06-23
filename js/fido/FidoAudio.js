@@ -100,41 +100,6 @@ var FidoAudio = (function() {
     ];
 
     function init() {
-        if (Device.cocoonJS === true) {
-            for (var i = 0; i < aSounds.length; i++) {
-                var cSound = aSounds[i];
-
-                switch (cSound.type) {
-                    case 'music':
-
-                        CocoonJS.App.markAsMusic(cSound.src + ".ogg");
-
-                        var music = document.createElement('audio');
-                        music.src = cSound.src + ".ogg";
-                        music.loop = cSound.loop;
-
-                        cSound.audio = new CocoonJS.Music().setAudio(music);
-                        cSound.audio.volume(cSound.volume);
-
-                        cSoundPool[cSound.name] = cSound;
-
-                        if (cSound.autoPlay === true) cSoundPool[cSound.name].audio.play();
-
-                        break;
-
-                    case 'sfx':
-
-                        var sfx = new Audio();
-                        sfx.src = cSound.src + ".ogg";
-                        cSound.audio = new CocoonJS.Audio().setAudio(sfx);
-                        cSound.audio.volume(cSound.volume);
-
-                        cSoundPool[cSound.name] = cSound;
-
-                        break;
-                }
-            }
-        } else {
             for (var i = 0; i < aSounds.length; i++) {
                 var cSound = aSounds[i];
 
@@ -159,7 +124,7 @@ var FidoAudio = (function() {
 
                 cSoundPool[cSound.name] = cSound;
             }
-        }
+
 
         if (LocalStorage.get('gameMuted') === 'true') FidoAudio.muteAll();
     }
@@ -171,34 +136,18 @@ var FidoAudio = (function() {
     function muteAll() {
         MUTE_ALL = true;
         LocalStorage.store('gameMuted', true);
+        var cHolder = {
+            volume: 1
+        };
 
-        if (Device.cocoonJS === true) {
-            var sKey = false;
-
-            for (sKey in cSoundPool) {
-                var cSound = cSoundPool[sKey];
-
-                var holder = {
-                    volume: cSound.audio.getVolume()
-                };
-
-                muteOneSound(cSound, holder);
+        TweenLite.to(cHolder, 1, {
+            volume: 0,
+            onUpdate: function() {
+                Howler.volume(this.target.volume);                },
+            onComplete: function() {
+                Howler.mute();
             }
-        } else {
-            var cHolder = {
-                volume: 1
-            };
-
-            TweenLite.to(cHolder, 1, {
-                volume: 0,
-                onUpdate: function() {
-                    Howler.volume(this.target.volume);
-                },
-                onComplete: function() {
-                    Howler.mute();
-                }
-            });
-        }
+        });
     }
 
     function muteOneSound(cSound, holder) {
@@ -208,9 +157,7 @@ var FidoAudio = (function() {
                 cSound.audio.volume(this.target.volume);
             }
         });
-    }
-
-    function unMuteOneSound(cSound, holder) {
+    }    function unMuteOneSound(cSound, holder) {
         TweenLite.to(holder, 1, {
             volume: cSound.volume,
             onUpdate: function() {
@@ -222,30 +169,19 @@ var FidoAudio = (function() {
     function unMuteAll() {
         MUTE_ALL = false;
         LocalStorage.store('gameMuted', false)
+        var cHolder = {
+            volume: 0
+        };
 
-        if (Device.cocoonJS === true) {
-            var sKey = false;
+        Howler.unmute();
 
-            for (sKey in cSoundPool) {
-                var cSound = cSoundPool[sKey];
-                unMuteOneSound(cSound, {
-                    volume: 0
-                });
+        TweenLite.to(cHolder, 1, {
+            volume: 1,
+            onUpdate: function(cObject, sProperty) {
+                Howler.volume(this.target.volume);
             }
-        } else {
-            var cHolder = {
-                volume: 0
-            };
+        });
 
-            Howler.unmute();
-
-            TweenLite.to(cHolder, 1, {
-                volume: 1,
-                onUpdate: function(cObject, sProperty) {
-                    Howler.volume(this.target.volume);
-                }
-            });
-        }
     }
 
     function play(id) {
@@ -253,8 +189,7 @@ var FidoAudio = (function() {
             cSoundPool[id].audio.play();
 
         } else {
-            console.log("WARNING :: Couldn't find sound '" + id + "'.");
-        }
+            console.log("WARNING :: Couldn't find sound '" + id + "'.")        }
     }
 
     function fadeOut(sKey) {
