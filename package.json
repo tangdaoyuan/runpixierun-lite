@@ -13,5 +13,11 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^2.9.12"
+  },
+  "dependencies": {
+    "gsap": "^3.10.4",
+    "howler": "^2.2.3",
+    "pixi.js": "^6.4.2",
+    "stats.js": "^0.17.0"
   }
 }
