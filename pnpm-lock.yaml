@@ -1,6 +1,26 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@pixi/accessibility': ^6.4.2
+  '@pixi/app': ^6.4.2
+  '@pixi/basis': ^6.4.2
+  '@pixi/canvas-renderer': ^6.4.2
+  '@pixi/compressed-textures': ^6.4.2
+  '@pixi/constants': ^6.4.2
+  '@pixi/core': ^6.4.2
+  '@pixi/display': ^6.4.2
+  '@pixi/graphics': ^6.4.2
+  '@pixi/interaction': ^6.4.2
+  '@pixi/layers': ^1.0.11
+  '@pixi/loaders': ^6.4.2
+  '@pixi/math': ^6.4.2
+  '@pixi/runner': ^6.4.2
+  '@pixi/settings': ^6.4.2
+  '@pixi/sprite': ^6.4.2
+  '@pixi/spritesheet': ^6.4.2
+  '@pixi/text': ^6.4.2
+  '@pixi/ticker': ^6.4.2
+  '@pixi/utils': ^6.4.2
   gsap: ^3.10.4
   howler: ^2.2.3
   pixi.js: ^6.4.2
@@ -8,6 +28,26 @@ specifiers:
   vite: ^2.9.12
 
 dependencies:
+  '@pixi/accessibility': 6.4.2_n322z57vp76cnbhe73nfqyknyy
+  '@pixi/app': 6.4.2_k3lm64fi2ifh3cybkuxwbfhqdq
+  '@pixi/basis': 6.4.2_4ctbkrjz6vqs5vt6gbo4dc2b44
+  '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
+  '@pixi/compressed-textures': 6.4.2_mxfxckhu6ctf4akc7kzl2cfusy
+  '@pixi/constants': 6.4.2
+  '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
+  '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
+  '@pixi/graphics': 6.4.2_rheeipylch776kky72vltjcgiq
+  '@pixi/interaction': 6.4.2_p4yuje5f53flvlbuhkpzshob2i
+  '@pixi/layers': 1.0.11_hlv72izjhgtkrkyrmmeg7v3gia
+  '@pixi/loaders': 6.4.2_q56saey547mavkuvb23ygq6oiy
+  '@pixi/math': 6.4.2
+  '@pixi/runner': 6.4.2
+  '@pixi/settings': 6.4.2
+  '@pixi/sprite': 6.4.2_wmtema4lmj3i6yeg4vcek5xake
+  '@pixi/spritesheet': 6.4.2_kcals7ijc4imjrqzbm7ekusgfe
+  '@pixi/text': 6.4.2_uqn3x2kmixk4qekugibonohhfi
+  '@pixi/ticker': 6.4.2_@pixi+settings@6.4.2
+  '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
   gsap: 3.10.4
   howler: 2.2.3
   pixi.js: 6.4.2
@@ -38,6 +78,38 @@ packages:
     dependencies:
       '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
       '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
+    dev: false
+
+  /@pixi/basis/6.4.2_4ctbkrjz6vqs5vt6gbo4dc2b44:
+    resolution: {integrity: sha512-R17XUYnni8Nkg4Z9b2h/GYSQsY/iUQEZWJK3QHhdCbTOVb+NyKpEO7Jt5aOIqdpmC7jEySIN3x64xa+Wq+Ezbg==}
+    peerDependencies:
+      '@pixi/compressed-textures': 6.4.2
+      '@pixi/constants': 6.4.2
+      '@pixi/core': 6.4.2
+      '@pixi/loaders': 6.4.2
+      '@pixi/runner': 6.4.2
+    dependencies:
+      '@pixi/compressed-textures': 6.4.2_mxfxckhu6ctf4akc7kzl2cfusy
+      '@pixi/constants': 6.4.2
+      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
+      '@pixi/loaders': 6.4.2_q56saey547mavkuvb23ygq6oiy
+      '@pixi/runner': 6.4.2
+    dev: false
+
+  /@pixi/canvas-renderer/6.4.2_mhf3yhmh7vtex6swfgz4tpkvra:
+    resolution: {integrity: sha512-NnVT61LlzCk80FGl/imp8zVg6cxinyFk7uljTYJBPJTM6PBFdn/LD+H3wcdbggjNWVSfqwYXVM6gN5Ce22tONg==}
+    peerDependencies:
+      '@pixi/constants': 6.4.2
+      '@pixi/core': 6.4.2
+      '@pixi/math': 6.4.2
+      '@pixi/settings': 6.4.2
+      '@pixi/utils': 6.4.2
+    dependencies:
+      '@pixi/constants': 6.4.2
+      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
+      '@pixi/math': 6.4.2
+      '@pixi/settings': 6.4.2
+      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
     dev: false
 
   /@pixi/compressed-textures/6.4.2_mxfxckhu6ctf4akc7kzl2cfusy:
@@ -186,6 +258,26 @@ packages:
       '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
       '@pixi/math': 6.4.2
       '@pixi/ticker': 6.4.2_@pixi+settings@6.4.2
+      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
+    dev: false
+
+  /@pixi/layers/1.0.11_hlv72izjhgtkrkyrmmeg7v3gia:
+    resolution: {integrity: sha512-E9jVR7kWMbBBhyaoX4Vi/rZAk4QFMDFiwvZF5xXZ2sBKh1/2aaTD2oQB3QHtekQ0IYXjyxgRRVEpeYTlZgz5xA==}
+    peerDependencies:
+      '@pixi/canvas-renderer': ^6.0.4
+      '@pixi/constants': ^6.0.4
+      '@pixi/core': ^6.0.4
+      '@pixi/display': ^6.0.4
+      '@pixi/math': ^6.0.4
+      '@pixi/settings': ^6.0.4
+      '@pixi/utils': ^6.0.4
+    dependencies:
+      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
+      '@pixi/constants': 6.4.2
+      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
+      '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
+      '@pixi/math': 6.4.2
+      '@pixi/settings': 6.4.2
       '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
     dev: false
 
