@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/howler": "^2.2.7",
     "vite": "^2.9.12"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "@pixi/utils": "^6.4.2",
     "gsap": "^3.10.4",
     "howler": "^2.2.3",
+    "pixi.js-legacy": "^6.4.2",
     "stats.js": "^0.17.0"
   }
 }

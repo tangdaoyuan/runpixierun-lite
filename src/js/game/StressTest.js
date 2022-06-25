@@ -25,12 +25,14 @@ Stress.StressTest = function(callback) {
     assetLoader.add(this.loadingFrames);
     assetLoader.load();
 
+    console.log('await')
+
     this.callback = callback;
     this.renderer = new PIXI.CanvasRenderer({
         width: this.width,
         height: this.height,
     });
-    this.stage = new PIXI.Stage(0x25284A);
+    this.stage = new PIXI.Stage();
 
     this.graphics = new PIXI.Graphics();
     this.graphics.beginFill(0x25284A);
@@ -94,7 +96,7 @@ Stress.StressTest.prototype.begin = async function() {
     this.lastTime = Date.now();
 
     var scope = this;
-    requestAnimFrame(function() {
+    requestAnimationFrame(function() {
         scope.update();
     });
 }
@@ -145,7 +147,7 @@ Stress.StressTest.prototype.update = function() {
 
     if (elapsedTime < this.duration * 1000) {
         var scope = this;
-        requestAnimFrame(function() {
+        requestAnimationFrame(function() {
             scope.update()
         });
     } else {

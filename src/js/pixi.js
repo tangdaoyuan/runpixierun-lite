@@ -51,3 +51,11 @@ Loader.registerPlugin(DDSLoader);
 Loader.registerPlugin(KTXLoader);
 import { SpritesheetLoader } from '@pixi/spritesheet';
 Loader.registerPlugin(SpritesheetLoader);
+
+import * as PIXI from 'pixi.js-legacy';
+import { applyCanvasMixin } from '@pixi/layers';
+
+applyCanvasMixin(PIXI.CanvasRenderer);
+
+
+export * from 'pixi.js-legacy';

@@ -3,9 +3,11 @@ import * as PIXI from './pixi'
 import { gsap, Elastic } from "gsap"
 import FidoAudio from './fido/FidoAudio'
 import { Stress } from './game/StressTest'
+import GAME from './game/Game'
 
 
 window.addEventListener('DOMContentLoaded', () => {
+  console.log('???')
   onReady();
 })
 
@@ -46,6 +48,7 @@ var soundOffButton = false;
 
 function onReady() {
     FidoAudio.init();
+    console.log('wat')
     stressTest = new Stress.StressTest(onStressTestComplete);
     resize();
 }
@@ -190,7 +193,7 @@ function init() {
     if (GAME.lowMode) {
         setInterval(update, 1000 / 30);
     } else {
-        requestAnimFrame(update);
+        requestAnimationFrame(update);
     }
 
     game.onGameover = onGameover;
@@ -623,11 +626,11 @@ function update() {
             FidoAudio.setVolume('thrusters', thrustersVolume);
         }
 
-        requestAnimFrame(update);
+        requestAnimationFrame(update);
     }
 }
 
-Time = function() {
+const Time = function() {
     this.deltaTime = 1;
     this.lastTime = 0;
 }

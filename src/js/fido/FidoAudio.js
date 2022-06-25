@@ -1,3 +1,4 @@
+import { Howl } from 'howler'
 import _Device from './Device'
 import _LocalStorage from  './LocalStorage'
 
@@ -107,7 +108,7 @@ const FidoAudio = (function() {
                 var cSound = aSounds[i];
 
                 cSound.audio = new Howl({
-                    urls: [cSound.src + ".mp3"],
+                    src: [cSound.src + ".mp3"],
                     autoplay: cSound.autoPlay,
                     loop: cSound.loop,
                     volume: cSound.volume,
