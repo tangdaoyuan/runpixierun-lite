@@ -9,6 +9,7 @@ import { FloorManager } from './FloorManager'
 import { CollisionManager } from './CollisionManager'
 import LocalStorage from '../fido/LocalStorage'
 import FidoAudio from '../fido/FidoAudio'
+import { game } from '../RunPixieRun'
 
 const RprEngine = function() {
     this.onGameover;
@@ -55,7 +56,6 @@ RprEngine.prototype.start = function() {
     this.steve.view.visible = true;
     this.segmentManager.chillMode = false;
     this.bulletMult = 1;
-
 }
 
 RprEngine.prototype.update = function() {

@@ -12,9 +12,9 @@ const FloorManager = function(engine) {
 FloorManager.constructor = FloorManager;
 
 FloorManager.prototype.update = function() {
-    for (var i = 0; i < this.floors.length; i++) {
-        var floor = this.floors[i];
-        floor.position.x = floor.x - GAME.camera.x - 16;
+    for (let i = 0; i < this.floors.length; i++) {
+        let floor = this.floors[i];
+        floor.position.x = floor.originalX - GAME.camera.x - 16;
 
         if (floor.position.x < -1135 - GAME.xOffset - 16) {
             this.floorPool.returnObject(floor)
@@ -26,16 +26,17 @@ FloorManager.prototype.update = function() {
 }
 
 FloorManager.prototype.addFloor = function(floorData) {
-    var floor = this.floorPool.getObject();
+    const floor = this.floorPool.getObject();
     floor.x = floorData;
+    floor.originalX = floorData
     floor.position.y = 640 - 158;
     this.engine.view.gameFront.addChild(floor);
     this.floors.push(floor);
 }
 
 FloorManager.prototype.destroyAll = function() {
-    for (var i = 0; i < this.floors.length; i++) {
-        var floor = this.floors[i];
+    for (let i = 0; i < this.floors.length; i++) {
+        let floor = this.floors[i];
         this.floorPool.returnObject(floor);
         this.engine.view.gameFront.removeChild(floor);
     }
@@ -45,8 +46,8 @@ FloorManager.prototype.destroyAll = function() {
 
 const Floor = function() {
     PIXI.Sprite.call(this, PIXI.Texture.from("00_forest_floor.png"));
+    this.originalX = 0
 }
-
 
 
 Floor.constructor = PIXI.Floor;

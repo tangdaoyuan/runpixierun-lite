@@ -7,7 +7,7 @@ const GameObjectPool = function(classType) {
 GameObjectPool.constructor = GameObjectPool;
 
 GameObjectPool.prototype.getObject = function() {
-    var object = this.pool.pop();
+    let object = this.pool.pop();
     if (!object) {
         object = new this.classType();
 

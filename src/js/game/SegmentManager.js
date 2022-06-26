@@ -28,7 +28,7 @@ SegmentManager.prototype.reset = function(dontReset) {
     this.currentSegment = this.startSegment;
     this.currentSegment.start = -200;
 
-    for (var i = 0; i < this.currentSegment.floor.length; i++) {
+    for (let i = 0; i < this.currentSegment.floor.length; i++) {
         this.engine.floorManager.addFloor(this.currentSegment.start + this.currentSegment.floor[i]);
     }
 }
@@ -36,18 +36,17 @@ SegmentManager.prototype.reset = function(dontReset) {
 SegmentManager.prototype.update = function() {
     this.position = GAME.camera.x + GAME.width * 2;
     // look at where we are..
-    var relativePosition = this.position - this.currentSegment.start;
+    let relativePosition = this.position - this.currentSegment.start;
 
     //	console.log(Math.round(relativePosition) + " " +this.currentSegment.length);
     if (relativePosition > this.currentSegment.length) {
 
-
         if (this.engine.joyrideMode) {
-            var nextSegment = this.startSegment
+            let nextSegment = this.startSegment
             nextSegment.start = this.currentSegment.start + this.currentSegment.length;
             this.currentSegment = nextSegment;
 
-            for (var i = 0; i < this.currentSegment.floor.length; i++) {
+            for (let i = 0; i < this.currentSegment.floor.length; i++) {
                 this.engine.floorManager.addFloor(this.currentSegment.start + this.currentSegment.floor[i]);
             }
 
@@ -55,7 +54,7 @@ SegmentManager.prototype.update = function() {
         }
 
 
-        var nextSegment = this.sections[this.count % this.sections.length];
+        let nextSegment = this.sections[this.count % this.sections.length];
         //		if(this.chillMode)nextSegment =  this.sections[0];
         //	console.log( this.sections.length)
         // section finished!
@@ -64,21 +63,21 @@ SegmentManager.prototype.update = function() {
         this.currentSegment = nextSegment;
 
         // add the elements!
-        for (var i = 0; i < this.currentSegment.floor.length; i++) {
+        for (let i = 0; i < this.currentSegment.floor.length; i++) {
             this.engine.floorManager.addFloor(this.currentSegment.start + this.currentSegment.floor[i]);
         }
 
-        var blocks = this.currentSegment.blocks;
-        var length = blocks.length / 2;
+        let blocks = this.currentSegment.blocks;
+        let length = blocks.length / 2;
 
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             this.engine.enemyManager.addEnemy(this.currentSegment.start + blocks[i * 2], blocks[(i * 2) + 1]);
         }
 
-        var pickups = this.currentSegment.coins;
-        var length = pickups.length / 2;
+        let pickups = this.currentSegment.coins;
+        length = pickups.length / 2;
 
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             this.engine.pickupManager.addPickup(this.currentSegment.start + pickups[i * 2], pickups[(i * 2) + 1]);
         }
 

@@ -29,7 +29,7 @@ const GAME_MODE = {
 };
 
 var loader;
-var game;
+let game;
 var loadInterval = false;
 let countdown;
 let logo;
@@ -646,3 +646,8 @@ Time.prototype.update = function() {
     this.lastTime = currentTime;
 }
 
+
+
+export {
+    game
+}
