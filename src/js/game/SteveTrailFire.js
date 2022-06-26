@@ -12,10 +12,10 @@ const SteveTrailFire = function(stage) {
     this.count = 0;
 
     PIXI.Matrix
-    this.mOffset = PIXI.Matrix.IDENTITY() //PIXI.mat3.identity(PIXI.mat3.create());
+    this.mOffset = PIXI.Matrix.IDENTITY //PIXI.mat3.identity(PIXI.mat3.create());
     this.mOffset[2] = -30 //this.position.x;
     this.mOffset[5] = 30 //this.position.y;
-    this.spare = PIXI.Matrix.IDENTITY() //PIXI.mat3.identity();
+    this.spare = PIXI.Matrix.IDENTITY //PIXI.mat3.identity();
 }
 
 // constructor

@@ -1,6 +1,7 @@
 import * as PIXI from '../pixi'
-import { gsap } from "gsap"
+import { gsap, Cubic } from "gsap"
 import FidoAudio from '../fido/FidoAudio'
+import GAME from './Game'
 
 const Steve = function() {
     this.position = new PIXI.Point();
@@ -29,7 +30,7 @@ const Steve = function() {
         PIXI.Texture.from("characterFALLscaled3.png")
     ];
 
-    this.view = new PIXI.MovieClip(this.flyingFrames);
+    this.view = new PIXI.AnimatedSprite(this.flyingFrames);
     this.view.animationSpeed = 0.23;
 
     this.view.anchor.x = 0.5;

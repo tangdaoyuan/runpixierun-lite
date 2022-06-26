@@ -1,4 +1,5 @@
 import * as PIXI from '../../pixi'
+import GAME from '../Game';
 
 const Splash = function(owner) {
     this.textures = [PIXI.Texture.from("lavaFrame_01.png"),
@@ -15,7 +16,7 @@ const Splash = function(owner) {
         PIXI.Texture.from("lavaFrame_12.png")
     ];
 
-    PIXI.MovieClip.call(this, this.textures);
+    PIXI.AnimatedSprite.call(this, this.textures);
     this.anchor.x = 0.5;
     this.anchor.y = 1;
     this.scale.x = this.scale.y = 2;
@@ -28,7 +29,7 @@ const Splash = function(owner) {
 
 
 Splash.constructor = Splash;
-Splash.prototype = Object.create(PIXI.MovieClip.prototype);
+Splash.prototype = Object.create(PIXI.AnimatedSprite.prototype);
 
 Splash.prototype.splash = function(position) {
     this.realPosition = position.x;
@@ -42,7 +43,7 @@ Splash.prototype.splash = function(position) {
 Splash.prototype.updateTransform = function() {
     if (!this.visible) return;
 
-    PIXI.MovieClip.prototype.updateTransform.call(this);
+    PIXI.AnimatedSprite.prototype.updateTransform.call(this);
     this.position.x = this.realPosition - GAME.camera.x
 
 

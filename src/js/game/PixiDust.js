@@ -1,9 +1,10 @@
 import * as PIXI from '../pixi'
 import GAME from './Game'
 import { GameObjectPool } from './GameObjectPool'
+import { Partical } from './SteveTrail'
 
 const PixiDust = function() {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
 
     this.particals = [];
     this.particalPool = new GameObjectPool(ParticalDust);
@@ -27,7 +28,7 @@ const PixiDust = function() {
 
 // constructor
 PixiDust.constructor = PixiDust;
-PixiDust.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+PixiDust.prototype = Object.create(PIXI.Container.prototype);
 
 PixiDust.prototype.update = function() {
     //PIXI.Rope.prototype.updateTransform.call(this);

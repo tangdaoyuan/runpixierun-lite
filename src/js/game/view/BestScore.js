@@ -1,9 +1,10 @@
 import * as PIXI from '../../pixi'
 import GAME from '../game'
 import _LocalStorage from '../../fido/LocalStorage'
+import { Score, formatScore } from './Score'
 
 const BestScore = function() {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
 
     this.LocalStorage = new _LocalStorage(GAME.bundleId);
     this.ratio = 0;
@@ -41,20 +42,20 @@ const BestScore = function() {
 
 
 BestScore.constructor = Score;
-BestScore.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+BestScore.prototype = Object.create(PIXI.Container.prototype);
 
 BestScore.prototype.setScore = function(score) {
-    var split = formatScore(score).split("");
-    var position = 0;
-    var gap = 3;
+    let split = formatScore(score).split("");
+    let position = 0;
+    let gap = 3;
 
     this.title.position.x = 0;
     position += 70 + gap;
 
-    for (var i = 0; i < split.length; i++) {
-        var digit = this.digits[i];
+    for (let i = 0; i < split.length; i++) {
+        let digit = this.digits[i];
         digit.visible = true;
-        digit.setTexture(this.glyphs[split[i]]);
+        digit.texture = this.glyphs[split[i]];
         digit.position.x = position;
         digit.anchor.x = 0;
         digit.anchor.y = 0;
@@ -64,11 +65,11 @@ BestScore.prototype.setScore = function(score) {
     position = 150 + position / 2;
     this.title.position.x -= position;
 
-    for (var i = 0; i < this.digits.length; i++) {
+    for (let i = 0; i < this.digits.length; i++) {
         this.digits[i].position.x -= position;
     }
 
-    for (var i = split.length; i < this.digits.length; i++) {
+    for (let i = split.length; i < this.digits.length; i++) {
         this.digits[i].visible = false;
     }
 }

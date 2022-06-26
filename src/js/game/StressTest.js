@@ -1,6 +1,7 @@
 // update
 import * as PIXI from '../pixi'
 import _Device from '../fido/Device'
+import { SpritePool } from '../GoodBoySplash'
 
 
 export const Stress = {};
@@ -24,8 +25,6 @@ Stress.StressTest = function(callback) {
     var assetLoader = new PIXI.Loader()
     assetLoader.add(this.loadingFrames);
     assetLoader.load();
-
-    console.log('await')
 
     this.callback = callback;
     this.renderer = new PIXI.CanvasRenderer({

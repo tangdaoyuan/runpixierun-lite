@@ -34,7 +34,7 @@ SegmentManager.prototype.reset = function(dontReset) {
 }
 
 SegmentManager.prototype.update = function() {
-    this.position = GAME.camera.x + width * 2;
+    this.position = GAME.camera.x + GAME.width * 2;
     // look at where we are..
     var relativePosition = this.position - this.currentSegment.start;
 

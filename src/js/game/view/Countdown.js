@@ -1,11 +1,11 @@
 import * as PIXI from '../../pixi'
-import { gsap } from 'gsap'
+import { gsap, Elastic, Cubic, Sine } from 'gsap'
 
 var enemyFrames;
 var m_cCountdown = false;
 
 const Countdown = function() {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
     this.three = PIXI.Sprite.from("3Get.png");
     this.two = PIXI.Sprite.from("2tricksy.png");
     this.one = PIXI.Sprite.from("1pixie.png");
@@ -30,7 +30,7 @@ const Countdown = function() {
 }
 
 Countdown.constructor = Countdown;
-Countdown.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Countdown.prototype = Object.create(PIXI.Container.prototype);
 
 Countdown.prototype.startCountDown = function(onComplete) {
     this.visible = true;

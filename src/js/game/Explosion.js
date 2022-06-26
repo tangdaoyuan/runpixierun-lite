@@ -1,7 +1,7 @@
 import * as PIXI from '../pixi'
 
 const Explosion = function() {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
 
     this.particals = [];
 
@@ -28,7 +28,7 @@ const Explosion = function() {
     this.clouds = [];
 
     for (var i = 0; i < 5; i++) {
-        var cloud = new PIXI.Sprite.fromFrame("dustSwirl.png");
+        var cloud = new PIXI.Sprite.from("dustSwirl.png");
         this.clouds.push(cloud);
         this.addChild(cloud);
     }
@@ -38,7 +38,7 @@ const Explosion = function() {
 
 Explosion.constructor = Explosion;
 
-Explosion.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Explosion.prototype = Object.create(PIXI.Container.prototype);
 
 Explosion.prototype.explode = function() {
     this.exploding = true;
@@ -98,11 +98,11 @@ Explosion.prototype.updateTransform = function() {
         }
     }
 
-    PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
+    PIXI.Container.prototype.updateTransform.call(this);
 }
 
 const ExplosionPartical = function(id) {
-    PIXI.Sprite.call(this, PIXI.Texture.fromFrame(id));
+    PIXI.Sprite.call(this, PIXI.Texture.from(id));
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
 

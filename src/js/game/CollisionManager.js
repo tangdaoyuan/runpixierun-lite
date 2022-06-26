@@ -1,6 +1,8 @@
 import FidoAudio from '../fido/FidoAudio'
+import GAME from './Game'
+import { showGameover } from '../RunPixieRun'
 
-var laserCount = 0;
+let laserCount = 0;
 
 const CollisionManager = function(engine) {
     this.engine = engine;
@@ -62,10 +64,10 @@ CollisionManager.prototype.playerVsPickup = function() {
 }
 
 CollisionManager.prototype.playerVsFloor = function() {
-    var floors = this.engine.floorManager.floors;
-    var steve = this.engine.steve;
+    let floors = this.engine.floorManager.floors;
+    let steve = this.engine.steve;
 
-    var max = floors.length;
+    let max = floors.length;
     steve.onGround = false;
 
     if (steve.position.y > 610) {
@@ -76,9 +78,9 @@ CollisionManager.prototype.playerVsFloor = function() {
         } else {
             steve.speed.x *= 0.95;
 
-            if (!interactive) {
+            if (!GAME.interactive) {
                 showGameover();
-                interactive = true;
+                GAME.interactive = true;
             }
 
             if (steve.bounce === 0) {
@@ -91,9 +93,9 @@ CollisionManager.prototype.playerVsFloor = function() {
         }
     }
 
-    for (var i = 0; i < max; i++) {
-        var floor = floors[i];
-        var xdist = floor.x - steve.position.x + 1135;
+    for (let i = 0; i < max; i++) {
+        let floor = floors[i];
+        let xdist = floor.x - steve.position.x + 1135;
 
         if (steve.position.y > 477) {
             if (xdist > 0 && xdist < 1135) {
@@ -104,7 +106,7 @@ CollisionManager.prototype.playerVsFloor = function() {
                         return;
                     }
                     FidoAudio.play('thudBounce');
-                    steve.view.setTexture(steve.crashFrames[steve.bounce])
+                    steve.view.texture = steve.crashFrames[steve.bounce]
 
                     steve.speed.y *= -0.7;
                     steve.speed.x *= 0.8;

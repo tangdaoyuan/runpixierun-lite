@@ -1,5 +1,6 @@
 import { GameObjectPool } from './GameObjectPool'
 import { Enemy } from './Enemy'
+import GAME from './Game';
 
 var laserCount = 0;
 

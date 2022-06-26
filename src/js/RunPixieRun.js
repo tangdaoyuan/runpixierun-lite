@@ -2,12 +2,13 @@
 import * as PIXI from './pixi'
 import { gsap, Elastic } from "gsap"
 import FidoAudio from './fido/FidoAudio'
+import { RprEngine } from './game/RprEngine'
 import { Stress } from './game/StressTest'
 import GAME from './game/Game'
+import { Countdown } from './game/view/Countdown'
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('???')
   onReady();
 })
 
@@ -18,7 +19,7 @@ window.addEventListener('resize', function() {
 window.onorientationchange = resize;
 
 
-var GAME_MODE = {
+const GAME_MODE = {
     TITLE: 0,
     COUNT_DOWN: 1,
     PLAYING: 2,
@@ -30,11 +31,9 @@ var GAME_MODE = {
 var loader;
 var game;
 var loadInterval = false;
-var gameMode = 0;
-var countdown;
-var logo;
+let countdown;
+let logo;
 var black;
-var interactive = true;
 var stressTest;
 var thrusters = 0;
 var thrustersVolume = 0;
@@ -48,7 +47,6 @@ var soundOffButton = false;
 
 function onReady() {
     FidoAudio.init();
-    console.log('wat')
     stressTest = new Stress.StressTest(onStressTestComplete);
     resize();
 }
@@ -57,7 +55,7 @@ function onStressTestComplete() {
     stressTest.end();
     GAME.lowMode = stressTest.result < 40;
 
-    interactive = false;
+    GAME.interactive = false;
     document.body.scroll = "no";
 
     loader =  new PIXI.Loader()
@@ -90,23 +88,23 @@ function onStressTestComplete() {
 }
 
 function onTap(event) {
-    event.originalEvent.preventDefault();
+    // event.originalEvent.preventDefault();
 
     if (event.target.type !== 'button') {
-        if (!interactive) return;
+        if (!GAME.interactive) return;
 
-        if (gameMode === GAME_MODE.INTRO) {
+        if (GAME.gameMode === GAME_MODE.INTRO) {
             FidoAudio.play('gameMusic');
             FidoAudio.play('runRegular');
             FidoAudio.play('runFast');
 
-            interactive = false;
-            gameMode = GAME_MODE.TITLE;
+            GAME.interactive = false;
+            GAME.gameMode = GAME_MODE.TITLE;
 
             logo.alpha = 0;
             logo.scale.x = 1.5;
             logo.scale.y = 1.5;
-            logo.setTexture(PIXI.Texture.fromURL("/assets/hud/pixieRevised_controls.png"));
+            logo.texture = PIXI.Texture.from("assets/hud/pixieRevised_controls.png");
 
             gsap.to(logo, 0.1, {
               alpha: 1
@@ -118,11 +116,11 @@ function onTap(event) {
               ease: Elastic.easeOut,
               onComplete: onIntroFaded
             })
-        } else if (gameMode === GAME_MODE.TITLE) {
-            interactive = false;
+        } else if (GAME.gameMode === GAME_MODE.TITLE) {
+            GAME.interactive = false;
 
             game.start();
-            gameMode = GAME_MODE.COUNT_DOWN;
+            GAME.gameMode = GAME_MODE.COUNT_DOWN;
             FidoAudio.setVolume('runRegular', 1);
 
             if (black) {
@@ -135,14 +133,14 @@ function onTap(event) {
                 alpha: 0,
                 onComplete: function() {
                     logo.visible = false;
-                    logo.setTexture(PIXI.Texture.fromFrame("gameOver.png"));
+                    logo.texture = PIXI.Texture.from("gameOver.png");
                     game.view.showHud();
                     game.view.hud.removeChild(black);
                     countdown.startCountDown(onCountdownComplete);
                 }
             });
-        } else if (gameMode === GAME_MODE.GAME_OVER) {
-            interactive = false;
+        } else if (GAME.gameMode === GAME_MODE.GAME_OVER) {
+            GAME.interactive = false;
 
             game.view.stage.addChild(black);
 
@@ -156,7 +154,7 @@ function onTap(event) {
                     GAME.camera.x = game.steve.position.x - 100;
                     game.reset();
                     logo.visible = false;
-                    gameMode = GAME_MODE.COUNT_DOWN;
+                    GAME.gameMode = GAME_MODE.COUNT_DOWN;
 
                     gsap.killTweensOf(GAME.camera);
                     GAME.camera.zoom = 1;
@@ -181,10 +179,10 @@ function onTap(event) {
 }
 
 function init() {
-    gameMode = GAME_MODE.INTRO;
-    interactive = false;
+    GAME.gameMode = GAME_MODE.INTRO;
+    GAME.interactive = false;
 
-    game = new GAME.RprEngine();
+    game = new RprEngine();
 
     document.body.appendChild(game.view.renderer.view);
     game.view.renderer.view.style.position = "absolute";
@@ -199,30 +197,30 @@ function init() {
     game.onGameover = onGameover;
 
     black = new PIXI.Sprite.from("img/blackSquare.jpg");
-    this.game.view.hud.addChild(black);
+    game.view.hud.addChild(black);
 
     gsap.to(black, 0.3, {
         alpha: 0.75,
         delay: 0.5
     });
 
-    logo = PIXI.Sprite.fromFrame("runLogo.png");
+    logo = PIXI.Sprite.from("runLogo.png");
     logo.anchor.x = 0.5;
     logo.anchor.y = 0.5;
     logo.alpha = 0;
 
-    this.game.view.hud.addChild(logo);
+    game.view.hud.addChild(logo);
 
-    personalBestTitle = PIXI.Sprite.from("assets/hud/PersonalBest.png");
+    const personalBestTitle = PIXI.Sprite.from("assets/hud/PersonalBest.png");
     personalBestTitle.anchor.x = 0.5;
     personalBestTitle.anchor.y = 0.5;
     personalBestTitle.alpha = 0;
     personalBestTitle.scale.x = 1.5;
     personalBestTitle.scale.y = 1.5;
 
-    this.game.view.hud.addChild(personalBestTitle);
+    game.view.hud.addChild(personalBestTitle);
 
-    var pressStart = PIXI.Sprite.fromFrame("spaceStart.png");
+    var pressStart = PIXI.Sprite.from("spaceStart.png");
     pressStart.anchor.x = 0.5;
     pressStart.position.y = 200;
 
@@ -232,8 +230,8 @@ function init() {
         onComplete: onIntroFaded
     });
 
-    countdown = new GAME.Countdown();
-    this.game.view.hud.addChild(countdown);
+    countdown = new Countdown();
+    game.view.hud.addChild(countdown);
 
     pauseButton = PIXI.Sprite.from("/assets/hud/pause.png");
     pauseButton.interactive = true;
@@ -273,7 +271,7 @@ function init() {
     restartButton.interactive = true;
 
     restartButton.touchstart = restartButton.mousedown = function(event) {
-        event.originalEvent.preventDefault();
+        // event.originalEvent.preventDefault();
         onRestartPressed();
     }
 
@@ -286,7 +284,7 @@ function init() {
     soundOffButton.interactive = true;
 
     soundOffButton.touchstart = soundOffButton.mousedown = function(event) {
-        event.originalEvent.preventDefault();
+        // event.originalEvent.preventDefault();
         onSoundOffPressed();
     }
 
@@ -299,27 +297,27 @@ function init() {
     soundOnButton.interactive = true;
 
     soundOnButton.touchstart = soundOnButton.mousedown = function(event) {
-        event.originalEvent.preventDefault();
+        // event.originalEvent.preventDefault();
         onSoundOnPressed();
     }
 
-    this.game.view.stage.addChild(pauseScreen);
-    this.game.view.stage.addChild(resumeButton);
-    this.game.view.stage.addChild(restartButton);
-    this.game.view.stage.addChild(soundOffButton);
-    this.game.view.stage.addChild(soundOnButton);
-    this.game.view.stage.addChild(pauseButton);
+    game.view.stage.addChild(pauseScreen);
+    game.view.stage.addChild(resumeButton);
+    game.view.stage.addChild(restartButton);
+    game.view.stage.addChild(soundOffButton);
+    game.view.stage.addChild(soundOnButton);
+    game.view.stage.addChild(pauseButton);
 
     pauseButton.mousedown = pauseButton.touchstart = function(event) {
-        event.originalEvent.preventDefault();
+        // event.originalEvent.preventDefault();
         onPaused();
     }
 
-    this.game.view.container.mousedown = this.game.view.container.touchstart = function(event) {
+    game.view.container.mousedown = game.view.container.touchstart = function(event) {
         onTap(event);
     }
 
-    this.game.view.container.mouseup = this.game.view.container.touchend = function(event) {
+    game.view.container.mouseup = game.view.container.touchend = function(event) {
         onTouchEnd(event);
     }
 
@@ -395,11 +393,11 @@ function onPaused() {
         ease: Elastic.easeOut
     });
 
-    if (gameMode === GAME_MODE.PAUSED) {
+    if (GAME.gameMode === GAME_MODE.PAUSED) {
         game.steve.resume();
 
-        interactive = true;
-        gameMode = prevState;
+        GAME.interactive = true;
+        GAME.gameMode = prevState;
         prevState = false;
 
         gsap.to(soundOffButton.scale, 0.6, {
@@ -448,9 +446,9 @@ function onPaused() {
         });
     } else {
         game.steve.stop();
-        prevState = gameMode;
-        gameMode = GAME_MODE.PAUSED;
-        interactive = false;
+        prevState = GAME.gameMode;
+        GAME.gameMode = GAME_MODE.PAUSED;
+        GAME.interactive = false;
 
         pauseScreen.visible = true;
 
@@ -505,7 +503,7 @@ function onPaused() {
 }
 
 function onIntroFaded() {
-    interactive = true;
+    GAME.interactive = true;
 }
 
 function onGameover() {
@@ -518,11 +516,11 @@ function onGameover() {
         }
     });
 
-    gameMode = GAME_MODE.GAME_OVER;
-    interactive = false;
+    GAME.gameMode = GAME_MODE.GAME_OVER;
+    GAME.interactive = false;
 }
 
-function showGameover() {
+export function showGameover() {
     logo.visible = true;
     gsap.to(logo, 0.3, {
         alpha: 1,
@@ -532,7 +530,7 @@ function showGameover() {
 
 function onGameoverShown() {
     this.isGameReallyOver = true;
-    interactive = true;
+    GAME.interactive = true;
 }
 
 function onTouchStart(event) {
@@ -540,8 +538,8 @@ function onTouchStart(event) {
 }
 
 function onCountdownComplete() {
-    interactive = true;
-    gameMode = GAME_MODE.PLAYING;
+    GAME.interactive = true;
+    GAME.gameMode = GAME_MODE.PLAYING;
     pauseButton.visible = true;
     gsap.to(pauseButton, 0.6, {
         alpha: 1,
@@ -552,7 +550,7 @@ function onCountdownComplete() {
 }
 
 function onTouchEnd(event) {
-    event.originalEvent.preventDefault();
+    // event.originalEvent.preventDefault();
     thrusters = false;
     FidoAudio.setVolume('thrusters', 0);
     if (game.isPlaying) game.steve.fall();
@@ -574,16 +572,16 @@ function resize() {
 
         view.style.width = width + "px";
 
-        this.logo.position.x = newWidth / 2;
-        this.logo.position.y = h / 2 - 20;
+        logo.position.x = newWidth / 2;
+        logo.position.y = h / 2 - 20;
 
         if (black) {
             black.scale.x = newWidth / 16;
             black.scale.y = h / 16;
         }
 
-        this.countdown.position.x = newWidth / 2;
-        this.countdown.position.y = h / 2;
+        countdown.position.x = newWidth / 2;
+        countdown.position.y = h / 2;
 
         game.view.resize(newWidth, h);
 
@@ -638,9 +636,9 @@ const Time = function() {
 Time.constructor = Time;
 
 Time.prototype.update = function() {
-    var time = Date.now();
-    var currentTime = time;
-    var passedTime = currentTime - this.lastTime;
+    let time = Date.now();
+    let currentTime = time;
+    let passedTime = currentTime - this.lastTime;
 
     if (passedTime > 100) passedTime = 100;
 
@@ -648,42 +646,3 @@ Time.prototype.update = function() {
     this.lastTime = currentTime;
 }
 
-// Override
-PIXI.InteractionManager.prototype.onTouchStart = function(event) {
-    var rect = this.interactionDOMElement.getBoundingClientRect();
-
-    if (PIXI.AUTO_PREVENT_DEFAULT) event.preventDefault();
-
-    var changedTouches = event.changedTouches;
-    for (var i = 0; i < changedTouches.length; i++) {
-        var touchEvent = changedTouches[i];
-
-        var touchData = this.pool.pop();
-        if (!touchData) touchData = new PIXI.InteractionData();
-
-        touchData.originalEvent = event || window.event;
-
-        this.touchs[touchEvent.identifier] = touchData;
-        touchData.global.x = (touchEvent.clientX - rect.left) * (this.target.width / rect.width);
-        touchData.global.y = (touchEvent.clientY - rect.top) * (this.target.height / rect.height);
-
-        var length = this.interactiveItems.length;
-
-        for (var j = 0; j < length; j++) {
-            var item = this.interactiveItems[j];
-
-            if (item.touchstart || item.tap) {
-                item.__hit = this.hitTest(item, touchData);
-
-                if (item.__hit) {
-                    //call the function!
-                    if (item.touchstart) item.touchstart(touchData);
-                    item.__isDown = true;
-                    item.__touchData = touchData;
-
-                    if (!item.interactiveChildren) break;
-                }
-            }
-        }
-    }
-};

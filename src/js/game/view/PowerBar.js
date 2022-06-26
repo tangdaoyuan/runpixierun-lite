@@ -1,7 +1,7 @@
 import * as PIXI from '../../pixi'
 
 const PowerBar = function(owner) {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
 
     this.barBG = PIXI.Sprite.from("bulletTime_back.png");
     this.addChild(this.barBG);
@@ -24,7 +24,7 @@ const PowerBar = function(owner) {
 }
 
 PowerBar.constructor = PowerBar;
-PowerBar.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+PowerBar.prototype = Object.create(PIXI.Container.prototype);
 
 
 export {

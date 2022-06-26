@@ -1,4 +1,5 @@
 import { Howl } from 'howler'
+import { gsap } from 'gsap'
 import _Device from './Device'
 import _LocalStorage from  './LocalStorage'
 
@@ -140,14 +141,14 @@ const FidoAudio = (function() {
     function muteAll() {
         MUTE_ALL = true;
         LocalStorage.store('gameMuted', true);
-        var cHolder = {
+        let cHolder = {
             volume: 1
         };
 
-        TweenLite.to(cHolder, 1, {
+        gsap.to(cHolder, 1, {
             volume: 0,
             onUpdate: function() {
-                Howler.volume(this.target.volume);                },
+                Howler.volume(this.volume);                },
             onComplete: function() {
                 Howler.mute();
             }
@@ -155,17 +156,18 @@ const FidoAudio = (function() {
     }
 
     function muteOneSound(cSound, holder) {
-        TweenLite.to(holder, 1, {
+        gsap.to(holder, 1, {
             volume: 0,
             onUpdate: function() {
-                cSound.audio.volume(this.target.volume);
+                cSound.audio.volume(this.volume);
             }
         });
-    }    function unMuteOneSound(cSound, holder) {
-        TweenLite.to(holder, 1, {
+    }
+    function unMuteOneSound(cSound, holder) {
+        gsap.to(holder, 1, {
             volume: cSound.volume,
             onUpdate: function() {
-                cSound.audio.volume(this.target.volume);
+                cSound.audio.volume(this.volume);
             }
         });
     }
@@ -179,10 +181,10 @@ const FidoAudio = (function() {
 
         Howler.unmute();
 
-        TweenLite.to(cHolder, 1, {
+        gsap.to(cHolder, 1, {
             volume: 1,
             onUpdate: function(cObject, sProperty) {
-                Howler.volume(this.target.volume);
+                Howler.volume(this.volume);
             }
         });
 
@@ -216,10 +218,10 @@ const FidoAudio = (function() {
             volume: 0
         };
 
-        TweenLite.to(cHolder, nFadeInTime, {
+        gsap.to(cHolder, nFadeInTime, {
             volume: cSound.maxVolume,
             onUpdate: function(cObject, sProperty) {
-                setVolume(id, this.target.volume);
+                setVolume(id, this.volume);
             }
         });
     }

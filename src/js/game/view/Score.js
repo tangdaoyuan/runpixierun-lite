@@ -1,7 +1,7 @@
 import * as PIXI from '../../pixi'
 
 const Score = function() {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
     this.ratio = 0;
 
     this.glyphs = {
@@ -32,25 +32,25 @@ const Score = function() {
 
 
 Score.constructor = PIXI.Score;
-Score.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Score.prototype = Object.create(PIXI.Container.prototype);
 
 Score.prototype.setScore = function(score) {
-    var split = formatScore(score).split("");
-    var position = 0;
-    var gap = -10;
-    for (var i = 0; i < split.length; i++) {
-        var digit = this.digits[i];
+    const split = formatScore(score).split("");
+    let position = 0;
+    const gap = -10;
+    for (let i = 0; i < split.length; i++) {
+        let digit = this.digits[i];
         digit.visible = true;
-        digit.setTexture(this.glyphs[split[i]]);
+        digit.texture = (this.glyphs[split[i]]);
         digit.position.x = position;
         position += digit.width + gap;
     }
 
-    for (var i = 0; i < this.digits.length; i++) {
+    for (let i = 0; i < this.digits.length; i++) {
         this.digits[i].position.x -= position;
     }
 
-    for (var i = split.length; i < this.digits.length; i++) {
+    for (let i = split.length; i < this.digits.length; i++) {
         this.digits[i].visible = false;
     }
 }
@@ -75,5 +75,6 @@ function formatScore(n) {
 }
 
 export {
-    Score
+    Score,
+    formatScore
 }

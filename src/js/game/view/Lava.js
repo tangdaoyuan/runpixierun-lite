@@ -1,4 +1,5 @@
 import * as PIXI from '../../pixi'
+import GAME from '../Game';
 
 const Lava = function(owner) {
     this.textures = [PIXI.Texture.from("lava_slosh_01.png"),
@@ -54,7 +55,7 @@ Lava.prototype.setPosition = function(position) {
         pos %= h * this.sprites.length;
         pos += h * 2;
 
-        this.sprites[i].setTexture(this.textures[frame])
+        this.sprites[i].texture = this.textures[frame]
         this.sprites[i].position.x = Math.floor(pos) + 800 - GAME.xOffset;
     };
 }

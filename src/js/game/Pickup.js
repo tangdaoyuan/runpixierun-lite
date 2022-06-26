@@ -12,7 +12,7 @@ const Pickup = function() {
 
     this.position = new PIXI.Point();
 
-    this.view = new PIXI.DisplayObjectContainer();
+    this.view = new PIXI.Container();
     this.clip = new PIXI.Sprite(PIXI.Texture.from(pickupTextures[Math2.randomInt(0, pickupTextures.length - 1)]));
 
     this.clip.anchor.x = 0.5;

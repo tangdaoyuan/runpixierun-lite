@@ -1,13 +1,23 @@
 import * as PIXI from '../../pixi'
-import { gsap } from "gsap"
+import { gsap, Elastic, Sine } from "gsap"
 import { SteveTrailFire } from "../SteveTrailFire";
 import { SteveTrail } from "../SteveTrail";
+import GAME from '../Game'
+import { LowFiBackground } from './LowFiBackground'
+import { JoyBackground } from './JoyBackground'
+import { Background } from './Background';
+import { Lava } from './Lava'
+import { PowerBar } from './PowerBar'
+import { Score } from './Score'
+import { BestScore } from './BestScore'
+import { PixiDust } from '../PixiDust'
+import { Splash } from './Splash'
 
 const RprView = function(engine) {
     this.engine = engine;
 
     this.renderer = PIXI.autoDetectRenderer(600, 800);
-    GAME.HIGH_MODE = (this.renderer instanceof PIXI.WebGLRenderer);
+    GAME.HIGH_MODE = !(this.renderer instanceof PIXI.CanvasRenderer);
 
     this.stage = new PIXI.Stage();
 
@@ -17,13 +27,13 @@ const RprView = function(engine) {
     //    console.log("Window width = " + window.innerWidth || document.body.clientWidth);
     //    console.log("Window height = " + window.innerHeight || document.body.clientHeight);
 
-    this.container = new PIXI.DisplayObjectContainer();
+    this.container = new PIXI.Container();
     this.container.hitArea = this.stage.hitArea;
     this.container.interactive = true;
 
-    this.hud = new PIXI.DisplayObjectContainer();
-    this.game = new PIXI.DisplayObjectContainer();
-    this.gameFront = new PIXI.DisplayObjectContainer();
+    this.hud = new PIXI.Container();
+    this.game = new PIXI.Container();
+    this.gameFront = new PIXI.Container();
 
     this.container.addChild(this.game);
     this.container.addChild(this.gameFront);
@@ -32,18 +42,18 @@ const RprView = function(engine) {
     this.stage.addChild(this.hud);
 
     if (GAME.lowMode) {
-        this.normalBackground = new GAME.LowFiBackground();
+        this.normalBackground = new LowFiBackground();
     } else {
-        this.normalBackground = new GAME.Background(this.gameFront);
+        this.normalBackground = new Background(this.gameFront);
     }
 
-    this.joyBackground = new GAME.JoyBackground();
+    this.joyBackground = new JoyBackground();
 
-    this.lava = new GAME.Lava(this.gameFront);
+    this.lava = new Lava(this.gameFront);
 
-    this.powerBar = new GAME.PowerBar();
-    this.score = new GAME.Score();
-    this.bestScore = new GAME.BestScore();
+    this.powerBar = new PowerBar();
+    this.score = new Score();
+    this.bestScore = new BestScore();
     this.background = this.normalBackground;
 
     this.score.position.x = 300;
@@ -63,13 +73,13 @@ const RprView = function(engine) {
     this.count = 0;
     this.zoom = 1;
 
-    this.white = PIXI.Sprite.from("/img/whiteSquare.jpg");
+    this.white = PIXI.Sprite.from("img/whiteSquare.jpg");
     GAME.xOffset = this.container.position.x;
 
-    this.dust = new GAME.PixiDust();
+    this.dust = new PixiDust();
     this.container.addChild(this.dust);
 
-    this.splash = new GAME.Splash();
+    this.splash = new Splash();
     this.splash.position.y = 300;
     this.splash.position.x = 300;
 

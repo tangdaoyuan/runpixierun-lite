@@ -1,3 +1,4 @@
+import { gsap, Cubic } from 'gsap'
 import GAME from './Game'
 import { Steve } from './Steve'
 import { RprView }  from './view/RprView'
@@ -66,7 +67,7 @@ RprEngine.prototype.update = function() {
 
     GAME.camera.y = targetCamY;
 
-    if (gameMode !== GAME_MODE.PAUSED) {
+    if (GAME.gameMode !== GAME.GAME_MODE.PAUSED) {
         this.steve.update();
         this.collisionManager.update();
         this.segmentManager.update();
@@ -135,7 +136,7 @@ RprEngine.prototype.gameover = function() {
 
     this.view.game.addChild(this.steve.view);
 
-    TweenLite.to(this.view, 0.5, {
+    gsap.to(this.view, 0.5, {
         zoom: 2,
         ease: Cubic.easeOut
     });
@@ -201,3 +202,7 @@ Time.prototype.update = function() {
 }
 
 GAME.time = new Time();
+
+export {
+    RprEngine
+}

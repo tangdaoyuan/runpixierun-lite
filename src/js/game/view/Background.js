@@ -1,7 +1,8 @@
 import * as PIXI from '../../pixi'
+import GAME from '../Game';
 
 const Background = function(frontView) {
-    PIXI.DisplayObjectContainer.call(this);
+    PIXI.Container.call(this);
     this.width = 1000;
     this.scrollPosition = 1500;
     //{"x":604,"y":803,"w":600,"h":799},
@@ -14,11 +15,11 @@ const Background = function(frontView) {
 
 
 
-    this.tree1 = PIXI.Sprite.fromFrame("02_tree_1.png");
+    this.tree1 = PIXI.Sprite.from("02_tree_1.png");
     this.tree1.anchor.x = 0.5;
     this.addChild(this.tree1);
 
-    this.tree2 = PIXI.Sprite.fromFrame("02_tree_2.png");
+    this.tree2 = PIXI.Sprite.from("02_tree_2.png");
     this.tree2.anchor.x = 0.5;
     this.tree2.position.y = 50;
     this.addChild(this.tree2);
@@ -44,7 +45,7 @@ const Background = function(frontView) {
 // constructor
 Background.constructor = Background;
 
-Background.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Background.prototype = Object.create(PIXI.Container.prototype);
 
 Background.prototype.updateTransform = function() {
     this.scrollPosition = GAME.camera.x + 4000 // * GAME.time.DELTA_TIME;
@@ -74,7 +75,7 @@ Background.prototype.updateTransform = function() {
     this.vines.setPosition(this.scrollPosition);
 
 
-    PIXI.DisplayObjectContainer.prototype.updateTransform.call(this);
+    PIXI.Container.prototype.updateTransform.call(this);
 }
 
 const Vines = function(owner) {
@@ -82,7 +83,7 @@ const Vines = function(owner) {
     this.owner = owner
 
     for (var i = 0; i < 10; i++) {
-        var vine = new PIXI.Sprite.fromFrame("01_hanging_flower3.png");
+        var vine = new PIXI.Sprite.from("01_hanging_flower3.png");
         vine.offset = i * 100 + Math.random() * 50;
         vine.speed = (1.5 + Math.random() * 0.25) / 2;
         vine.position.y = Math.random() * -200;
@@ -119,11 +120,11 @@ Background.prototype.normalMode = function() {
 const BackgroundElement = function(texture, y, owner) {
     this.sprites = [];
     this.spriteWidth = texture.width - 1;
-    var amount = Math.ceil(940 / this.spriteWidth);
+    let amount = Math.ceil(940 / this.spriteWidth);
     if (amount < 3) amount = 3;
 
-    for (var i = 0; i < amount; i++) {
-        var sprite = new PIXI.Sprite(texture);
+    for (let i = 0; i < amount; i++) {
+        const sprite = new PIXI.Sprite(texture);
         sprite.position.y = y;
         owner.addChild(sprite);
         this.sprites.push(sprite);

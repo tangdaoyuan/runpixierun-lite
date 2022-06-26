@@ -1,5 +1,6 @@
 import * as PIXI from '../pixi'
 import { GameObjectPool } from './GameObjectPool'
+import GAME from './Game';
 
 const FloorManager = function(engine) {
     this.engine = engine;
