@@ -37,9 +37,6 @@ const Background = function(frontView) {
     this.farCanopy.speed = 1.5 / 2;
     this.frontSilhouette.speed = 1.6 / 2;
     this.roofLeaves.speed = 2 / 2;
-    //this.ground.speed = 1
-
-
 }
 
 // constructor
@@ -62,15 +59,14 @@ Background.prototype.updateTransform = function() {
     treePos2 -= this.tree2.width / 2;
     this.tree2.position.x = treePos2 - GAME.xOffset;
 
-    //this.ground.setPosition(this.scrollPosition);
     this.foggyTrees.setPosition(this.scrollPosition);
+
     this.rearSilhouette.setPosition(this.scrollPosition);
     this.rearCanopy.setPosition(this.scrollPosition);
     this.farCanopy.setPosition(this.scrollPosition);
     this.frontSilhouette.setPosition(this.scrollPosition);
 
     this.roofLeaves.setPosition(this.scrollPosition);
-    //this.ground.setPosition(this.scrollPosition);
 
     this.vines.setPosition(this.scrollPosition);
 
@@ -142,7 +138,7 @@ BackgroundElement.prototype.setPosition = function(position) {
         pos %= h * this.sprites.length;
         pos += h * 2;
 
-        this.sprites[i].position.x = Math.floor(pos) - GAME.xOffset
+        this.sprites[i].position.x = Math.floor(pos) - (GAME.xOffset || 0)
         //this.sky[i].position.y = Math.round(this.sky[i].position.y);
     };
 }

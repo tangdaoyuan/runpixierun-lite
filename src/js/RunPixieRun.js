@@ -53,7 +53,8 @@ function onReady() {
 
 function onStressTestComplete() {
     stressTest.end();
-    GAME.lowMode = stressTest.result < 40;
+    // GAME.lowMode = stressTest.result < 40;
+    GAME.lowMode = false
 
     GAME.interactive = false;
     document.body.scroll = "no";
@@ -583,7 +584,7 @@ function resize() {
         countdown.position.x = newWidth / 2;
         countdown.position.y = h / 2;
 
-        game.view.resize(newWidth, h);
+        game.view.resize(newWidth, h, width);
 
         pauseButton.position.x = newWidth - 60;
         pauseButton.position.y = h - 60;

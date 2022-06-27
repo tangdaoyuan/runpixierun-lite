@@ -194,7 +194,7 @@ RprView.prototype.normalMode = function() {
     });
 }
 
-RprView.prototype.resize = function(w, h) {
+RprView.prototype.resize = function(w, h, originWidth) {
     //    console.log("Width ->" + w);
     //    console.log("Height -> " + h);
 
@@ -202,7 +202,8 @@ RprView.prototype.resize = function(w, h) {
     GAME.height = h;
 
     this.renderer.resize(w, h);
-    this.background.width = w;
+    // this.background.initialWidth = originWidth;
+    // this.background.width = originWidth;
 
     this.bestScore.position.x = w - 20;
     this.bestScore.position.y = 100;
