@@ -1,1 +1,12 @@
-runpixierun-lite
+# runpixierun-lite
+
+> Fork from runpixierun, for learning pixijs
+
+## TODO
+
+* fix: player running animation broken
+* perf: switch to WebGL render
+* perf: loading background slow
+* refactor: prototype implementation to class implementation
+* refactor: hoist global state (such as `game`)
+* refactor: migrate to typescript
