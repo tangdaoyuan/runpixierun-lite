@@ -3,7 +3,7 @@ import GAME from '../Game';
 
 const Background = function(frontView) {
     PIXI.Container.call(this);
-    this.width = 1000;
+    this.initialWidth = 1000;
     this.scrollPosition = 1500;
     //{"x":604,"y":803,"w":600,"h":799},
     //{"x":1206,"y":2,"w":600,"h":799},
@@ -51,14 +51,14 @@ Background.prototype.updateTransform = function() {
     this.scrollPosition = GAME.camera.x + 4000 // * GAME.time.DELTA_TIME;
 
     var treePos = -this.scrollPosition * 1.5 / 2;
-    treePos %= this.width + 556;
-    treePos += this.width + 556;
+    treePos %= this.initialWidth + 556;
+    treePos += this.initialWidth + 556;
     treePos -= this.tree1.width / 2;
     this.tree1.position.x = treePos - GAME.xOffset;
 
-    var treePos2 = -(this.scrollPosition + this.width / 2) * 1.5 / 2;
-    treePos2 %= this.width + 556;
-    treePos2 += this.width + 556;
+    var treePos2 = -(this.scrollPosition + this.initialWidth / 2) * 1.5 / 2;
+    treePos2 %= this.initialWidth + 556;
+    treePos2 += this.initialWidth + 556;
     treePos2 -= this.tree2.width / 2;
     this.tree2.position.x = treePos2 - GAME.xOffset;
 
@@ -100,8 +100,8 @@ Vines.prototype.setPosition = function(position) {
         var vine = this.vines[i];
 
         var pos = -(position + vine.offset) * vine.speed; // * this.speed;
-        pos %= this.owner.width;
-        pos += this.owner.width;
+        pos %= this.owner.initialWidth;
+        pos += this.owner.initialWidth;
 
         vine.position.x = pos //vine.offset// Math.floor(pos)
         //this.sky[i].position.y = Math.round(this.sky[i].position.y);
