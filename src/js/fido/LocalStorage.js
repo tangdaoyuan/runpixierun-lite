@@ -12,7 +12,7 @@ LocalStorage.prototype.remove = function(key) {
     localStorage.removeItem(this.id + '.' + key);
 }
 LocalStorage.prototype.reset = function() {
-    for (var i in localStorage) {
+    for (let i in localStorage) {
         if (i.indexOf(this.id + '.') !== -1) localStorage.removeItem(i);
     }
 }

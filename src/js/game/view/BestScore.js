@@ -23,11 +23,11 @@ const BestScore = function() {
         ",": "number_comma.png"
     };
 
-    for (var i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
+    for (let i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
 
     this.digits = [];
 
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         this.digits[i] = new PIXI.Sprite(this.glyphs[i]);
         this.digits[i].scale.set(0.36);
         this.addChild(this.digits[i]);

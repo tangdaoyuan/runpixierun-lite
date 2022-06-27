@@ -6,18 +6,6 @@ Math2.random = function(from, to) {
 }
 
 Math2.map = function(val, inputMin, inputMax, outputMin, outputMax) {
-    /*
-    var inputRange = inputMax - inputMin
-			
-    var inputFraction = (val - inputMin)/inputRange
-			
-    var outputRange = outputMax - outputMin
-			
-    var output = (outputRange * inputFraction) + outputMin
-			
-    return output
-    */
-
     return ((outputMax - outputMin) * ((val - inputMin) / (inputMax - inputMin))) + outputMin;
 }
 

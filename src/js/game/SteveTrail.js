@@ -17,7 +17,7 @@ SteveTrail.prototype.update = function() {
         this.count++;
 
         if (this.count % 3) {
-            var partical = this.particalPool.getObject();
+            let partical = this.particalPool.getObject();
 
             this.stage.addChild(partical);
             partical.position.x = this.target.view.position.x + (Math.random() * 10) - 5 - 20;
@@ -36,8 +36,8 @@ SteveTrail.prototype.update = function() {
 
     }
 
-    for (var i = 0; i < this.particals.length; i++) {
-        var partical = this.particals[i];
+    for (let i = 0; i < this.particals.length; i++) {
+        let partical = this.particals[i];
 
         partical.dirSpeed += 0.003 * partical.sign;
         if (partical.dirSpeed > 2) partical.dirSpeed = 2;

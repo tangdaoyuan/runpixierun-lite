@@ -19,15 +19,15 @@ CollisionManager.prototype.update = function() {
 }
 
 CollisionManager.prototype.playerVsBlock = function() {
-    var enemies = this.engine.enemyManager.enemies;
-    var steve = this.engine.steve;
+    let enemies = this.engine.enemyManager.enemies;
+    let steve = this.engine.steve;
 
-    for (var i = 0; i < enemies.length; i++) {
-        var enemy = enemies[i]
+    for (let i = 0; i < enemies.length; i++) {
+        let enemy = enemies[i]
 
-        var xdist = enemy.position.x - steve.position.x;
+        let xdist = enemy.position.x - steve.position.x;
         if (xdist > -enemy.width / 2 && xdist < enemy.width / 2) {
-            var ydist = enemy.position.y - steve.position.y;
+            let ydist = enemy.position.y - steve.position.y;
 
             if (ydist > -enemy.height / 2 - 20 && ydist < enemy.height / 2) {
                 if (!steve.joyRiding) {
@@ -42,16 +42,16 @@ CollisionManager.prototype.playerVsBlock = function() {
 
 CollisionManager.prototype.playerVsPickup = function() {
 
-    var pickups = this.engine.pickupManager.pickups;
-    var steve = this.engine.steve;
+    let pickups = this.engine.pickupManager.pickups;
+    let steve = this.engine.steve;
 
-    for (var i = 0; i < pickups.length; i++) {
-        var pickup = pickups[i]
+    for (let i = 0; i < pickups.length; i++) {
+        let pickup = pickups[i]
         if (pickup.isPickedUp) continue;
 
-        var xdist = pickup.position.x - steve.position.x;
+        let xdist = pickup.position.x - steve.position.x;
         if (xdist > -pickup.width / 2 && xdist < pickup.width / 2) {
-            var ydist = pickup.position.y - steve.position.y;
+            let ydist = pickup.position.y - steve.position.y;
 
             if (ydist > -pickup.height / 2 && ydist < pickup.height / 2) {
                 this.engine.pickupManager.removePickup(i);

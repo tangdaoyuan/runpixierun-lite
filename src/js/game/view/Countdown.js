@@ -1,8 +1,8 @@
 import * as PIXI from '../../pixi'
 import { gsap, Elastic, Cubic, Sine } from 'gsap'
 
-var enemyFrames;
-var m_cCountdown = false;
+let enemyFrames;
+let m_cCountdown = false;
 
 const Countdown = function() {
     PIXI.Container.call(this);
@@ -44,7 +44,7 @@ Countdown.prototype.startCountDown = function(onComplete) {
     this.two.scale.x = this.two.scale.y = 2;
     this.one.scale.x = this.one.scale.y = 2;
 
-    var that = this;
+    let that = this;
 
     gsap.to(this.three, 1 * time2, {
         alpha: 1,
@@ -60,12 +60,12 @@ Countdown.prototype.startCountDown = function(onComplete) {
     });
 }
 
-var time = 0.1;
-var time2 = 0.5;
-var delay = 0;
+let time = 0.1;
+let time2 = 0.5;
+let delay = 0;
 
 Countdown.prototype.onThreeShown = function() {
-    var that = this;
+    let that = this;
 
     gsap.to(that.three, 1 * time, {
         alpha: 0,

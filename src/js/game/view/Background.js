@@ -50,13 +50,13 @@ Background.prototype = Object.create(PIXI.Container.prototype);
 Background.prototype.updateTransform = function() {
     this.scrollPosition = GAME.camera.x + 4000 // * GAME.time.DELTA_TIME;
 
-    var treePos = -this.scrollPosition * 1.5 / 2;
+    let treePos = -this.scrollPosition * 1.5 / 2;
     treePos %= this.initialWidth + 556;
     treePos += this.initialWidth + 556;
     treePos -= this.tree1.width / 2;
     this.tree1.position.x = treePos - GAME.xOffset;
 
-    var treePos2 = -(this.scrollPosition + this.initialWidth / 2) * 1.5 / 2;
+    let treePos2 = -(this.scrollPosition + this.initialWidth / 2) * 1.5 / 2;
     treePos2 %= this.initialWidth + 556;
     treePos2 += this.initialWidth + 556;
     treePos2 -= this.tree2.width / 2;
@@ -82,8 +82,8 @@ const Vines = function(owner) {
     this.vines = [];
     this.owner = owner
 
-    for (var i = 0; i < 10; i++) {
-        var vine = new PIXI.Sprite.from("01_hanging_flower3.png");
+    for (let i = 0; i < 10; i++) {
+        let vine = new PIXI.Sprite.from("01_hanging_flower3.png");
         vine.offset = i * 100 + Math.random() * 50;
         vine.speed = (1.5 + Math.random() * 0.25) / 2;
         vine.position.y = Math.random() * -200;
@@ -96,10 +96,10 @@ const Vines = function(owner) {
 }
 
 Vines.prototype.setPosition = function(position) {
-    for (var i = 0; i < this.vines.length; i++) {
-        var vine = this.vines[i];
+    for (let i = 0; i < this.vines.length; i++) {
+        let vine = this.vines[i];
 
-        var pos = -(position + vine.offset) * vine.speed; // * this.speed;
+        let pos = -(position + vine.offset) * vine.speed; // * this.speed;
         pos %= this.owner.initialWidth;
         pos += this.owner.initialWidth;
 
@@ -134,10 +134,10 @@ const BackgroundElement = function(texture, y, owner) {
 }
 
 BackgroundElement.prototype.setPosition = function(position) {
-    var h = this.spriteWidth;
+    let h = this.spriteWidth;
 
-    for (var i = 0; i < this.sprites.length; i++) {
-        var pos = -position * this.speed;
+    for (let i = 0; i < this.sprites.length; i++) {
+        let pos = -position * this.speed;
         pos += i * h;
         pos %= h * this.sprites.length;
         pos += h * 2;

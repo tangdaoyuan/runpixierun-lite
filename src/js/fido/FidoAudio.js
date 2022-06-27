@@ -4,15 +4,15 @@ import _Device from './Device'
 import _LocalStorage from  './LocalStorage'
 
 const FidoAudio = (function() {
-    var cSoundPool = {};
-    var DEFAULT_FADE_OUT_TIME = 1;
-    var DEFAULT_FADE_IN_TIME = 1;
-    var MUTE_ALL = false;
+    let cSoundPool = {};
+    let DEFAULT_FADE_OUT_TIME = 1;
+    let DEFAULT_FADE_IN_TIME = 1;
+    let MUTE_ALL = false;
 
     const Device = new _Device();
-    var LocalStorage = new _LocalStorage();
+    let LocalStorage = new _LocalStorage();
 
-    var aSounds = [{
+    let aSounds = [{
             src: 'audio/mainLoop',
             volume: 0.6,
             maxVolume: 0.6,
@@ -105,8 +105,8 @@ const FidoAudio = (function() {
     ];
 
     function init() {
-            for (var i = 0; i < aSounds.length; i++) {
-                var cSound = aSounds[i];
+            for (let i = 0; i < aSounds.length; i++) {
+                let cSound = aSounds[i];
 
                 cSound.audio = new Howl({
                     src: [cSound.src + ".mp3"],
@@ -175,7 +175,7 @@ const FidoAudio = (function() {
     function unMuteAll() {
         MUTE_ALL = false;
         LocalStorage.store('gameMuted', false)
-        var cHolder = {
+        let cHolder = {
             volume: 0
         };
 
@@ -199,9 +199,9 @@ const FidoAudio = (function() {
     }
 
     function fadeOut(sKey) {
-        var cSound = cSoundPool[sKey];
+        let cSound = cSoundPool[sKey];
 
-        var holder = {
+        let holder = {
             volume: 0
         };
 
@@ -211,10 +211,10 @@ const FidoAudio = (function() {
     function fadeIn(id, time) {
         if (!soundExists(id)) return;
 
-        var cSound = cSoundPool[id];
-        var nFadeInTime = time || DEFAULT_FADE_IN_TIME;
+        let cSound = cSoundPool[id];
+        let nFadeInTime = time || DEFAULT_FADE_IN_TIME;
 
-        var cHolder = {
+        let cHolder = {
             volume: 0
         };
 

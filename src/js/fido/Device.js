@@ -38,7 +38,7 @@ const Device = function() {
     this.m4a = false;
     this.webm = false;
 
-    var ua = navigator.userAgent;
+    let ua = navigator.userAgent;
 
     this._checkBrowser(ua);
     this._checkOS(ua);
@@ -127,8 +127,8 @@ Device.prototype._checkAudio = function() {
     this.audioData = !!(window['Audio']);
     this.webaudio = !!(window['webkitAudioContext'] || window['AudioContext']);
 
-    var audioElement = document.createElement('audio');
-    var result = false;
+    let audioElement = document.createElement('audio');
+    let result = false;
     try {
         if (result = !!audioElement.canPlayType) {
             if (audioElement.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, '')) {
@@ -154,7 +154,7 @@ Device.prototype._checkAudio = function() {
 }
 
 Device.prototype.getInfo = function() {
-    var output = "DEVICE OUTPUT\n\n";
+    let output = "DEVICE OUTPUT\n\n";
 
     output += "---\n";
     output += "Browser Info :: \n";

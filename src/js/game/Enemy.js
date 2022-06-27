@@ -2,7 +2,7 @@ import * as PIXI from '../pixi'
 import { Explosion } from './Explosion'
 import FidoAudio from '../fido/FidoAudio'
 import GAME from './Game';
-var enemyFrames;
+let enemyFrames;
 
 const Enemy = function() {
     this.position = new PIXI.Point();

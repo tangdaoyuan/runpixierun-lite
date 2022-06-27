@@ -28,8 +28,8 @@ PickupManager.prototype.update = function() {
         }
     }
 
-    for (var i = 0; i < this.pickups.length; i++) {
-        var pickup = this.pickups[i]
+    for (let i = 0; i < this.pickups.length; i++) {
+        let pickup = this.pickups[i]
 
         pickup.update();
 
@@ -66,7 +66,7 @@ PickupManager.prototype.update = function() {
 }
 
 PickupManager.prototype.addPickup = function(x, y) {
-    var pickup = this.pickupPool.getObject();
+    let pickup = this.pickupPool.getObject();
     pickup.position.x = x
     pickup.position.y = y
 
@@ -75,7 +75,7 @@ PickupManager.prototype.addPickup = function(x, y) {
 }
 
 PickupManager.prototype.removePickup = function(index) {
-    var pickup = this.pickups[index];
+    let pickup = this.pickups[index];
     pickup.isPickedUp = true;
     pickup.steve = this.engine.steve;
     pickup.pickupPosition = {
@@ -87,8 +87,8 @@ PickupManager.prototype.removePickup = function(index) {
 
 
 PickupManager.prototype.destroyAll = function() {
-    for (var i = 0; i < this.pickups.length; i++) {
-        var pickup = this.pickups[i]
+    for (let i = 0; i < this.pickups.length; i++) {
+        let pickup = this.pickups[i]
         // remove!
         this.pickupPool.returnObject(pickup);
         this.engine.view.game.removeChild(pickup.view);
@@ -98,8 +98,8 @@ PickupManager.prototype.destroyAll = function() {
 }
 
 PickupManager.prototype.destroyAllOffScreen = function() {
-    for (var i = 0; i < this.pickups.length; i++) {
-        var pickup = this.pickups[i];
+    for (let i = 0; i < this.pickups.length; i++) {
+        let pickup = this.pickups[i];
 
         if (pickup.x > GAME.camera.x + GAME.width) {
             this.pickupPool.returnObject(pickup);

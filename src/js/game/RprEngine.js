@@ -61,7 +61,7 @@ RprEngine.prototype.start = function() {
 RprEngine.prototype.update = function() {
     GAME.time.update();
 
-    var targetCamY = 0;
+    let targetCamY = 0;
     if (targetCamY > 0) targetCamY = 0;
     if (targetCamY < -70) targetCamY = -70;
 
@@ -126,7 +126,7 @@ RprEngine.prototype.gameover = function() {
     this.isDying = true;
     this.segmentManager.chillMode = true;
 
-    var nHighscore = this.LocalStorage.get('highscore');
+    let nHighscore = this.LocalStorage.get('highscore');
     if (!nHighscore || this.score > nHighscore) {
         this.LocalStorage.store('highscore', this.score);
         GAME.newHighscore = true;
@@ -189,9 +189,9 @@ const Time = function() {
 Time.constructor = Time;
 
 Time.prototype.update = function() {
-    var time = Date.now();
-    var currentTime = time;
-    var passedTime = currentTime - this.lastTime;
+    let time = Date.now();
+    let currentTime = time;
+    let passedTime = currentTime - this.lastTime;
 
     this.DELTA_TIME = ((passedTime) * 0.06);
     this.DELTA_TIME *= this.speed;

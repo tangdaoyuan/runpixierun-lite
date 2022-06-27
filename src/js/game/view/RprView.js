@@ -90,7 +90,7 @@ const RprView = function(engine) {
 RprView.constructor = RprView;
 
 RprView.prototype.showHud = function() {
-    var start = {
+    let start = {
         x: GAME.width + 300,
         y: 0
     };
@@ -127,10 +127,10 @@ RprView.prototype.update = function() {
     this.count += 0.01;
 
     if (!GAME.lowMode) {
-        var ratio = (this.zoom - 1);
-        var position = -GAME.width / 2
-        var position2 = -this.engine.steve.view.position.x;
-        var inter = position + (position2 - position) * ratio;
+        let ratio = (this.zoom - 1);
+        let position = -GAME.width / 2
+        let position2 = -this.engine.steve.view.position.x;
+        let inter = position + (position2 - position) * ratio;
 
         this.container.position.x = inter * this.zoom;
         this.container.position.y = -this.engine.steve.view.position.y * this.zoom;
@@ -141,7 +141,7 @@ RprView.prototype.update = function() {
         GAME.xOffset = this.container.position.x;
 
         if (this.container.position.y > 0) this.container.position.y = 0;
-        var yMax = -GAME.height * this.zoom;
+        let yMax = -GAME.height * this.zoom;
         yMax += GAME.height;
 
         if (this.container.position.y < yMax) this.container.position.y = yMax;

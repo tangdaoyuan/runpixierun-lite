@@ -98,7 +98,7 @@ Steve.prototype.updateRunning = function() {
         this.isFlying = true;
     }
 
-    var oldSpeed = this.speed.y;
+    let oldSpeed = this.speed.y;
 
     if (this.isFlying) {
         this.accel = 0.6;
@@ -113,7 +113,7 @@ Steve.prototype.updateRunning = function() {
     if (this.speed.y > 8) this.speed.y = 8;
     if (this.speed.y < -9) this.speed.y = -9;
 
-    var accel = this.speed.y - oldSpeed;
+    let accel = this.speed.y - oldSpeed;
     this.position.x += this.speed.x * GAME.time.DELTA_TIME * this.level;
     this.position.y += this.speed.y * GAME.time.DELTA_TIME;
 

@@ -2,15 +2,15 @@ import * as PIXI from './pixi'
 
 // update
 const GoodBoySplash = (function() {
-    var paperView = false;
-    var paperStage = false;
-    var paperRenderer = false;
-    var interval = false;
+    let paperView = false;
+    let paperStage = false;
+    let paperRenderer = false;
+    let interval = false;
 
-    var nStageWidth = 0;
-    var nStageHeight = 0;
+    let nStageWidth = 0;
+    let nStageHeight = 0;
 
-    var loadingFrames = [
+    let loadingFrames = [
         "img/loading_01.png",
         "img/loading_02.png",
         "img/loading_03.png",
@@ -38,7 +38,7 @@ const GoodBoySplash = (function() {
         document.body.appendChild(paperRenderer.view);
 
         preload(function() {
-            var tick = 0;
+            let tick = 0;
 
             interval = setInterval(function() {
                 tick++;
@@ -48,7 +48,7 @@ const GoodBoySplash = (function() {
 
                 paperStage.stage.children = [];
 
-                var sprite = SpritePool.getInstance().get(loadingFrames[tick])
+                const sprite = SpritePool.getInstance().get(loadingFrames[tick])
                 sprite.anchor.x = 0.5;
                 sprite.anchor.y = 0.5;
                 sprite.position.x = nStageWidth * 0.5;
@@ -69,7 +69,7 @@ const GoodBoySplash = (function() {
 
     function hide() {
         clearInterval(interval);
-        for (var i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 100; i++) {
             setTimeout((function(x) {
                 return function() {
                     fadeOutStep(100 - x)
@@ -112,9 +112,9 @@ function SpritePool() {
         SpritePool._instance = this;
         SpritePool._isBirth = true;
     };
-    var _pool = [];
+    const _pool = [];
     this.get = function(frameId) {
-        for (var i in _pool) {
+        for (let i in _pool) {
             if (_pool[i].texture === PIXI.utils.TextureCache[frameId])
                 return _pool.splice(i, 1)[0];
         }

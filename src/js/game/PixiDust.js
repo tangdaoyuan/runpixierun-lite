@@ -11,8 +11,8 @@ const PixiDust = function() {
     this.max = GAME.HIGH_MODE ? 100 : 10;
     this.count = 0;
 
-    for (var i = 0; i < this.max; i++) {
-        var partical = this.particalPool.getObject();
+    for (let i = 0; i < this.max; i++) {
+        let partical = this.particalPool.getObject();
 
         partical.home.x = Math.random() * -GAME.width;
         partical.position.y = partical.home.y = Math.random() * 110640;
@@ -33,10 +33,9 @@ PixiDust.prototype = Object.create(PIXI.Container.prototype);
 PixiDust.prototype.update = function() {
     //PIXI.Rope.prototype.updateTransform.call(this);
 
-    for (var i = 0; i < this.particals.length; i++) {
-        var partical = this.particals[i];
-        var scaleRatio = this.focalLength / (this.focalLength + partical.z);
-        var scaleRatio = this.focalLength / (this.focalLength + partical.z);
+    for (let i = 0; i < this.particals.length; i++) {
+        let partical = this.particals[i];
+        let scaleRatio = this.focalLength / (this.focalLength + partical.z);
 
         partical.scale.x = partical.scale.y = scaleRatio // * 0.5;
 

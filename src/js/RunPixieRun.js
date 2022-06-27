@@ -28,22 +28,22 @@ const GAME_MODE = {
     PAUSED: 5
 };
 
-var loader;
+let loader;
 let game;
-var loadInterval = false;
+let loadInterval = false;
 let countdown;
 let logo;
-var black;
-var stressTest;
-var thrusters = 0;
-var thrustersVolume = 0;
-var pauseButton = false;
-var pauseScreen = false;
+let black;
+let stressTest;
+let thrusters = 0;
+let thrustersVolume = 0;
+let pauseButton = false;
+let pauseScreen = false;
 
-var resumeButton = false;
-var restartButton = false;
-var soundOnButton = false;
-var soundOffButton = false;
+let resumeButton = false;
+let restartButton = false;
+let soundOnButton = false;
+let soundOffButton = false;
 
 function onReady() {
     FidoAudio.init();
@@ -220,7 +220,7 @@ function init() {
 
     game.view.hud.addChild(personalBestTitle);
 
-    var pressStart = PIXI.Sprite.from("spaceStart.png");
+    const pressStart = PIXI.Sprite.from("spaceStart.png");
     pressStart.anchor.x = 0.5;
     pressStart.position.y = 200;
 
@@ -382,7 +382,7 @@ function onSoundOffPressed() {
     });
 }
 
-var prevState = false;
+let prevState = false;
 
 function onPaused() {
     pauseButton.scale.set(0.5);
@@ -559,16 +559,16 @@ function onTouchEnd(event) {
 function resize() {
     window.scrollTo(0, 0);
 
-    var h = 640;
-    var width = window.innerWidth || document.body.clientWidth;
-    var height = window.innerHeight || document.body.clientHeight;
-    var ratio = height / h;
+    let h = 640;
+    let width = window.innerWidth || document.body.clientWidth;
+    let height = window.innerHeight || document.body.clientHeight;
+    let ratio = height / h;
 
     if (game) {
-        var view = game.view.renderer.view;
+        let view = game.view.renderer.view;
         view.style.height = h * ratio + "px";
 
-        var newWidth = (width / ratio);
+        let newWidth = (width / ratio);
 
         view.style.width = width + "px";
 

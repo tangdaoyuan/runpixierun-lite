@@ -22,7 +22,7 @@ Stress.StressTest = function(callback) {
     ];
     this.currentLoadSprite = false;
 
-    var assetLoader = new PIXI.Loader()
+    let assetLoader = new PIXI.Loader()
     assetLoader.add(this.loadingFrames);
     assetLoader.load();
 
@@ -47,7 +47,7 @@ Stress.StressTest = function(callback) {
 
     this.duration = 3;
 
-    var scope = this;
+    let scope = this;
     PIXI.Texture.fromURL("/img/testImage.png").then(res => {
       this.texture = res;
       scope.begin();
@@ -60,8 +60,8 @@ Stress.StressTest.constructor = Stress.StressTest;
 
 Stress.StressTest.prototype.begin = async function() {
     this.testSprites = [];
-    for (var i = 0; i < 300; i++) {
-        var bunny = new PIXI.Sprite(this.texture);
+    for (let i = 0; i < 300; i++) {
+        let bunny = new PIXI.Sprite(this.texture);
 
         bunny.anchor.x = 0.5;
         bunny.anchor.y = 0.5;
@@ -78,7 +78,7 @@ Stress.StressTest.prototype.begin = async function() {
     this.stage.addChild(this.graphics2);
 
     const r = await PIXI.Texture.fromURL('/img/goodboy_logo.png')
-    var logo = new PIXI.Sprite(r);
+    let logo = new PIXI.Sprite(r);
     logo.anchor.x = 0.5;
     logo.anchor.y = 0.5;
     logo.position.x = this.width * 0.5;
@@ -94,7 +94,7 @@ Stress.StressTest.prototype.begin = async function() {
     this.startTime = Date.now();
     this.lastTime = Date.now();
 
-    var scope = this;
+    let scope = this;
     requestAnimationFrame(function() {
         scope.update();
     });
@@ -113,7 +113,7 @@ Stress.StressTest.prototype.update = function() {
             this.tick = 0;
         }
 
-        var sprite = SpritePool.getInstance().get(this.loadingFrames[this.tick])
+        let sprite = SpritePool.getInstance().get(this.loadingFrames[this.tick])
         sprite.anchor.x = 0.5;
         sprite.anchor.y = 0.5;
         sprite.position.x = this.width * 0.5;
@@ -127,25 +127,25 @@ Stress.StressTest.prototype.update = function() {
         this.tick++;
     }
 
-    var currentTime = Date.now();
+    let currentTime = Date.now();
 
-    for (var i = 0; i < this.testSprites.length; i++) {
+    for (let i = 0; i < this.testSprites.length; i++) {
         this.testSprites[i].rotation += 0.3;
     }
 
     this.renderer.render(this.stage);
 
-    var diff = currentTime - this.lastTime;
+    let diff = currentTime - this.lastTime;
     diff *= 0.06;
 
     this.frameRate.push(diff);
 
     this.lastTime = currentTime;
 
-    var elapsedTime = currentTime - this.startTime;
+    let elapsedTime = currentTime - this.startTime;
 
     if (elapsedTime < this.duration * 1000) {
-        var scope = this;
+        let scope = this;
         requestAnimationFrame(function() {
             scope.update()
         });

@@ -2,7 +2,7 @@ import { GameObjectPool } from './GameObjectPool'
 import { Enemy } from './Enemy'
 import GAME from './Game';
 
-var laserCount = 0;
+let laserCount = 0;
 
 const EnemyManager = function(engine) {
     this.engine = engine;
@@ -14,8 +14,8 @@ const EnemyManager = function(engine) {
 EnemyManager.constructor = EnemyManager;
 
 EnemyManager.prototype.update = function() {
-    for (var i = 0; i < this.enemies.length; i++) {
-        var enemy = this.enemies[i]
+    for (let i = 0; i < this.enemies.length; i++) {
+        let enemy = this.enemies[i]
         enemy.update();
 
         if (enemy.view.position.x < -100 - GAME.xOffset && !this.engine.steve.isDead) {
@@ -29,7 +29,7 @@ EnemyManager.prototype.update = function() {
 }
 
 EnemyManager.prototype.addEnemy = function(x, y) {
-    var enemy = this.enemyPool.getObject();
+    let enemy = this.enemyPool.getObject();
     enemy.position.x = x
     enemy.position.y = y
     this.enemies.push(enemy);
@@ -37,8 +37,8 @@ EnemyManager.prototype.addEnemy = function(x, y) {
 }
 
 EnemyManager.prototype.destroyAll = function() {
-    for (var i = 0; i < this.enemies.length; i++) {
-        var enemy = this.enemies[i];
+    for (let i = 0; i < this.enemies.length; i++) {
+        let enemy = this.enemies[i];
         enemy.reset();
         this.enemyPool.returnObject(enemy);
         this.engine.view.gameFront.removeChild(enemy.view);
@@ -48,8 +48,8 @@ EnemyManager.prototype.destroyAll = function() {
 }
 
 EnemyManager.prototype.destroyAllOffScreen = function() {
-    for (var i = 0; i < this.enemies.length; i++) {
-        var enemy = this.enemies[i];
+    for (let i = 0; i < this.enemies.length; i++) {
+        let enemy = this.enemies[i];
 
         if (enemy.x > GAME.camera.x + GAME.width) {
             this.enemyPool.returnObject(enemy);

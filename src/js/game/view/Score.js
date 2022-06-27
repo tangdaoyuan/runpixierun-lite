@@ -18,11 +18,11 @@ const Score = function() {
         ",": "number_comma.png"
     }
 
-    for (i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
+    for (let i in this.glyphs) this.glyphs[i] = PIXI.Texture.from(this.glyphs[i]);
 
     this.digits = [];
 
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         this.digits[i] = new PIXI.Sprite(this.glyphs[i]);
         this.addChild(this.digits[i]);
     }
@@ -61,12 +61,12 @@ Score.prototype.jump = function() {
 
 function formatScore(n) {
 
-    var nArray = n.toString().split("");
-    var text = "";
-    var total = nArray.length;
+    let nArray = n.toString().split("");
+    let text = "";
+    let total = nArray.length;
 
-    var offset = (total % 3) - 1;
-    for (var i = 0; i < total; i++) {
+    let offset = (total % 3) - 1;
+    for (let i = 0; i < total; i++) {
         text += nArray[i];
         if ((i - offset) % 3 == 0 && i != total - 1) text += ",";
     }

@@ -32,7 +32,7 @@ SteveTrailFire.prototype.update = function() {
 
         if (this.count % 3) {
 
-            var partical = this.particalPool.getObject();
+            let partical = this.particalPool.getObject();
 
 
             this.stage.addChild(partical);
@@ -60,8 +60,8 @@ SteveTrailFire.prototype.update = function() {
 
     } // add partical!
 
-    for (var i = 0; i < this.particals.length; i++) {
-        var partical = this.particals[i];
+    for (let i = 0; i < this.particals.length; i++) {
+        let partical = this.particals[i];
 
         partical.scale.x = partical.scale.y *= 1.02;
         partical.alphay *= 0.85;

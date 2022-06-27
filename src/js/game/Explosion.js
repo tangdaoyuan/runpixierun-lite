@@ -20,15 +20,15 @@ const Explosion = function() {
 
     this.particals = [this.top, this.bottom];
 
-    for (var i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         this.particals.push(new ExplosionPartical("asplodeSpike_01.png"));
         this.particals.push(new ExplosionPartical("asplodeSpike_02.png"));
     }
 
     this.clouds = [];
 
-    for (var i = 0; i < 5; i++) {
-        var cloud = new PIXI.Sprite.from("dustSwirl.png");
+    for (let i = 0; i < 5; i++) {
+        let cloud = new PIXI.Sprite.from("dustSwirl.png");
         this.clouds.push(cloud);
         this.addChild(cloud);
     }
@@ -45,8 +45,8 @@ Explosion.prototype.explode = function() {
 }
 
 Explosion.prototype.reset = function() {
-    for (var i = 0; i < 5; i++) {
-        var cloud = this.clouds[i];
+    for (let i = 0; i < 5; i++) {
+        let cloud = this.clouds[i];
         cloud.anchor.x = 0.5;
         cloud.anchor.y = 0.5;
         cloud.scaleTarget = 2 + Math.random() * 2;
@@ -59,11 +59,11 @@ Explosion.prototype.reset = function() {
         cloud.rotSpeed = Math.random() * 0.05;
     }
 
-    for (var i = 0; i < this.particals.length; i++) {
-        var partical = this.particals[i];
+    for (let i = 0; i < this.particals.length; i++) {
+        let partical = this.particals[i];
         this.addChild(partical);
-        var angle = (i / this.particals.length) * Math.PI * 2;
-        var speed = 7 + Math.random()
+        let angle = (i / this.particals.length) * Math.PI * 2;
+        let speed = 7 + Math.random()
         partical.directionX = Math.cos(angle) * speed;
         partical.directionY = Math.sin(angle) * speed;
         partical.rotation = -angle;
@@ -73,8 +73,8 @@ Explosion.prototype.reset = function() {
 
 Explosion.prototype.updateTransform = function() {
     if (this.exploding) {
-        for (var i = 0; i < this.clouds.length; i++) {
-            var cloud = this.clouds[i];
+        for (let i = 0; i < this.clouds.length; i++) {
+            let cloud = this.clouds[i];
             cloud.rotation += cloud.rotSpeed;
             if (cloud.state === 0) {
                 cloud.scale.x += (cloud.scaleTarget - cloud.scale.x) * 0.4;
@@ -87,8 +87,8 @@ Explosion.prototype.updateTransform = function() {
             }
         }
 
-        for (var i = 0; i < this.particals.length; i++) {
-            var partical = this.particals[i];
+        for (let i = 0; i < this.particals.length; i++) {
+            let partical = this.particals[i];
 
             partical.directionY += 0.1;
             partical.directionX *= 0.99;
