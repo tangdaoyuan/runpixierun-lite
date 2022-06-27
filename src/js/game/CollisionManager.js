@@ -95,7 +95,7 @@ CollisionManager.prototype.playerVsFloor = function() {
 
     for (let i = 0; i < max; i++) {
         let floor = floors[i];
-        let xdist = floor.x - steve.position.x + 1135;
+        let xdist = floor.originalX - steve.position.x + 1135;
 
         if (steve.position.y > 477) {
             if (xdist > 0 && xdist < 1135) {
