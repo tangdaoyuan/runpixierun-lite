@@ -27,10 +27,10 @@ Stress.StressTest = function(callback) {
     assetLoader.load();
 
     this.callback = callback;
-    this.renderer = new PIXI.CanvasRenderer({
+    this.renderer = PIXI.autoDetectRenderer({
         width: this.width,
         height: this.height,
-    });
+    })
     this.stage = new PIXI.Stage();
 
     this.graphics = new PIXI.Graphics();
