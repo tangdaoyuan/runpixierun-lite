@@ -150,7 +150,7 @@ const FidoAudio = (function() {
             onUpdate: function() {
                 Howler.volume(this.volume);                },
             onComplete: function() {
-                Howler.mute();
+                Howler.mute(true);
             }
         });
     }
@@ -179,7 +179,7 @@ const FidoAudio = (function() {
             volume: 0
         };
 
-        Howler.unmute();
+        Howler.mute(false)
 
         gsap.to(cHolder, 1, {
             volume: 1,
@@ -192,8 +192,9 @@ const FidoAudio = (function() {
 
     function play(id) {
         if (cSoundPool.hasOwnProperty(id)) {
+            if(cSoundPool[id].audio.playing())
+                return
             cSoundPool[id].audio.play();
-
         } else {
             console.log("WARNING :: Couldn't find sound '" + id + "'.")        }
     }
@@ -231,6 +232,7 @@ const FidoAudio = (function() {
     }
 
     function setVolume(id, volume) {
+        console.log(id, volume)
         if (!soundExists(id)) return;
 
         if (MUTE_ALL === true) {
