@@ -121,7 +121,8 @@ Steve.prototype.updateRunning = function() {
         this.onGroundCache = this.onGround;
 
         if (this.onGround) {
-            this.view.textures = this.runningFrames;
+            this.view._textures = this.runningFrames
+            this.view.update(0)
             if (this.joyRiding === true) {
                 FidoAudio.setVolume('runFast', this.volume);
                 FidoAudio.setVolume('runRegular', 0);
@@ -132,7 +133,7 @@ Steve.prototype.updateRunning = function() {
         } else {
             FidoAudio.setVolume('runFast', 0);
             FidoAudio.setVolume('runRegular', 0);
-            this.view.textures = this.flyingFrames;
+            this.view._textures = this.flyingFrames;
         }
     }
 

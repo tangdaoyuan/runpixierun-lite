@@ -232,7 +232,6 @@ const FidoAudio = (function() {
     }
 
     function setVolume(id, volume) {
-        console.log(id, volume)
         if (!soundExists(id)) return;
 
         if (MUTE_ALL === true) {
