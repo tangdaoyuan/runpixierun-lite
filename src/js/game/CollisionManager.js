@@ -1,4 +1,4 @@
-import FidoAudio from '../fido/FidoAudio'
+import Audio from '../fido/Audio'
 import GAME from './Game'
 import { showGameover } from '../RunPixieRun'
 
@@ -105,7 +105,7 @@ CollisionManager.prototype.playerVsFloor = function() {
                     if (steve.bounce > 2) {
                         return;
                     }
-                    FidoAudio.play('thudBounce');
+                    Audio.play('thudBounce');
                     steve.view.texture = steve.crashFrames[steve.bounce]
 
                     steve.speed.y *= -0.7;

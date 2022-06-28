@@ -1,10 +1,10 @@
 import * as PIXI from '../pixi'
 import { Explosion } from './Explosion'
-import FidoAudio from '../fido/FidoAudio'
+import Audio from '../fido/Audio'
 import GAME from './Game';
 let enemyFrames;
 
-const Enemy = function() {
+const Enemy = function () {
     this.position = new PIXI.Point();
     this.view = new PIXI.Sprite(PIXI.Texture.from("spike_box.png"));
     this.view.anchor.x = 0.5;
@@ -16,7 +16,7 @@ const Enemy = function() {
 
 Enemy.constructor = Enemy;
 
-Enemy.prototype.reset = function() {
+Enemy.prototype.reset = function () {
     if (this.explosion) {
         this.view.removeChild(this.explosion);
         this.explosion.reset();
@@ -26,11 +26,11 @@ Enemy.prototype.reset = function() {
     this.view.width = 157;
 }
 
-Enemy.prototype.hit = function() {
+Enemy.prototype.hit = function () {
     if (this.isHit) return;
 
-    FidoAudio.stop('blockHit');
-    FidoAudio.play('blockHit');
+    Audio.stop('blockHit');
+    Audio.play('blockHit');
 
     this.isHit = true;
 
@@ -42,7 +42,7 @@ Enemy.prototype.hit = function() {
     this.view.texture = PIXI.Texture.from("img/empty.png")
 }
 
-Enemy.prototype.update = function() {
+Enemy.prototype.update = function () {
     this.view.position.x = this.position.x - GAME.camera.x;
     this.view.position.y = this.position.y;
 }

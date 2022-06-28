@@ -8,7 +8,7 @@ import { PickupManager } from './PickupManager'
 import { FloorManager } from './FloorManager'
 import { CollisionManager } from './CollisionManager'
 import LocalStorage from '../fido/LocalStorage'
-import FidoAudio from '../fido/FidoAudio'
+import Audio from '../fido/Audio'
 import { game } from '../RunPixieRun'
 
 const RprEngine = function() {
@@ -154,16 +154,16 @@ RprEngine.prototype.pickup = function() {
     this.score += 10;
 
     if (this.joyrideMode) {
-        FidoAudio.stop('pickup');
-        FidoAudio.play('pickup');
+        Audio.stop('pickup');
+        Audio.play('pickup');
         return;
     }
 
     this.view.score.jump();
     this.pickupCount++;
 
-    FidoAudio.stop('pickup');
-    FidoAudio.play('pickup');
+    Audio.stop('pickup');
+    Audio.play('pickup');
 
     if (this.pickupCount >= 50 * this.bulletMult && !this.steve.isDead) {
         this.pickupCount = 0;

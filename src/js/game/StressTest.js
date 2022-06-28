@@ -6,7 +6,7 @@ import { SpritePool } from '../GoodBoySplash'
 
 export const Stress = {};
 
-Stress.StressTest = function(callback) {
+Stress.StressTest = function (callback) {
     this.Device = new _Device();
 
     this.width = window.innerWidth || document.body.clientWidth;
@@ -40,7 +40,7 @@ Stress.StressTest = function(callback) {
 
     document.body.appendChild(this.renderer.view);
 
-    this.stage.touchstart = this.stage.mousedown = function(event) {
+    this.stage.touchstart = this.stage.mousedown = function (event) {
         event.originalEvent.preventDefault();
     }
 
@@ -49,16 +49,16 @@ Stress.StressTest = function(callback) {
 
     let scope = this;
     PIXI.Texture.fromURL("/img/testImage.png").then(res => {
-      this.texture = res;
-      scope.begin();
-      this.frameRate = [];
+        this.texture = res;
+        scope.begin();
+        this.frameRate = [];
     });
 }
 
 // constructor
 Stress.StressTest.constructor = Stress.StressTest;
 
-Stress.StressTest.prototype.begin = async function() {
+Stress.StressTest.prototype.begin = async function () {
     this.testSprites = [];
     for (let i = 0; i < 300; i++) {
         let bunny = new PIXI.Sprite(this.texture);
@@ -95,17 +95,17 @@ Stress.StressTest.prototype.begin = async function() {
     this.lastTime = Date.now();
 
     let scope = this;
-    requestAnimationFrame(function() {
+    requestAnimationFrame(function () {
         scope.update();
     });
 }
 
-Stress.StressTest.prototype.resize = function(w, h) {
+Stress.StressTest.prototype.resize = function (w, h) {
     this.width = w;
     this.height = h;
 }
 
-Stress.StressTest.prototype.update = function() {
+Stress.StressTest.prototype.update = function () {
     this.frameCount++;
 
     if (this.frameCount % 12 === 1) {
@@ -146,7 +146,7 @@ Stress.StressTest.prototype.update = function() {
 
     if (elapsedTime < this.duration * 1000) {
         let scope = this;
-        requestAnimationFrame(function() {
+        requestAnimationFrame(function () {
             scope.update()
         });
     } else {
@@ -154,11 +154,11 @@ Stress.StressTest.prototype.update = function() {
     }
 }
 
-Stress.StressTest.prototype.end = function() {
+Stress.StressTest.prototype.end = function () {
     this.result = this.frameRate.length / this.duration;
 }
 
-Stress.StressTest.prototype.remove = function() {
+Stress.StressTest.prototype.remove = function () {
     document.body.removeChild(this.renderer.view);
     this.cover = null;
     this.renderer = null;

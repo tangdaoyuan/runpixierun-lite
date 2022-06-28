@@ -1,9 +1,9 @@
 import * as PIXI from '../pixi'
 import { gsap, Cubic } from "gsap"
-import FidoAudio from '../fido/FidoAudio'
+import Audio from '../fido/Audio'
 import GAME from './Game'
 
-const Steve = function() {
+const Steve = function () {
     this.position = new PIXI.Point();
 
     this.runningFrames = [
@@ -61,7 +61,7 @@ const Steve = function() {
 
 Steve.constructor = Steve;
 
-Steve.prototype.update = function() {
+Steve.prototype.update = function () {
     if (this.isDead) {
         this.updateDieing();
     } else {
@@ -69,10 +69,10 @@ Steve.prototype.update = function() {
     }
 }
 
-Steve.prototype.joyrideMode = function() {
+Steve.prototype.joyrideMode = function () {
     this.joyRiding = true;
-    FidoAudio.setVolume('runRegular', 0);
-    FidoAudio.play('hyperMode');
+    Audio.setVolume('runRegular', 0);
+    Audio.play('hyperMode');
     gsap.to(this.speed, 0.3, {
         x: 20,
         ease: Cubic.easeIn
@@ -80,10 +80,10 @@ Steve.prototype.joyrideMode = function() {
     this.realAnimationSpeed = 0.23 * 4
 }
 
-Steve.prototype.normalMode = function() {
+Steve.prototype.normalMode = function () {
     this.joyRiding = false;
-    FidoAudio.setVolume('runFast', 0);
-    if (this.onGround === true) FidoAudio.setVolume('runRegular', this.volume);
+    Audio.setVolume('runFast', 0);
+    if (this.onGround === true) Audio.setVolume('runRegular', this.volume);
     gsap.to(this.speed, 0.6, {
         x: this.baseSpeed,
         ease: Cubic.easeOut
@@ -91,7 +91,7 @@ Steve.prototype.normalMode = function() {
     this.realAnimationSpeed = 0.23;
 }
 
-Steve.prototype.updateRunning = function() {
+Steve.prototype.updateRunning = function () {
     this.view.animationSpeed = this.realAnimationSpeed * GAME.time.DELTA_TIME * this.level;
 
     if (this.isActive) {
@@ -124,15 +124,15 @@ Steve.prototype.updateRunning = function() {
             this.view._textures = this.runningFrames
             this.view.update(0)
             if (this.joyRiding === true) {
-                FidoAudio.setVolume('runFast', this.volume);
-                FidoAudio.setVolume('runRegular', 0);
+                Audio.setVolume('runFast', this.volume);
+                Audio.setVolume('runRegular', 0);
             } else {
-                FidoAudio.setVolume('runRegular', this.volume);
-                FidoAudio.setVolume('runFast', 0);
+                Audio.setVolume('runRegular', this.volume);
+                Audio.setVolume('runFast', 0);
             }
         } else {
-            FidoAudio.setVolume('runFast', 0);
-            FidoAudio.setVolume('runRegular', 0);
+            Audio.setVolume('runFast', 0);
+            Audio.setVolume('runRegular', 0);
             this.view._textures = this.flyingFrames;
         }
     }
@@ -145,7 +145,7 @@ Steve.prototype.updateRunning = function() {
     this.view.rotation += (this.speed.y * 0.05 - this.view.rotation) * 0.1;
 }
 
-Steve.prototype.updateDieing = function() {
+Steve.prototype.updateDieing = function () {
     this.speed.x *= 0.999;
 
     if (this.onGround) this.speed.y *= 0.99;
@@ -170,7 +170,7 @@ Steve.prototype.updateDieing = function() {
     }
 }
 
-Steve.prototype.jump = function() {
+Steve.prototype.jump = function () {
     if (this.isDead) {
         if (this.speed.x < 5) {
             this.isDead = false
@@ -186,18 +186,18 @@ Steve.prototype.jump = function() {
     }
 }
 
-Steve.prototype.die = function() {
+Steve.prototype.die = function () {
     if (this.isDead) return;
 
-    FidoAudio.setVolume('runFast', 0);
-    FidoAudio.setVolume('runRegular', 0);
-    FidoAudio.fadeOut('gameMusic');
+    Audio.setVolume('runFast', 0);
+    Audio.setVolume('runRegular', 0);
+    Audio.fadeOut('gameMusic');
 
     gsap.to(GAME.time, 0.5, {
         speed: 0.1,
         ease: Cubic.easeOut,
-        onComplete: function() {
-            FidoAudio.play('deathJingle');
+        onComplete: function () {
+            Audio.play('deathJingle');
             gsap.to(GAME.time, 2, {
                 speed: 1,
                 delay: 1
@@ -214,33 +214,33 @@ Steve.prototype.die = function() {
 }
 
 
-Steve.prototype.boil = function() {
+Steve.prototype.boil = function () {
     if (this.isDead) return;
 
-    FidoAudio.setVolume('runFast', 0);
-    FidoAudio.setVolume('runRegular', 0);
-    FidoAudio.fadeOut('gameMusic');
-    FidoAudio.play('lavaSplosh');
-    FidoAudio.play('deathJingle');
+    Audio.setVolume('runFast', 0);
+    Audio.setVolume('runRegular', 0);
+    Audio.fadeOut('gameMusic');
+    Audio.play('lavaSplosh');
+    Audio.play('deathJingle');
 
     this.isDead = true;
 }
 
-Steve.prototype.fall = function() {
+Steve.prototype.fall = function () {
     this.isActive = false;
     this.isFlying = false;
 }
 
-Steve.prototype.isAirbourne = function() {}
+Steve.prototype.isAirbourne = function () { }
 
-Steve.prototype.stop = function() {
+Steve.prototype.stop = function () {
     this.view.stop();
-    FidoAudio.setVolume('runRegular', 0);
+    Audio.setVolume('runRegular', 0);
 }
 
-Steve.prototype.resume = function() {
+Steve.prototype.resume = function () {
     this.view.play();
-    if (this.onGround) FidoAudio.setVolume('runRegular', this.volume);
+    if (this.onGround) Audio.setVolume('runRegular', this.volume);
 }
 
 export {
