@@ -1,26 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@pixi/accessibility': ^6.4.2
-  '@pixi/app': ^6.4.2
-  '@pixi/basis': ^6.4.2
-  '@pixi/canvas-renderer': ^6.4.2
-  '@pixi/compressed-textures': ^6.4.2
-  '@pixi/constants': ^6.4.2
-  '@pixi/core': ^6.4.2
-  '@pixi/display': ^6.4.2
-  '@pixi/graphics': ^6.4.2
-  '@pixi/interaction': ^6.4.2
   '@pixi/layers': ^1.0.11
-  '@pixi/loaders': ^6.4.2
-  '@pixi/math': ^6.4.2
-  '@pixi/runner': ^6.4.2
-  '@pixi/settings': ^6.4.2
-  '@pixi/sprite': ^6.4.2
-  '@pixi/spritesheet': ^6.4.2
-  '@pixi/text': ^6.4.2
-  '@pixi/ticker': ^6.4.2
-  '@pixi/utils': ^6.4.2
   '@types/howler': ^2.2.7
   gsap: ^3.10.4
   howler: ^2.2.3
@@ -29,29 +10,10 @@ specifiers:
   vite: ^2.9.12
 
 dependencies:
-  '@pixi/accessibility': 6.4.2_n322z57vp76cnbhe73nfqyknyy
-  '@pixi/app': 6.4.2_k3lm64fi2ifh3cybkuxwbfhqdq
-  '@pixi/basis': 6.4.2_4ctbkrjz6vqs5vt6gbo4dc2b44
-  '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-  '@pixi/compressed-textures': 6.4.2_mxfxckhu6ctf4akc7kzl2cfusy
-  '@pixi/constants': 6.4.2
-  '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-  '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
-  '@pixi/graphics': 6.4.2_rheeipylch776kky72vltjcgiq
-  '@pixi/interaction': 6.4.2_p4yuje5f53flvlbuhkpzshob2i
-  '@pixi/layers': 1.0.11_hlv72izjhgtkrkyrmmeg7v3gia
-  '@pixi/loaders': 6.4.2_q56saey547mavkuvb23ygq6oiy
-  '@pixi/math': 6.4.2
-  '@pixi/runner': 6.4.2
-  '@pixi/settings': 6.4.2
-  '@pixi/sprite': 6.4.2_wmtema4lmj3i6yeg4vcek5xake
-  '@pixi/spritesheet': 6.4.2_kcals7ijc4imjrqzbm7ekusgfe
-  '@pixi/text': 6.4.2_uqn3x2kmixk4qekugibonohhfi
-  '@pixi/ticker': 6.4.2_@pixi+settings@6.4.2
-  '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
+  '@pixi/layers': 1.0.11
   gsap: 3.10.4
   howler: 2.2.3
-  pixi.js-legacy: 6.4.2_vk22z2irdrhwdb2medaaqxpv5q
+  pixi.js-legacy: 6.4.2
   stats.js: 0.17.0
 
 devDependencies:
@@ -82,31 +44,13 @@ packages:
       '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
     dev: false
 
-  /@pixi/basis/6.4.2_4ctbkrjz6vqs5vt6gbo4dc2b44:
-    resolution: {integrity: sha512-R17XUYnni8Nkg4Z9b2h/GYSQsY/iUQEZWJK3QHhdCbTOVb+NyKpEO7Jt5aOIqdpmC7jEySIN3x64xa+Wq+Ezbg==}
-    peerDependencies:
-      '@pixi/compressed-textures': 6.4.2
-      '@pixi/constants': 6.4.2
-      '@pixi/core': 6.4.2
-      '@pixi/loaders': 6.4.2
-      '@pixi/runner': 6.4.2
-    dependencies:
-      '@pixi/compressed-textures': 6.4.2_mxfxckhu6ctf4akc7kzl2cfusy
-      '@pixi/constants': 6.4.2
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-      '@pixi/loaders': 6.4.2_q56saey547mavkuvb23ygq6oiy
-      '@pixi/runner': 6.4.2
-    dev: false
-
-  /@pixi/canvas-display/6.4.2_@pixi+display@6.4.2:
+  /@pixi/canvas-display/6.4.2:
     resolution: {integrity: sha512-RoHJLcLkl4w3a3HrWhkvB8Tu9V0GWIxOcdM81o58rBFhi+BWC4MEuiqkQ/6AUXaaCSYV4dIbyiEbrxb7fJM57g==}
     peerDependencies:
       '@pixi/display': 6.4.2
-    dependencies:
-      '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
     dev: false
 
-  /@pixi/canvas-extract/6.4.2_xbzhhxflbjfevyx675ubhmnyay:
+  /@pixi/canvas-extract/6.4.2_lkrdxhaxulnmaz2jgiawg6get4:
     resolution: {integrity: sha512-BNddDRWD0Eejn7pozqTJkmfQNVcwx9r++aAFZ4DOqXJji84G57M4eXkdM22+N4j5hgxxxiCTZCkYUmCIk9Y/RQ==}
     peerDependencies:
       '@pixi/canvas-renderer': 6.4.2
@@ -115,14 +59,10 @@ packages:
       '@pixi/math': 6.4.2
       '@pixi/utils': 6.4.2
     dependencies:
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-      '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
-      '@pixi/math': 6.4.2
-      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
+      '@pixi/canvas-renderer': 6.4.2
     dev: false
 
-  /@pixi/canvas-graphics/6.4.2_iro4qqaqd673giwmovxhy3er3y:
+  /@pixi/canvas-graphics/6.4.2_c33rwhhhcthvx62dke4qwfzbjm:
     resolution: {integrity: sha512-nulzicZ5X3wD4kiRxD9PCxcCGegNCs52x8tY380UVjMbxNPjtrbu1BWGtMDRd9TqJLsPc9GnesfYGTxDtNGOaA==}
     peerDependencies:
       '@pixi/canvas-display': 6.4.2
@@ -132,15 +72,11 @@ packages:
       '@pixi/graphics': 6.4.2
       '@pixi/math': 6.4.2
     dependencies:
-      '@pixi/canvas-display': 6.4.2_@pixi+display@6.4.2
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/constants': 6.4.2
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-      '@pixi/graphics': 6.4.2_rheeipylch776kky72vltjcgiq
-      '@pixi/math': 6.4.2
+      '@pixi/canvas-display': 6.4.2
+      '@pixi/canvas-renderer': 6.4.2
     dev: false
 
-  /@pixi/canvas-mesh/6.4.2_nqb3wemdsip7vnwakdwiwqyxna:
+  /@pixi/canvas-mesh/6.4.2_c33rwhhhcthvx62dke4qwfzbjm:
     resolution: {integrity: sha512-7In1N4/8T2xYYG1FvDpfR19GFqltezyZhWwz0FDzglBikDlDmE/vWRzfttf6ya6SOReK2fbfzfgIHdr+xHUZmw==}
     peerDependencies:
       '@pixi/canvas-display': 6.4.2
@@ -150,10 +86,8 @@ packages:
       '@pixi/mesh-extras': 6.4.2
       '@pixi/settings': 6.4.2
     dependencies:
-      '@pixi/canvas-display': 6.4.2_@pixi+display@6.4.2
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/constants': 6.4.2
-      '@pixi/settings': 6.4.2
+      '@pixi/canvas-display': 6.4.2
+      '@pixi/canvas-renderer': 6.4.2
     dev: false
 
   /@pixi/canvas-particle-container/6.4.2:
@@ -162,18 +96,17 @@ packages:
       '@pixi/particle-container': 6.4.2
     dev: false
 
-  /@pixi/canvas-prepare/6.4.2_lkhy6cg6yb3ppy3zd7glvdodii:
+  /@pixi/canvas-prepare/6.4.2_lkrdxhaxulnmaz2jgiawg6get4:
     resolution: {integrity: sha512-/YBlj7aoOezttPIWU+5+OAw3I14tUd5UyDBeSLDm/GAxwWsO/38whIAm3LZ0I3/lIEdoOiK4PWgN92yfQnFpew==}
     peerDependencies:
       '@pixi/canvas-renderer': 6.4.2
       '@pixi/core': 6.4.2
       '@pixi/prepare': 6.4.2
     dependencies:
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
+      '@pixi/canvas-renderer': 6.4.2
     dev: false
 
-  /@pixi/canvas-renderer/6.4.2_mhf3yhmh7vtex6swfgz4tpkvra:
+  /@pixi/canvas-renderer/6.4.2:
     resolution: {integrity: sha512-NnVT61LlzCk80FGl/imp8zVg6cxinyFk7uljTYJBPJTM6PBFdn/LD+H3wcdbggjNWVSfqwYXVM6gN5Ce22tONg==}
     peerDependencies:
       '@pixi/constants': 6.4.2
@@ -181,15 +114,9 @@ packages:
       '@pixi/math': 6.4.2
       '@pixi/settings': 6.4.2
       '@pixi/utils': 6.4.2
-    dependencies:
-      '@pixi/constants': 6.4.2
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-      '@pixi/math': 6.4.2
-      '@pixi/settings': 6.4.2
-      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
     dev: false
 
-  /@pixi/canvas-sprite-tiling/6.4.2_hzfwwk63vej2o6yt426yx45z7i:
+  /@pixi/canvas-sprite-tiling/6.4.2_x47lpzoylni2ognzxktgvaqt6q:
     resolution: {integrity: sha512-76kHPSsx/AtZQMrgKKqAajj2QyfH0UzJ4sioC9TlsgVaDkNyWSHK86RmWhR0BNZrcJCvarZDc5aRF6kMF3OB4Q==}
     peerDependencies:
       '@pixi/canvas-renderer': 6.4.2
@@ -198,13 +125,11 @@ packages:
       '@pixi/sprite-tiling': 6.4.2
       '@pixi/utils': 6.4.2
     dependencies:
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/canvas-sprite': 6.4.2_kifbrjn3s2h2jdgwjmwlbldowy
-      '@pixi/math': 6.4.2
-      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
+      '@pixi/canvas-renderer': 6.4.2
+      '@pixi/canvas-sprite': 6.4.2_c33rwhhhcthvx62dke4qwfzbjm
     dev: false
 
-  /@pixi/canvas-sprite/6.4.2_kifbrjn3s2h2jdgwjmwlbldowy:
+  /@pixi/canvas-sprite/6.4.2_c33rwhhhcthvx62dke4qwfzbjm:
     resolution: {integrity: sha512-PsI3x3ytfhg3iUf1ItkNOO1rzZfX/rjBFxPu43xjGdwA/sk+5Ut8J2hr7Wgl7glRO7vcu2j1DVfX2cp/NHk1GA==}
     peerDependencies:
       '@pixi/canvas-display': 6.4.2
@@ -214,24 +139,18 @@ packages:
       '@pixi/sprite': 6.4.2
       '@pixi/utils': 6.4.2
     dependencies:
-      '@pixi/canvas-display': 6.4.2_@pixi+display@6.4.2
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/constants': 6.4.2
-      '@pixi/math': 6.4.2
-      '@pixi/sprite': 6.4.2_wmtema4lmj3i6yeg4vcek5xake
-      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
+      '@pixi/canvas-display': 6.4.2
+      '@pixi/canvas-renderer': 6.4.2
     dev: false
 
-  /@pixi/canvas-text/6.4.2_7a3mktfvstlqoij3hb6lqmwwvm:
+  /@pixi/canvas-text/6.4.2_@pixi+canvas-sprite@6.4.2:
     resolution: {integrity: sha512-msOLUXQe/NpwzqMXms/AYFzm4vC1lpDtavPDEpT1sjXBjHMT+ecgPdFqidKDc9XfeFEPQUH3syTlLc23QISVFQ==}
     peerDependencies:
       '@pixi/canvas-sprite': 6.4.2
       '@pixi/sprite': 6.4.2
       '@pixi/text': 6.4.2
     dependencies:
-      '@pixi/canvas-sprite': 6.4.2_kifbrjn3s2h2jdgwjmwlbldowy
-      '@pixi/sprite': 6.4.2_wmtema4lmj3i6yeg4vcek5xake
-      '@pixi/text': 6.4.2_uqn3x2kmixk4qekugibonohhfi
+      '@pixi/canvas-sprite': 6.4.2_c33rwhhhcthvx62dke4qwfzbjm
     dev: false
 
   /@pixi/compressed-textures/6.4.2_mxfxckhu6ctf4akc7kzl2cfusy:
@@ -383,7 +302,7 @@ packages:
       '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
     dev: false
 
-  /@pixi/layers/1.0.11_hlv72izjhgtkrkyrmmeg7v3gia:
+  /@pixi/layers/1.0.11:
     resolution: {integrity: sha512-E9jVR7kWMbBBhyaoX4Vi/rZAk4QFMDFiwvZF5xXZ2sBKh1/2aaTD2oQB3QHtekQ0IYXjyxgRRVEpeYTlZgz5xA==}
     peerDependencies:
       '@pixi/canvas-renderer': ^6.0.4
@@ -393,14 +312,6 @@ packages:
       '@pixi/math': ^6.0.4
       '@pixi/settings': ^6.0.4
       '@pixi/utils': ^6.0.4
-    dependencies:
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/constants': 6.4.2
-      '@pixi/core': 6.4.2_zrolwmtripedckunzlg3b4c57q
-      '@pixi/display': 6.4.2_chw56h675krjdb66sdocrfhbgm
-      '@pixi/math': 6.4.2
-      '@pixi/settings': 6.4.2
-      '@pixi/utils': 6.4.2_swsxo3s25mxrnznlqrazvnraku
     dev: false
 
   /@pixi/loaders/6.4.2_q56saey547mavkuvb23ygq6oiy:
@@ -948,19 +859,19 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
 
-  /pixi.js-legacy/6.4.2_vk22z2irdrhwdb2medaaqxpv5q:
+  /pixi.js-legacy/6.4.2:
     resolution: {integrity: sha512-W3q7wC8MHFLAn9PLMSYfFkOqsfzOvmQ3yAasLu4U8RxmMR7k8c/9+wYWtF6rNU2aitDkHy48sbqvn/ROwbWpxg==}
     dependencies:
-      '@pixi/canvas-display': 6.4.2_@pixi+display@6.4.2
-      '@pixi/canvas-extract': 6.4.2_xbzhhxflbjfevyx675ubhmnyay
-      '@pixi/canvas-graphics': 6.4.2_iro4qqaqd673giwmovxhy3er3y
-      '@pixi/canvas-mesh': 6.4.2_nqb3wemdsip7vnwakdwiwqyxna
+      '@pixi/canvas-display': 6.4.2
+      '@pixi/canvas-extract': 6.4.2_lkrdxhaxulnmaz2jgiawg6get4
+      '@pixi/canvas-graphics': 6.4.2_c33rwhhhcthvx62dke4qwfzbjm
+      '@pixi/canvas-mesh': 6.4.2_c33rwhhhcthvx62dke4qwfzbjm
       '@pixi/canvas-particle-container': 6.4.2
-      '@pixi/canvas-prepare': 6.4.2_lkhy6cg6yb3ppy3zd7glvdodii
-      '@pixi/canvas-renderer': 6.4.2_mhf3yhmh7vtex6swfgz4tpkvra
-      '@pixi/canvas-sprite': 6.4.2_kifbrjn3s2h2jdgwjmwlbldowy
-      '@pixi/canvas-sprite-tiling': 6.4.2_hzfwwk63vej2o6yt426yx45z7i
-      '@pixi/canvas-text': 6.4.2_7a3mktfvstlqoij3hb6lqmwwvm
+      '@pixi/canvas-prepare': 6.4.2_lkrdxhaxulnmaz2jgiawg6get4
+      '@pixi/canvas-renderer': 6.4.2
+      '@pixi/canvas-sprite': 6.4.2_c33rwhhhcthvx62dke4qwfzbjm
+      '@pixi/canvas-sprite-tiling': 6.4.2_x47lpzoylni2ognzxktgvaqt6q
+      '@pixi/canvas-text': 6.4.2_@pixi+canvas-sprite@6.4.2
       pixi.js: 6.4.2
     transitivePeerDependencies:
       - '@pixi/constants'
