@@ -1,9 +1,9 @@
 import { gsap, Cubic } from 'gsap'
 import GAME from './Game'
 import { Steve } from './Steve'
-import { RprView }  from './view/RprView'
+import { RprView } from './view/RprView'
 import { SegmentManager } from './SegmentManager'
-import { EnemyManager }  from './EnemyManager'
+import { EnemyManager } from './EnemyManager'
 import { PickupManager } from './PickupManager'
 import { FloorManager } from './FloorManager'
 import { CollisionManager } from './CollisionManager'
@@ -11,7 +11,7 @@ import LocalStorage from '../fido/LocalStorage'
 import Audio from '../fido/Audio'
 import { game } from '../RunPixieRun'
 
-const RprEngine = function() {
+const RprEngine = function () {
     this.onGameover;
 
     this.steve = new Steve();
@@ -38,7 +38,7 @@ const RprEngine = function() {
     this.view.game.addChild(this.steve.view);
 }
 
-RprEngine.prototype.start = function() {
+RprEngine.prototype.start = function () {
     this.segmentManager.reset();
     this.enemyManager.destroyAll();
     this.pickupManager.destroyAll();
@@ -58,7 +58,7 @@ RprEngine.prototype.start = function() {
     this.bulletMult = 1;
 }
 
-RprEngine.prototype.update = function() {
+RprEngine.prototype.update = function () {
     GAME.time.update();
 
     let targetCamY = 0;
@@ -99,7 +99,7 @@ RprEngine.prototype.update = function() {
     this.view.update();
 }
 
-RprEngine.prototype.reset = function() {
+RprEngine.prototype.reset = function () {
     this.enemyManager.destroyAll();
     this.floorManager.destroyAll();
 
@@ -112,7 +112,7 @@ RprEngine.prototype.reset = function() {
     this.view.game.addChild(this.steve.view);
 }
 
-RprEngine.prototype.joyrideComplete = function() {
+RprEngine.prototype.joyrideComplete = function () {
     this.joyrideMode = false;
     this.pickupCount = 0;
     this.bulletMult += 0.3;
@@ -121,7 +121,7 @@ RprEngine.prototype.joyrideComplete = function() {
     this.enemyManager.destroyAll();
 }
 
-RprEngine.prototype.gameover = function() {
+RprEngine.prototype.gameover = function () {
     this.isPlaying = false;
     this.isDying = true;
     this.segmentManager.chillMode = true;
@@ -142,13 +142,13 @@ RprEngine.prototype.gameover = function() {
     });
 }
 
-RprEngine.prototype.gameoverReal = function() {
+RprEngine.prototype.gameoverReal = function () {
     this.gameReallyOver = true;
     this.isDying = false;
     this.onGameoverReal();
 }
 
-RprEngine.prototype.pickup = function() {
+RprEngine.prototype.pickup = function () {
     if (this.steve.isDead) return;
 
     this.score += 10;
@@ -180,25 +180,24 @@ RprEngine.prototype.pickup = function() {
     }
 }
 
-const Time = function() {
-    this.DELTA_TIME = 1;
-    this.lastTime = Date.now();
-    this.speed = 1;
-}
 
-Time.constructor = Time;
+class Time {
+    constructor() {
+        this.DELTA_TIME = 1;
+        this.lastTime = Date.now();
+        this.speed = 1;
+    }
+    update() {
+        const currentTime = Date.now();
+        let passedTime = currentTime - this.lastTime;
 
-Time.prototype.update = function() {
-    let time = Date.now();
-    let currentTime = time;
-    let passedTime = currentTime - this.lastTime;
+        this.DELTA_TIME = ((passedTime) * 0.06);
+        this.DELTA_TIME *= this.speed;
 
-    this.DELTA_TIME = ((passedTime) * 0.06);
-    this.DELTA_TIME *= this.speed;
+        if (this.DELTA_TIME > 2.3) this.DELTA_TIME = 2.3;
 
-    if (this.DELTA_TIME > 2.3) this.DELTA_TIME = 2.3;
-
-    this.lastTime = currentTime;
+        this.lastTime = currentTime;
+    }
 }
 
 GAME.time = new Time();
