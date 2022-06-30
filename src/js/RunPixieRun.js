@@ -3,7 +3,7 @@ import * as PIXI from './pixi'
 import { gsap, Elastic } from "gsap"
 import Audio from './fido/Audio'
 import { RprEngine } from './game/RprEngine'
-import { Stress } from './game/StressTest'
+import { StressTest } from './game/StressTest'
 import GAME from './game/Game'
 import { Countdown } from './game/view/Countdown'
 
@@ -47,7 +47,7 @@ let soundOffButton = false;
 
 function onReady() {
     Audio.init();
-    stressTest = new Stress.StressTest(onStressTestComplete);
+    stressTest = new StressTest(onStressTestComplete);
     resize();
 }
 
@@ -521,21 +521,9 @@ function onGameover() {
     GAME.interactive = false;
 }
 
-export function showGameover() {
-    logo.visible = true;
-    gsap.to(logo, 0.3, {
-        alpha: 1,
-        onComplete: onGameoverShown
-    });
-}
-
 function onGameoverShown() {
     this.isGameReallyOver = true;
     GAME.interactive = true;
-}
-
-function onTouchStart(event) {
-    onTap(event);
 }
 
 function onCountdownComplete() {
@@ -629,21 +617,12 @@ function update() {
     }
 }
 
-class Time {
-    constructor() {
-        this.deltaTime = 1;
-        this.lastTime = 0;
-    }
-
-    update() {
-        const currentTime = Date.now();
-        let passedTime = currentTime - this.lastTime;
-
-        if (passedTime > 100) passedTime = 100;
-
-        this.DELTA_TIME = (passedTime * 0.06);
-        this.lastTime = currentTime;
-    }
+export function showGameover() {
+    logo.visible = true;
+    gsap.to(logo, 0.3, {
+        alpha: 1,
+        onComplete: onGameoverShown
+    });
 }
 
 

@@ -2,49 +2,49 @@ import * as PIXI from '../pixi'
 import { Explosion } from './Explosion'
 import Audio from '../fido/Audio'
 import GAME from './Game';
-let enemyFrames;
 
-const Enemy = function () {
-    this.position = new PIXI.Point();
-    this.view = new PIXI.Sprite(PIXI.Texture.from("spike_box.png"));
-    this.view.anchor.x = 0.5;
-    this.view.anchor.y = 0.5;
-    this.isHit = false;
-    this.width = 150;
-    this.height = 150;
-}
-
-Enemy.constructor = Enemy;
-
-Enemy.prototype.reset = function () {
-    if (this.explosion) {
-        this.view.removeChild(this.explosion);
-        this.explosion.reset();
+class Enemy {
+    constructor() {
+        this.position = new PIXI.Point();
+        this.view = new PIXI.Sprite(PIXI.Texture.from("spike_box.png"));
+        this.view.anchor.x = 0.5;
+        this.view.anchor.y = 0.5;
+        this.isHit = false;
+        this.width = 150;
+        this.height = 150;
     }
 
-    this.isHit = false;
-    this.view.width = 157;
-}
 
-Enemy.prototype.hit = function () {
-    if (this.isHit) return;
+    reset() {
+        if (this.explosion) {
+            this.view.removeChild(this.explosion);
+            this.explosion.reset();
+        }
 
-    Audio.stop('blockHit');
-    Audio.play('blockHit');
+        this.isHit = false;
+        this.view.width = 157;
+    }
 
-    this.isHit = true;
+    hit() {
+        if (this.isHit) return;
 
-    if (!this.explosion) this.explosion = new Explosion();
+        Audio.stop('blockHit');
+        Audio.play('blockHit');
 
-    this.explosion.explode();
-    this.view.addChild(this.explosion);
+        this.isHit = true;
 
-    this.view.texture = PIXI.Texture.from("img/empty.png")
-}
+        if (!this.explosion) this.explosion = new Explosion();
 
-Enemy.prototype.update = function () {
-    this.view.position.x = this.position.x - GAME.camera.x;
-    this.view.position.y = this.position.y;
+        this.explosion.explode();
+        this.view.addChild(this.explosion);
+
+        this.view.texture = PIXI.Texture.from("img/empty.png")
+    }
+
+    update() {
+        this.view.position.x = this.position.x - GAME.camera.x;
+        this.view.position.y = this.position.y;
+    }
 }
 
 export {

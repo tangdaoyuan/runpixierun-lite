@@ -1,24 +1,24 @@
-const GameObjectPool = function(classType) {
-    this.classType = classType;
-    this.pool = [];
-}
 
-// constructor
-GameObjectPool.constructor = GameObjectPool;
-
-GameObjectPool.prototype.getObject = function() {
-    let object = this.pool.pop();
-    if (!object) {
-        object = new this.classType();
-
+class GameObjectPool {
+    constructor(classType) {
+        this.classType = classType;
+        this.pool = [];
     }
-    return object;
-}
 
-GameObjectPool.prototype.returnObject = function(object) {
-    //this.pool.push(object);
-}
+    getObject() {
+        let object = this.pool.pop();
+        if (!object) {
+            object = new this.classType();
 
+        }
+        return object;
+    }
+
+    returnObject(object) {
+        //this.pool.push(object);
+    }
+
+}
 export {
     GameObjectPool
 }
