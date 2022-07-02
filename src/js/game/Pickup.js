@@ -34,7 +34,6 @@ class Pickup {
         this.width = 100;
         this.height = 100;
         this.count = Math.random() * 300;
-        //	GAME.addHitArea(this);
     }
 
     reset() {

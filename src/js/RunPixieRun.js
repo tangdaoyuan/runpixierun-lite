@@ -6,6 +6,7 @@ import { RprEngine } from './game/RprEngine'
 import { StressTest } from './game/StressTest'
 import GAME from './game/Game'
 import { Countdown } from './game/view/Countdown'
+import { GAME_MODE } from './constant'
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -17,16 +18,6 @@ window.addEventListener('resize', function () {
 });
 
 window.onorientationchange = resize;
-
-
-const GAME_MODE = {
-    TITLE: 0,
-    COUNT_DOWN: 1,
-    PLAYING: 2,
-    GAME_OVER: 3,
-    INTRO: 4,
-    PAUSED: 5
-};
 
 let loader;
 let game;
@@ -53,8 +44,7 @@ function onReady() {
 
 function onStressTestComplete() {
     stressTest.end();
-    // GAME.lowMode = stressTest.result < 40;
-    GAME.lowMode = false
+    GAME.lowMode = stressTest.result < 40;
 
     GAME.interactive = false;
     document.body.scroll = "no";

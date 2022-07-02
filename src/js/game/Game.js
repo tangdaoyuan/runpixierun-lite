@@ -1,21 +1,46 @@
 import * as PIXI from '../pixi'
 
-const GAME = {}
-GAME.HIGH_MODE = true;
-GAME.camera = new PIXI.Point();
-GAME.height;
-GAME.bundleId = "com.goodboy.runpixierun";
-GAME.newHighScore = false;
-GAME.gameMode = 0
-GAME.GAME_MODE = {
-  TITLE: 0,
-  COUNT_DOWN: 1,
-  PLAYING: 2,
-  GAME_OVER: 3,
-  INTRO: 4,
-  PAUSED: 5
-};
-GAME.interactive = true
+// TODO
+// wrapper with setter/getter
+
+class GAME {
+  static HIGH_MODE = true
+  static camera = new PIXI.Point()
+  static width = 0
+  static height = 0
+  static bundleId = "com.goodboy.runpixierun"
+  static newHighScore = false
+  static gameMode = 0
+  static interactive = true
+  static time = null
+  static lowMode = false // 
+  static HIGH_MODE = true // if Support webGLRenderer
+  static xOffset = 0
+
+  static initTimer() {
+    GAME.time = new Time()
+  }
+}
+
+class Time {
+  constructor() {
+    this.DELTA_TIME = 1;
+    this.lastTime = Date.now();
+    this.speed = 1;
+  }
+  update() {
+    const currentTime = Date.now();
+    let passedTime = currentTime - this.lastTime;
+
+    this.DELTA_TIME = ((passedTime) * 0.06);
+    this.DELTA_TIME *= this.speed;
+
+    if (this.DELTA_TIME > 2.3) this.DELTA_TIME = 2.3;
+
+    this.lastTime = currentTime;
+  }
+}
+
 
 
 export default GAME

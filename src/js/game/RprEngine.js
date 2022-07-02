@@ -1,5 +1,6 @@
 import { gsap, Cubic } from 'gsap'
 import GAME from './Game'
+import { GAME_MODE } from '../constant'
 import { Steve } from './Steve'
 import { RprView } from './view/RprView'
 import { SegmentManager } from './SegmentManager'
@@ -68,7 +69,7 @@ class RprEngine {
 
         GAME.camera.y = targetCamY;
 
-        if (GAME.gameMode !== GAME.GAME_MODE.PAUSED) {
+        if (GAME.gameMode !== GAME_MODE.PAUSED) {
             this.steve.update();
             this.collisionManager.update();
             this.segmentManager.update();
@@ -183,26 +184,7 @@ class RprEngine {
 
 }
 
-class Time {
-    constructor() {
-        this.DELTA_TIME = 1;
-        this.lastTime = Date.now();
-        this.speed = 1;
-    }
-    update() {
-        const currentTime = Date.now();
-        let passedTime = currentTime - this.lastTime;
-
-        this.DELTA_TIME = ((passedTime) * 0.06);
-        this.DELTA_TIME *= this.speed;
-
-        if (this.DELTA_TIME > 2.3) this.DELTA_TIME = 2.3;
-
-        this.lastTime = currentTime;
-    }
-}
-
-GAME.time = new Time();
+GAME.initTimer()
 
 export {
     RprEngine
