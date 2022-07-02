@@ -1,6 +1,10 @@
 # runpixierun-lite
 
-> Fork from runpixierun, for learning pixijs
+> Fork from [runpixierun](https://github.com/Detail0805/runpixierun)
+
+# Why
+
+Refactor for learning pixijs
 
 ## TODO
 
