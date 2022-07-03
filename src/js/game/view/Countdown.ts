@@ -91,7 +91,7 @@ class Countdown extends PIXI.Container {
 
         gsap.to(this.one, 1 * time2, {
           alpha: 1,
-          onComplete() {
+          onComplete: () => {
             gsap.to(this.one.scale, 1 * time, {
               x: 0.5,
               y: 0.5,
