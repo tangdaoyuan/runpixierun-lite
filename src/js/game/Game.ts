@@ -27,8 +27,12 @@ class Time {
 // TODO
 // wrapper with setter/getter
 
+class Camera extends PIXI.Point {
+  zoom = 1
+}
+
 class GAME {
-  static camera = new PIXI.Point()
+  static camera = new Camera()
   static width = 0
   static height = 0
   static bundleId = 'com.goodboy.runpixierun'

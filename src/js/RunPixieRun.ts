@@ -28,13 +28,13 @@ let black: PIXI.Sprite
 let stressTest: StressTest
 let thrusters = false
 let thrustersVolume = 0
-let pauseButton: PIXI.Sprite
-let pauseScreen: PIXI.Sprite
+let pauseButton: PIXI.ButtonSprite
+let pauseScreen: PIXI.ButtonSprite
 
-let resumeButton: PIXI.Sprite
-let restartButton: PIXI.Sprite
-let soundOnButton: PIXI.Sprite
-let soundOffButton: PIXI.Sprite
+let resumeButton: PIXI.ButtonSprite
+let restartButton: PIXI.ButtonSprite
+let soundOnButton: PIXI.ButtonSprite
+let soundOffButton: PIXI.ButtonSprite
 
 function onReady() {
   Audio.init()
@@ -187,7 +187,7 @@ function init() {
 
   document.body.appendChild(game.view.renderer.view)
   game.view.renderer.view.style.position = 'absolute'
-  game.view.renderer.view.webkitImageSmoothingEnabled = false
+  // game.view.renderer.view.webkitImageSmoothingEnabled = false
 
   if (GAME.lowMode)
     setInterval(update, 1000 / 30)
@@ -240,8 +240,8 @@ function init() {
   pauseButton.anchor.x = 0.5
   pauseButton.anchor.y = 0.5
   pauseButton.alpha = 0
-  pauseButton.visible = false
-  pauseButton.type = 'button'
+  pauseButton.visible = false;
+  (pauseButton as any).type = 'button'
 
   pauseScreen = PIXI.Sprite.from('/assets/hud/pausedPanel.png')
   pauseScreen.anchor.x = 0.5
@@ -315,7 +315,7 @@ function init() {
     onPaused()
   }
 
-  game.view.container.mousedown = game.view.container.touchstart = function(event) {
+  game.view.container.mousedown = game.view.container.touchstart = function(event: any) {
     onTap(event)
   }
 

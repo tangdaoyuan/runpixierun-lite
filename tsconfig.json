@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
     "baseUrl": ".",
     "target": "esnext",
     // "useDefineForClassFields": true,
@@ -21,5 +22,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

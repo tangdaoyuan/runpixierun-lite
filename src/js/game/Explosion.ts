@@ -1,11 +1,18 @@
 import * as PIXI from '../pixi'
 
+interface Cloud extends PIXI.Sprite {
+  scaleTarget?: number
+  speed?: PIXI.Point
+  state?: number
+  rotSpeed?: number
+}
+
 class Explosion extends PIXI.Container {
   particals: ExplosionPartical[]
   top: ExplosionPartical
   bottom: ExplosionPartical
   anchor: PIXI.Point
-  clouds: PIXI.Sprite[]
+  clouds: Cloud[]
   exploding = false
 
   constructor() {
@@ -79,16 +86,16 @@ class Explosion extends PIXI.Container {
     if (this.exploding) {
       for (let i = 0; i < this.clouds.length; i++) {
         const cloud = this.clouds[i]
-        cloud.rotation += cloud.rotSpeed
+        cloud.rotation += cloud.rotSpeed || 0
         if (cloud.state === 0) {
-          cloud.scale.x += (cloud.scaleTarget - cloud.scale.x) * 0.4
+          cloud.scale.x += (cloud.scaleTarget || 0 - cloud.scale.x) * 0.4
           cloud.scale.y = cloud.scale.x
 
-          if (cloud.scale.x > cloud.scaleTarget - 0.1) cloud.state = 1
+          if (cloud.scale.x > (cloud.scaleTarget || 0) - 0.1) cloud.state = 1
         }
         else {
-          cloud.position.x += cloud.speed.x * 0.05
-          cloud.position.y += cloud.speed.y * 0.05
+          cloud.position.x += (cloud.speed?.x || 0) * 0.05
+          cloud.position.y += (cloud.speed?.y || 0) * 0.05
         }
       }
 

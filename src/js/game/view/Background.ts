@@ -82,8 +82,13 @@ class Background extends PIXI.Container {
   }
 }
 
+interface Vine extends PIXI.Sprite {
+  speed?: number
+  offset?: number
+}
+
 class Vines {
-  vines: PIXI.Sprite[]
+  vines: Vine[]
   owner: Background
   speed: number
 
@@ -92,8 +97,8 @@ class Vines {
     this.owner = owner
 
     for (let i = 0; i < 10; i++) {
-      const vine = PIXI.Sprite.from('01_hanging_flower3.png');
-      (vine as any).offset = i * 100 + Math.random() * 50
+      const vine: Vine = PIXI.Sprite.from('01_hanging_flower3.png')
+      vine.offset = i * 100 + Math.random() * 50
       vine.speed = (1.5 + Math.random() * 0.25) / 2
       vine.position.y = Math.random() * -200
       owner.addChild(vine)
@@ -108,7 +113,7 @@ class Vines {
     for (let i = 0; i < this.vines.length; i++) {
       const vine = this.vines[i]
 
-      let pos = -(position + (vine as any).offset) * vine.speed // * this.speed;
+      let pos = -(position + (vine as any).offset) * (vine.speed || 1) // * this.speed;
       pos %= this.owner.initialWidth
       pos += this.owner.initialWidth
 

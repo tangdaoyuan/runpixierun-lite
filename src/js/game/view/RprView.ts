@@ -22,7 +22,7 @@ class RprView {
   engine: RprEngine
   renderer: PIXI.AbstractRenderer
   stage: PIXI.Stage
-  container: PIXI.Container
+  container: PIXI.interactiveContainer
   hud: PIXI.Container
   normalBackground: LowFiBackground | Background
   joyBackground: JoyBackground
