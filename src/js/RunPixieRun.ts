@@ -98,13 +98,15 @@ function onTap(event: any) {
       logo.scale.y = 1.5
       logo.texture = PIXI.Texture.from('assets/hud/pixieRevised_controls.png')
 
-      gsap.to(logo, 0.1, {
+      gsap.to(logo, {
         alpha: 1,
+        duration: 0.1,
       })
 
-      gsap.to(logo.scale, 1, {
+      gsap.to(logo.scale, {
         x: 1,
         y: 1,
+        duration: 1,
         ease: Elastic.easeOut,
         onComplete: onIntroFaded,
       })
@@ -117,13 +119,15 @@ function onTap(event: any) {
       Audio.setVolume('runRegular', 1)
 
       if (black) {
-        gsap.to(black, 0.2, {
+        gsap.to(black, {
           alpha: 0,
+          duration: 0.2,
         })
       }
 
-      gsap.to(logo, 0.3, {
+      gsap.to(logo, {
         alpha: 0,
+        duration: 0.3,
         onComplete() {
           logo.visible = false
           logo.texture = PIXI.Texture.from('gameOver.png')
@@ -138,8 +142,9 @@ function onTap(event: any) {
 
       game.view.stage.addChild(black)
 
-      gsap.to(black, 0.3, {
+      gsap.to(black, {
         alpha: 1,
+        duration: 0.3,
         onComplete() {
           game.steve.normalMode()
           game.joyrideComplete()
@@ -153,8 +158,9 @@ function onTap(event: any) {
           gsap.killTweensOf(GAME.camera)
           GAME.camera.zoom = 1
 
-          gsap.to(black, 0.3, {
+          gsap.to(black, {
             alpha: 0,
+            duration: 0.3,
             onComplete() {
               logo.visible = false
               game.start()
@@ -193,9 +199,10 @@ function init() {
   black = PIXI.Sprite.from('img/blackSquare.jpg')
   game.view.hud.addChild(black)
 
-  gsap.to(black, 0.3, {
+  gsap.to(black, {
     alpha: 0.75,
     delay: 0.5,
+    duration: 0.3,
   })
 
   logo = PIXI.Sprite.from('runLogo.png')
@@ -218,9 +225,10 @@ function init() {
   pressStart.anchor.x = 0.5
   pressStart.position.y = 200
 
-  gsap.to(logo, 0.1, {
+  gsap.to(logo, {
     alpha: 1,
     delay: 0.6,
+    duration: 0.1,
     onComplete: onIntroFaded,
   })
 
@@ -335,43 +343,51 @@ function onRestartPressed() {
 function onSoundOnPressed() {
   Audio.muteAll()
 
-  gsap.to(soundOnButton.scale, 0.6, {
+  gsap.to(soundOnButton.scale, {
     x: 0,
     y: 0,
+    duration: 0.6,
     ease: Elastic.easeOut,
   })
-  gsap.to(soundOnButton, 0.1, {
+  gsap.to(soundOnButton, {
     alpha: 0,
+    duration: 0.6,
   })
-  gsap.to(soundOffButton.scale, 0.6, {
+  gsap.to(soundOffButton.scale, {
     x: 1,
     y: 1,
     ease: Elastic.easeOut,
+    duration: 0.6,
   })
-  gsap.to(soundOffButton, 0.1, {
+  gsap.to(soundOffButton, {
     alpha: 1,
+    duration: 0.1,
   })
 }
 
 function onSoundOffPressed() {
   Audio.unMuteAll()
 
-  gsap.to(soundOffButton.scale, 0.6, {
+  gsap.to(soundOffButton.scale, {
     x: 0,
     y: 0,
     ease: Elastic.easeOut,
+    duration: 0.6,
   })
-  gsap.to(soundOffButton, 0.1, {
+  gsap.to(soundOffButton, {
     alpha: 0,
+    duration: 0.1,
   })
 
-  gsap.to(soundOnButton.scale, 0.6, {
+  gsap.to(soundOnButton.scale, {
     x: 1,
     y: 1,
     ease: Elastic.easeOut,
+    duration: 0.6,
   })
-  gsap.to(soundOnButton, 0.1, {
+  gsap.to(soundOnButton, {
     alpha: 1,
+    duration: 0.1,
   })
 }
 
@@ -380,10 +396,11 @@ let prevState: number | false = false
 function onPaused() {
   pauseButton.scale.set(0.5)
 
-  gsap.to(pauseButton.scale, 0.5, {
+  gsap.to(pauseButton.scale, {
     x: 1,
     y: 1,
     ease: Elastic.easeOut,
+    duration: 0.5,
   })
 
   if (GAME.gameMode === GAME_MODE.PAUSED) {
@@ -393,49 +410,59 @@ function onPaused() {
     GAME.gameMode = +prevState
     prevState = false
 
-    gsap.to(soundOffButton.scale, 0.6, {
+    gsap.to(soundOffButton.scale, {
       x: 0,
       y: 0,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
-    gsap.to(soundOffButton, 0.1, {
+    gsap.to(soundOffButton, {
       alpha: 0,
+      duration: 0.1,
     })
 
-    gsap.to(soundOnButton.scale, 0.6, {
+    gsap.to(soundOnButton.scale, {
       x: 0,
       y: 0,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
-    gsap.to(soundOnButton, 0.1, {
+    gsap.to(soundOnButton, {
       alpha: 0,
+      duration: 0.1,
     })
 
-    gsap.to(resumeButton.scale, 0.6, {
+    gsap.to(resumeButton.scale, {
       x: 0,
       y: 0,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
-    gsap.to(resumeButton, 0.1, {
+    gsap.to(resumeButton, {
       alpha: 0,
+      duration: 0.1,
     })
 
-    gsap.to(restartButton.scale, 0.6, {
+    gsap.to(restartButton.scale, {
       x: 0,
       y: 0,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
-    gsap.to(restartButton, 0.1, {
+    gsap.to(restartButton, {
       alpha: 0,
+      duration: 0.1,
     })
 
-    gsap.to(pauseScreen.scale, 1, {
+    gsap.to(pauseScreen.scale, {
       x: 0,
       y: 0,
       ease: Elastic.easeOut,
+      duration: 1,
     })
-    gsap.to(pauseScreen, 0.1, {
+    gsap.to(pauseScreen, {
       alpha: 0,
+      duration: 0.1,
     })
   }
   else {
@@ -446,53 +473,63 @@ function onPaused() {
 
     pauseScreen.visible = true
 
-    gsap.to(pauseScreen, 0.1, {
+    gsap.to(pauseScreen, {
       alpha: 1,
+      duration: 0.1,
     })
 
-    gsap.to(pauseScreen.scale, 0.6, {
+    gsap.to(pauseScreen.scale, {
       x: 1,
       y: 1,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
 
     if (Audio.isMuted() === false) {
-      gsap.to(soundOnButton.scale, 0.6, {
+      gsap.to(soundOnButton.scale, {
         x: 1,
         y: 1,
         ease: Elastic.easeOut,
+        duration: 0.6,
       })
-      gsap.to(soundOnButton, 0.1, {
+      gsap.to(soundOnButton, {
         alpha: 1,
+        duration: 0.1,
       })
     }
     else {
-      gsap.to(soundOffButton.scale, 0.6, {
+      gsap.to(soundOffButton.scale, {
         x: 1,
         y: 1,
         ease: Elastic.easeOut,
+        duration: 0.6,
       })
-      gsap.to(soundOffButton, 0.1, {
+      gsap.to(soundOffButton, {
         alpha: 1,
+        duration: 0.1,
       })
     }
 
-    gsap.to(resumeButton, 0.1, {
+    gsap.to(resumeButton, {
       alpha: 1,
+      duration: 0.1,
     })
-    gsap.to(resumeButton.scale, 0.6, {
+    gsap.to(resumeButton.scale, {
       x: 1,
       y: 1,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
 
-    gsap.to(restartButton, 0.1, {
+    gsap.to(restartButton, {
       alpha: 1,
+      duration: 0.1,
     })
-    gsap.to(restartButton.scale, 0.6, {
+    gsap.to(restartButton.scale, {
       x: 1,
       y: 1,
       ease: Elastic.easeOut,
+      duration: 0.6,
     })
   }
 }
@@ -504,8 +541,9 @@ function onIntroFaded() {
 function onGameover() {
   (<PIXI.Sprite>pauseButton).interactive = false
   Audio.setVolume('thrusters', 0)
-  gsap.to((<PIXI.Sprite>pauseButton), 0.6, {
+  gsap.to((<PIXI.Sprite>pauseButton), {
     alpha: 0,
+    duration: 0.6,
     onComplete() {
       (<PIXI.Sprite>pauseButton).visible = false
     },
@@ -527,8 +565,9 @@ function onCountdownComplete() {
   GAME.interactive = true
   GAME.gameMode = GAME_MODE.PLAYING
   pauseButton.visible = true
-  gsap.to(pauseButton, 0.6, {
+  gsap.to(pauseButton, {
     alpha: 1,
+    duration: 0.6,
     onComplete() {
       (<PIXI.Sprite>pauseButton).interactive = true
     },
@@ -614,8 +653,9 @@ function update() {
 
 export function showGameover() {
   logo.visible = true
-  gsap.to(logo, 0.3, {
+  gsap.to(logo, {
     alpha: 1,
+    duration: 0.3,
     onComplete: onGameoverShown,
   })
 }

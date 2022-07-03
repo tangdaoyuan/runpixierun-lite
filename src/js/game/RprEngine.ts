@@ -154,9 +154,10 @@ class RprEngine {
 
     this.view.game.addChild(this.steve.view)
 
-    gsap.to(this.view, 0.5, {
+    gsap.to(this.view, {
       zoom: 2,
       ease: Cubic.easeOut,
+      duration: 0.5,
     })
   }
 

@@ -118,25 +118,28 @@ class RprView {
 
     this.score.alpha = 1
     this.score.position.x = start.x
-    gsap.to(this.score.position, 1, {
+    gsap.to(this.score.position, {
       x: GAME.width - 295 - 20,
       ease: Elastic.easeOut,
+      duration: 1,
     })
 
     this.bestScore.alpha = 1
     this.bestScore.position.x = start.x
     this.bestScore.position.y -= 14
-    gsap.to(this.bestScore.position, 1, {
+    gsap.to(this.bestScore.position, {
       x: GAME.width - 20,
       ease: Elastic.easeOut,
+      duration: 1,
     })
 
     this.powerBar.alpha = 1
     this.powerBar.position.x = GAME.width
-    gsap.to(this.powerBar.position, 1, {
+    gsap.to(this.powerBar.position, {
       x: GAME.width - 295,
       ease: Elastic.easeOut,
       delay: 0.3,
+      duration: 1,
     })
   }
 
@@ -192,9 +195,10 @@ class RprView {
     this.stage.addChild(this.white)
     this.white.alpha = 1
 
-    gsap.to(this.white, 0.7, {
+    gsap.to(this.white, {
       alpha: 0,
       ease: Sine.easeOut,
+      duration: 0.7,
     })
   }
 
@@ -209,9 +213,10 @@ class RprView {
     this.stage.addChild(this.white)
     this.white.alpha = 1
 
-    gsap.to(this.white, 0.5, {
+    gsap.to(this.white, {
       alpha: 0,
       ease: Sine.easeOut,
+      duration: 0.5,
     })
   }
 

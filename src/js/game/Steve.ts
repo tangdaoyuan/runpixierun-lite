@@ -97,9 +97,10 @@ class Steve {
     this.joyRiding = true
     Audio.setVolume('runRegular', 0)
     Audio.play('hyperMode')
-    gsap.to(this.speed, 0.3, {
+    gsap.to(this.speed, {
       x: 20,
       ease: Cubic.easeIn,
+      duration: 0.3,
     })
     this.realAnimationSpeed = 0.23 * 4
   }
@@ -108,9 +109,10 @@ class Steve {
     this.joyRiding = false
     Audio.setVolume('runFast', 0)
     if (this.onGround === true) Audio.setVolume('runRegular', this.volume)
-    gsap.to(this.speed, 0.6, {
+    gsap.to(this.speed, {
       x: this.baseSpeed,
       ease: Cubic.easeOut,
+      duration: 0.6,
     })
     this.realAnimationSpeed = 0.23
   }
@@ -225,9 +227,10 @@ class Steve {
       ease: Cubic.easeOut,
       onComplete() {
         Audio.play('deathJingle')
-        gsap.to(GAME.time, 2, {
+        gsap.to(GAME.time, {
           speed: 1,
           delay: 1,
+          duration: 2,
         })
       },
     })

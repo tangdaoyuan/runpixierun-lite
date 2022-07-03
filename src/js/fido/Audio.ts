@@ -151,8 +151,9 @@ function muteAll() {
     volume: 1,
   }
 
-  gsap.to(cHolder, 1, {
+  gsap.to(cHolder, {
     volume: 0,
+    duration: 1,
     onUpdate() {
       Howler.volume(this.volume)
     },
@@ -163,8 +164,9 @@ function muteAll() {
 }
 
 function muteOneSound(cSound: CSound, holder: Object) {
-  gsap.to(holder, 1, {
+  gsap.to(holder, {
     volume: 0,
+    duration: 1,
     onUpdate() {
       cSound.audio!.volume(this.volume)
     },
@@ -180,8 +182,9 @@ function unMuteAll() {
 
   Howler.mute(false)
 
-  gsap.to(cHolder, 1, {
+  gsap.to(cHolder, {
     volume: 1,
+    duration: 1,
     onUpdate(_cObject, _sProperty) {
       Howler.volume(this.volume)
     },
