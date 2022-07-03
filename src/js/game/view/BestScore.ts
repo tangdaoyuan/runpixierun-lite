@@ -1,5 +1,5 @@
 import * as PIXI from '../../pixi'
-import GAME from '../game'
+import GAME from '../Game'
 import _LocalStorage from '../../fido/LocalStorage'
 import { formatScore } from './Score'
 
