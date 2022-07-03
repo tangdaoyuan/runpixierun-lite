@@ -27,7 +27,7 @@ class Steve {
     isDead: any;
     isActive: any;
     onGroundCache: any;
-    bounce: number = 0;
+    bounce: number = -1;
 
     constructor() {
         this.position = new PIXI.Point();
