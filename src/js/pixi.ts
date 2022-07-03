@@ -1,5 +1,5 @@
-import * as PIXI from 'pixi.js-legacy';
-export * from 'pixi.js-legacy';
+import { utils } from 'pixi.js-legacy'
+export * from 'pixi.js-legacy'
 export * from '@pixi/layers'
 
-PIXI.utils.skipHello()
+utils.skipHello()

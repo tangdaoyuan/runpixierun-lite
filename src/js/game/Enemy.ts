@@ -1,60 +1,59 @@
 import * as PIXI from '../pixi'
-import { Explosion } from './Explosion'
 import Audio from '../fido/Audio'
-import GAME from './Game';
+import { Explosion } from './Explosion'
+import GAME from './Game'
 
 class Enemy {
-    view: any;
-    position: any;
-    x: number = 0;
-    isHit: boolean;
-    width: number;
-    height: number;
-    explosion!: Explosion;
+  view: any
+  position: any
+  x = 0
+  isHit: boolean
+  width: number
+  height: number
+  explosion!: Explosion
 
-    constructor() {
-        this.position = new PIXI.Point();
-        this.view = new PIXI.Sprite(PIXI.Texture.from("spike_box.png"));
-        this.view.anchor.x = 0.5;
-        this.view.anchor.y = 0.5;
-        this.isHit = false;
-        this.width = 150;
-        this.height = 150;
+  constructor() {
+    this.position = new PIXI.Point()
+    this.view = new PIXI.Sprite(PIXI.Texture.from('spike_box.png'))
+    this.view.anchor.x = 0.5
+    this.view.anchor.y = 0.5
+    this.isHit = false
+    this.width = 150
+    this.height = 150
+  }
+
+  reset() {
+    if (this.explosion) {
+      this.view.removeChild(this.explosion)
+      this.explosion.reset()
     }
 
+    this.isHit = false
+    this.view.width = 157
+  }
 
-    reset() {
-        if (this.explosion) {
-            this.view.removeChild(this.explosion);
-            this.explosion.reset();
-        }
+  hit() {
+    if (this.isHit) return
 
-        this.isHit = false;
-        this.view.width = 157;
-    }
+    Audio.stop('blockHit')
+    Audio.play('blockHit')
 
-    hit() {
-        if (this.isHit) return;
+    this.isHit = true
 
-        Audio.stop('blockHit');
-        Audio.play('blockHit');
+    if (!this.explosion) this.explosion = new Explosion()
 
-        this.isHit = true;
+    this.explosion.explode()
+    this.view.addChild(this.explosion)
 
-        if (!this.explosion) this.explosion = new Explosion();
+    this.view.texture = PIXI.Texture.from('img/empty.png')
+  }
 
-        this.explosion.explode();
-        this.view.addChild(this.explosion);
-
-        this.view.texture = PIXI.Texture.from("img/empty.png")
-    }
-
-    update() {
-        this.view.position.x = this.position.x - GAME.camera.x;
-        this.view.position.y = this.position.y;
-    }
+  update() {
+    this.view.position.x = this.position.x - GAME.camera.x
+    this.view.position.y = this.position.y
+  }
 }
 
 export {
-    Enemy
+  Enemy,
 }

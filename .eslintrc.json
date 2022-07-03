@@ -1,0 +1,6 @@
+{
+  "extends": "@suger-tdy",
+  "rules": {
+    "import/namespace": "off"
+  }
+}

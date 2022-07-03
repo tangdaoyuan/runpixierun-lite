@@ -2,24 +2,30 @@
   "name": "runpixierun",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/howler": "^2.2.7",
-    "vite": "^2.9.12"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
     "@pixi/layers": "^1.0.11",
+    "@suger-tdy/eslint-config": "^1.1.6",
     "gsap": "^3.10.4",
     "howler": "^2.2.3",
     "pixi.js-legacy": "^6.4.2",
     "stats.js": "^0.17.0"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.7",
+    "eslint": "^8.19.0",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.12"
   }
 }

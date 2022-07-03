@@ -4,6 +4,5 @@ export const GAME_MODE = {
   PLAYING: 2,
   GAME_OVER: 3,
   INTRO: 4,
-  PAUSED: 5
-};
-
+  PAUSED: 5,
+}

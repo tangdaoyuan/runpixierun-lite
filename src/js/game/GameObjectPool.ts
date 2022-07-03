@@ -1,30 +1,27 @@
 
-
-type newClass<T> = {new(): T}
+interface newClass<T> { new(): T }
 
 class GameObjectPool<T> {
-    classType: newClass<T>;
-    pool: T[];
+  ClassType: newClass<T>
+  pool: T[]
 
-    constructor(classType: newClass<T>) {
-        this.classType = classType;
-        this.pool = [];
-    }
+  constructor(classType: newClass<T>) {
+    this.ClassType = classType
+    this.pool = []
+  }
 
-    getObject() {
-        let object = this.pool.pop();
-        if (!object) {
-            object = new this.classType();
+  getObject() {
+    let object = this.pool.pop()
+    if (!object)
+      object = new this.ClassType()
 
-        }
-        return object;
-    }
+    return object
+  }
 
-    returnObject(_object: T) {
-        //this.pool.push(object);
-    }
-
+  returnObject(_object: T) {
+    // this.pool.push(object);
+  }
 }
 export {
-    GameObjectPool
+  GameObjectPool,
 }
